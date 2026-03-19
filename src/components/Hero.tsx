@@ -83,12 +83,12 @@ export function Hero() {
           <motion.div
             initial={{ opacity: 0, scale: 0.95 }}
             animate={{ opacity: 1, scale: 1 }}
-            transition={{ duration: 1.2, delay: 0.3, ease: [0.16, 1, 0.3, 1] }}
+            transition={{ type: "spring", stiffness: 100, damping: 20, delay: 0.3 }}
             className="w-full aspect-square md:aspect-[4/3] relative rounded-2xl overflow-hidden shadow-2xl shadow-ink/10"
           >
             <div className="absolute inset-0 bg-ink/5 mix-blend-multiply z-10" />
             <img 
-              src="https://images.unsplash.com/photo-1512917774080-9991f1c4c750?q=80&w=2070&auto=format&fit=crop" 
+              src="/images/institutional_hero.png" 
               alt="High-value premium estate" 
               className="w-full h-full object-cover"
             />

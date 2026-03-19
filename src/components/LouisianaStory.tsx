@@ -88,12 +88,12 @@ export function LouisianaStory() {
             initial={{ opacity: 0, scale: 1.05 }}
             whileInView={{ opacity: 1, scale: 1 }}
             viewport={{ once: true }}
-            transition={{ duration: 1.5, ease: [0.16, 1, 0.3, 1] }}
+            transition={{ type: "spring", stiffness: 80, damping: 20 }}
             className="w-full h-full"
           >
             <motion.img 
               style={{ y, scale: 1.1 }}
-              src="https://images.unsplash.com/photo-1578307325514-699709794d21?q=80&w=2070&auto=format&fit=crop" 
+              src="/images/institutional_louisiana.png" 
               alt="Louisiana landscape" 
               className="w-full h-full object-cover opacity-90 mix-blend-multiply"
               referrerPolicy="no-referrer"

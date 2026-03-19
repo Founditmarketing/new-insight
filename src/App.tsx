@@ -6,8 +6,10 @@
 import { useEffect, useState } from 'react';
 import Lenis from 'lenis';
 import { Hero } from './components/Hero';
+import { Philosophy } from './components/Philosophy';
 import { ServicesGrid } from './components/ServicesGrid';
 import { Proof } from './components/Proof';
+import { Testimonials } from './components/Testimonials';
 import { LouisianaStory } from './components/LouisianaStory';
 import { Footer } from './components/Footer';
 import { Navbar } from './components/Navbar';
@@ -44,8 +46,10 @@ export default function App() {
       {loading && <Preloader onComplete={() => setLoading(false)} />}
       <Navbar />
       <Hero />
+      <Philosophy />
       <ServicesGrid />
       <Proof />
+      <Testimonials />
       <LouisianaStory />
       <Footer />
     </main>
