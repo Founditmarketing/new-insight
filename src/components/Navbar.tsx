@@ -1,62 +1,87 @@
 import { useState, useEffect } from 'react';
-import { motion, useScroll, useMotionValueEvent } from 'motion/react';
-import { Menu, X } from 'lucide-react';
+import { Menu, X, ShieldCheck } from 'lucide-react';
 
 export function Navbar() {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
-  const { scrollY } = useScroll();
 
-  useMotionValueEvent(scrollY, "change", (latest) => {
-    setIsScrolled(latest > 50);
-  });
+  useEffect(() => {
+    const handleScroll = () => {
+      setIsScrolled(window.scrollY > 50);
+    };
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
 
   return (
-    <motion.nav
-      initial={{ y: -100 }}
-      animate={{ y: 0 }}
-      transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
-        isScrolled ? 'bg-ink/90 backdrop-blur-md py-4 border-b border-white/10' : 'bg-transparent py-6'
-      } px-6 md:px-12 lg:px-24 text-paper`}
+    <nav 
+      className={`fixed top-0 w-full z-50 transition-all duration-500 ${
+        isScrolled 
+          ? 'bg-stone/95 backdrop-blur-md border-b border-slate/10 py-4 shadow-sm' 
+          : 'bg-transparent py-6'
+      }`}
     >
-      <div className="max-w-7xl mx-auto flex justify-between items-center">
-        <div className="text-xl font-serif font-medium tracking-wide">
-          INSIGHT
-        </div>
+      <div className="max-w-7xl mx-auto px-6 md:px-12 lg:px-24 flex items-center justify-between">
+        <a href="#" className="flex items-center gap-2 group cursor-none">
+          <ShieldCheck className="w-8 h-8 text-accent group-hover:scale-110 transition-transform duration-300" />
+          <div className="flex flex-col">
+            <span className={`font-bold tracking-tight text-xl leading-none transition-colors duration-300 ${isScrolled ? 'text-ink' : 'text-ink'}`}>INSIGHT</span>
+            <span className={`text-[10px] uppercase tracking-widest transition-colors font-semibold duration-300 ${isScrolled ? 'text-slate' : 'text-slate'}`}>Insurance</span>
+          </div>
+        </a>
 
-        {/* Desktop Nav */}
-        <div className="hidden md:flex items-center gap-8 text-sm font-medium tracking-wide">
-          <a href="#" className="hover:text-paper/70 transition-colors">Expertise</a>
-          <a href="#" className="hover:text-paper/70 transition-colors">Carriers</a>
-          <a href="#" className="hover:text-paper/70 transition-colors">Our Impact</a>
-          <a href="#" className="hover:text-paper/70 transition-colors">Louisiana</a>
-          <button className="bg-paper text-ink px-6 py-2.5 rounded-full hover:bg-paper/90 transition-colors">
+        {/* Desktop Menu */}
+        <div className="hidden md:flex items-center gap-8">
+          {['Expertise', 'Industries', 'About', 'Insights'].map((item) => (
+            <a 
+              key={item}
+              href={`#${item.toLowerCase()}`}
+              className={`text-sm font-semibold transition-colors uppercase tracking-wide cursor-none relative group ${isScrolled ? 'text-ink/80 hover:text-accent' : 'text-ink/80 hover:text-accent'}`}
+            >
+              {item}
+              <span className="absolute -bottom-1 left-0 w-0 h-[2px] bg-accent transition-all duration-300 group-hover:w-full"></span>
+            </a>
+          ))}
+          <button className={`ml-4 px-6 py-2.5 rounded-md font-semibold text-sm transition-all duration-300 cursor-none shadow-sm ${
+            isScrolled 
+              ? 'bg-ink text-stone hover:bg-accent' 
+              : 'bg-ink text-stone hover:bg-accent'
+          }`}>
             Client Portal
           </button>
         </div>
 
-        {/* Mobile Toggle */}
+        {/* Mobile Menu Toggle */}
         <button 
-          className="md:hidden text-paper"
+          className={`md:hidden p-2 transition-colors cursor-none ${isScrolled ? 'text-ink' : 'text-ink'}`}
           onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
         >
-          {isMobileMenuOpen ? <X /> : <Menu />}
+          {isMobileMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
         </button>
       </div>
 
       {/* Mobile Menu */}
-      {isMobileMenuOpen && (
-        <div className="absolute top-full left-0 right-0 bg-ink border-b border-white/10 p-6 flex flex-col gap-4 md:hidden">
-          <a href="#" className="text-lg hover:text-paper/70 transition-colors">Expertise</a>
-          <a href="#" className="text-lg hover:text-paper/70 transition-colors">Carriers</a>
-          <a href="#" className="text-lg hover:text-paper/70 transition-colors">Our Impact</a>
-          <a href="#" className="text-lg hover:text-paper/70 transition-colors">Louisiana</a>
-          <button className="bg-paper text-ink px-6 py-3 rounded-full mt-4 w-full font-medium">
+      <div 
+        className={`fixed inset-0 bg-stone z-40 transition-transform duration-500 ease-in-out ${
+          isMobileMenuOpen ? 'translate-x-0' : 'translate-x-full'
+        } md:hidden flex flex-col pt-24 px-8`}
+      >
+        <div className="flex flex-col gap-6 text-2xl font-bold tracking-tight text-ink">
+          {['Expertise', 'Industries', 'About', 'Insights'].map((item) => (
+            <a 
+              key={item}
+              href={`#${item.toLowerCase()}`}
+              className="hover:text-accent transition-colors border-b border-slate/10 pb-4"
+              onClick={() => setIsMobileMenuOpen(false)}
+            >
+              {item}
+            </a>
+          ))}
+          <button className="mt-8 bg-ink text-stone px-6 py-4 rounded-md font-semibold text-lg text-left hover:bg-accent transition-colors w-full">
             Client Portal
           </button>
         </div>
-      )}
-    </motion.nav>
+      </div>
+    </nav>
   );
 }

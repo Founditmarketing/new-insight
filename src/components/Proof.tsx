@@ -18,7 +18,7 @@ export function Proof() {
               The Independent Advantage
             </motion.h2>
             
-            <h3 className="text-fluid-h3 font-serif mb-8 overflow-hidden py-2">
+            <h3 className="text-fluid-h3 font-sans font-bold text-ink mb-8 overflow-hidden py-2 tracking-tight">
               <motion.span 
                 initial={{ y: "100%", opacity: 0 }}
                 whileInView={{ y: 0, opacity: 1 }}
@@ -26,7 +26,7 @@ export function Proof() {
                 transition={{ duration: 1, delay: 0.1, ease: [0.16, 1, 0.3, 1] }}
                 className="block"
               >
-                The math of 50+ carriers.
+                The math of 50+ elite carriers.
               </motion.span>
             </h3>
             
@@ -48,15 +48,14 @@ export function Proof() {
               whileInView={{ opacity: 1 }}
               viewport={{ once: true }}
               transition={{ duration: 1.5, delay: 0.4 }}
-              className="grid grid-cols-2 md:grid-cols-3 gap-8 opacity-40 grayscale mix-blend-multiply"
+              className="grid grid-cols-2 md:grid-cols-3 gap-8 opacity-40 mix-blend-multiply"
             >
-              {/* Placeholder logos for carriers */}
-              <div className="font-serif text-xl font-bold">CHUBB</div>
-              <div className="font-serif text-xl font-bold">PURE</div>
-              <div className="font-serif text-xl font-bold">AIG</div>
-              <div className="font-serif text-xl font-bold">CINCINNATI</div>
-              <div className="font-serif text-xl font-bold">TRAVELERS</div>
-              <div className="font-serif text-xl font-bold">PROGRESSIVE</div>
+              <div className="font-sans font-bold text-xl tracking-wider text-ink">CHUBB</div>
+              <div className="font-sans font-bold text-xl tracking-wider text-ink">PURE</div>
+              <div className="font-sans font-bold text-xl tracking-wider text-ink">AIG</div>
+              <div className="font-sans font-bold text-xl tracking-wider text-ink">CINCINNATI</div>
+              <div className="font-sans font-bold text-xl tracking-wider text-ink">TRAVELERS</div>
+              <div className="font-sans font-bold text-xl tracking-wider text-ink">PROGRESSIVE</div>
             </motion.div>
           </div>
 
@@ -72,7 +71,7 @@ export function Proof() {
               Our Impact
             </motion.h2>
             
-            <h3 className="text-fluid-h3 font-serif mb-8 overflow-hidden py-2">
+            <h3 className="text-fluid-h3 font-sans font-bold text-ink mb-8 overflow-hidden py-2 tracking-tight">
               <motion.span 
                 initial={{ y: "100%", opacity: 0 }}
                 whileInView={{ y: 0, opacity: 1 }}
@@ -111,8 +110,8 @@ export function Proof() {
                   viewport={{ once: true }}
                   transition={{ duration: 0.8, delay: 0.3 + (i * 0.1), ease: [0.16, 1, 0.3, 1] }}
                 >
-                  <div className="text-5xl font-serif mb-2 text-ink">{stat.value}</div>
-                  <div className="text-sm font-medium tracking-widest uppercase text-accent">{stat.label}</div>
+                  <div className="text-5xl font-bold mb-3 text-accent inline-block tracking-tight">{stat.value}</div>
+                  <div className="text-sm font-semibold tracking-wide uppercase text-ink/60">{stat.label}</div>
                 </motion.div>
               ))}
             </div>

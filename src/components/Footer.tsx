@@ -1,59 +1,81 @@
 import { ArrowUpRight } from 'lucide-react';
-import { MagneticButton } from './MagneticButton';
+import { MapPin, Phone, Mail, Clock, ShieldCheck } from 'lucide-react';
 
 export function Footer() {
   return (
-    <footer className="bg-paper pt-32 pb-12 px-6 md:px-12 lg:px-24 border-t border-ink/5">
-      <div className="max-w-7xl mx-auto">
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-16 mb-32">
-          
-          <div className="md:col-span-2">
-            <h2 className="text-3xl font-serif mb-6 text-ink">Insight Insurance</h2>
-            <p className="text-ink/60 max-w-sm mb-8">
-              Premier Asset Protection Partner for Louisiana. Quiet certainty in an unpredictable world.
-            </p>
-            <MagneticButton className="bg-accent text-paper rounded-full px-8 py-4 font-medium flex items-center gap-2 w-fit hover:bg-ink transition-colors">
-              Request a Consultation <ArrowUpRight className="w-4 h-4" />
-            </MagneticButton>
+    <footer className="bg-stone text-ink pt-24 pb-12 px-6 md:px-12 lg:px-24 border-t border-slate/10 relative overflow-hidden">
+      
+      <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-16 relative z-10">
+        
+        {/* Brand & Mission */}
+        <div className="flex flex-col gap-6">
+          <div className="flex items-center gap-2 group cursor-none">
+            <ShieldCheck className="w-8 h-8 text-accent transition-transform duration-300" />
+            <div className="flex flex-col">
+              <span className="font-bold tracking-tight text-xl leading-none text-ink">INSIGHT</span>
+              <span className="text-[10px] uppercase tracking-widest text-slate font-semibold">Insurance</span>
+            </div>
           </div>
-
-          <div>
-            <h4 className="text-sm font-medium tracking-widest uppercase text-accent mb-6">Offices</h4>
-            <ul className="space-y-4 text-ink/80">
-              <li>
-                <strong>Alexandria</strong><br/>
-                <span className="text-ink/60 text-sm">123 Main St, Suite 400<br/>Alexandria, LA 71301</span>
-              </li>
-              <li>
-                <strong>Ponchatoula</strong><br/>
-                <span className="text-ink/60 text-sm">456 Pine St<br/>Ponchatoula, LA 70454</span>
-              </li>
-              <li>
-                <strong>Slidell</strong><br/>
-                <span className="text-ink/60 text-sm">1352 7th Street<br/>Slidell, LA 70458</span>
-              </li>
-            </ul>
-          </div>
-
-          <div>
-            <h4 className="text-sm font-medium tracking-widest uppercase text-accent mb-6">Connect</h4>
-            <ul className="space-y-4 text-ink/80">
-              <li><a href="#" className="hover:text-accent transition-colors">Client Portal</a></li>
-              <li><a href="#" className="hover:text-accent transition-colors">Report a Claim</a></li>
-              <li><a href="#" className="hover:text-accent transition-colors">LinkedIn</a></li>
-              <li><a href="#" className="hover:text-accent transition-colors">Contact Us</a></li>
-            </ul>
-          </div>
-
+          <p className="text-ink/70 text-sm font-medium leading-relaxed max-w-sm">
+            Architecting protection for Louisiana's most significant private assets and commercial enterprises.
+          </p>
         </div>
 
-        <div className="flex flex-col md:flex-row justify-between items-center pt-8 border-t border-ink/10 text-sm text-ink/40">
-          <p>&copy; {new Date().getFullYear()} Insight Insurance. All rights reserved.</p>
-          <div className="flex gap-6 mt-4 md:mt-0">
-            <a href="#" className="hover:text-ink transition-colors">Privacy Policy</a>
-            <a href="#" className="hover:text-ink transition-colors">Terms of Service</a>
-          </div>
+        {/* Contact Information */}
+        <div className="flex flex-col gap-6">
+          <h4 className="text-sm font-bold tracking-wide uppercase text-accent">Contact</h4>
+          <ul className="flex flex-col gap-4 text-sm font-medium text-ink/70">
+            <li className="flex items-start gap-3 hover:text-ink transition-colors">
+              <MapPin className="w-5 h-5 text-accent shrink-0" />
+              <span>123 Security Blvd, Suite 400<br/>Alexandria, LA 71301</span>
+            </li>
+            <li className="flex items-center gap-3 hover:text-ink transition-colors">
+              <Phone className="w-5 h-5 text-accent shrink-0" />
+              <span>(318) 555-0123</span>
+            </li>
+            <li className="flex items-center gap-3 hover:text-ink transition-colors">
+              <Mail className="w-5 h-5 text-accent shrink-0" />
+              <span>secure@insighthelps.com</span>
+            </li>
+            <li className="flex items-center gap-3 hover:text-ink transition-colors">
+              <Clock className="w-5 h-5 text-accent shrink-0" />
+              <span>Mon-Fri: 8:00 AM - 5:00 PM</span>
+            </li>
+          </ul>
         </div>
+
+        {/* Quick Links */}
+        <div className="flex flex-col gap-6">
+          <h4 className="text-sm font-bold tracking-wide uppercase text-accent">Excellence</h4>
+          <ul className="flex flex-col gap-3 text-sm font-medium text-ink/70">
+            {['Private Client Group', 'Commercial Risk', 'Claims Concierge', 'About Our Firm', 'Strategic Partners'].map((link) => (
+              <li key={link}>
+                <a href="#" className="hover:text-accent transition-colors relative inline-block group">
+                  {link}
+                  <span className="absolute -bottom-1 left-0 w-0 h-[1px] bg-accent transition-all duration-300 group-hover:w-full"></span>
+                </a>
+              </li>
+            ))}
+          </ul>
+        </div>
+
+        {/* Legal & Compliance */}
+        <div className="flex flex-col gap-6">
+          <h4 className="text-sm font-bold tracking-wide uppercase text-accent">Compliance</h4>
+          <ul className="flex flex-col gap-3 text-sm font-medium text-ink/70">
+            {['Privacy Policy', 'Terms of Service', 'Licensing Information', 'Accessibility'].map((link) => (
+              <li key={link}>
+                <a href="#" className="hover:text-accent transition-colors">{link}</a>
+              </li>
+            ))}
+          </ul>
+        </div>
+
+      </div>
+
+      <div className="max-w-7xl mx-auto mt-24 pt-8 border-t border-slate/10 flex flex-col md:flex-row justify-between items-center gap-4 text-xs font-semibold text-slate uppercase tracking-widest relative z-10">
+        <p>© {new Date().getFullYear()} Insight Insurance. All rights reserved.</p>
+        <p>A licensed Louisiana brokerage.</p>
       </div>
     </footer>
   );

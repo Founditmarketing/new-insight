@@ -1,80 +1,117 @@
-import { motion, useScroll, useTransform } from 'motion/react';
-import { ArrowRight, Shield } from 'lucide-react';
-import { MagneticButton } from './MagneticButton';
+import { motion } from 'motion/react';
+import { ArrowRight, ShieldCheck } from 'lucide-react';
 
 export function Hero() {
-  const { scrollY } = useScroll();
-  const y = useTransform(scrollY, [0, 1000], [0, 300]);
-  const opacity = useTransform(scrollY, [0, 800], [0.4, 0]);
-
   return (
-    <section className="relative h-screen w-full overflow-hidden bg-ink flex flex-col justify-end pb-24 px-6 md:px-12 lg:px-24 text-white">
-      {/* Cinematic Background with Parallax and Continuous Breathing */}
-      <div className="absolute inset-0 z-0">
-        <motion.img 
-          style={{ y, opacity }}
-          animate={{ scale: [1.05, 1.15] }}
-          transition={{ duration: 20, repeat: Infinity, repeatType: "reverse", ease: "linear" }}
-          src="https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?q=80&w=2075&auto=format&fit=crop" 
-          alt="Atmospheric architecture" 
-          className="w-full h-full object-cover mix-blend-luminosity origin-center"
-          referrerPolicy="no-referrer"
-        />
-        <div className="absolute inset-0 bg-gradient-to-t from-ink via-ink/60 to-transparent" />
+    <section className="relative min-h-screen w-full bg-paper flex flex-col justify-center pt-32 pb-24 px-6 md:px-12 lg:px-24 overflow-hidden">
+      
+      {/* Background architectural lines for subtle texture */}
+      <div className="absolute inset-0 z-0 opacity-[0.03] pointer-events-none flex justify-center">
+        <div className="w-[1px] h-full bg-ink mx-auto" />
+        <div className="w-[1px] h-full bg-ink absolute left-1/4" />
+        <div className="w-[1px] h-full bg-ink absolute right-1/4" />
       </div>
 
-      {/* Content */}
-      <div className="relative z-10 max-w-5xl">
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 1, ease: [0.16, 1, 0.3, 1] }}
-          className="flex items-center gap-3 mb-6"
-        >
-          <Shield className="w-5 h-5 text-white/70" />
-          <span className="text-sm font-medium tracking-widest uppercase text-white/70">Asset Protection Partner</span>
-        </motion.div>
+      <div className="relative z-10 w-full max-w-7xl mx-auto flex flex-col lg:flex-row items-center gap-16">
         
-        <h1 className="text-fluid-h1 font-serif font-medium mb-8 flex flex-col">
-          <span className="overflow-hidden py-2">
-            <motion.span 
-              initial={{ y: "100%", opacity: 0, rotate: 2 }}
-              animate={{ y: 0, opacity: 1, rotate: 0 }}
-              transition={{ duration: 1.2, delay: 0.1, ease: [0.16, 1, 0.3, 1] }}
-              className="block"
-            >
-              Quiet certainty in an
-            </motion.span>
-          </span>
-          <span className="overflow-hidden py-2">
-            <motion.span 
-              initial={{ y: "100%", opacity: 0, rotate: 2 }}
-              animate={{ y: 0, opacity: 1, rotate: 0 }}
-              transition={{ duration: 1.2, delay: 0.25, ease: [0.16, 1, 0.3, 1] }}
-              className="block italic text-white/80"
-            >
-              unpredictable world.
-            </motion.span>
-          </span>
-        </h1>
+        {/* Left Typography Column */}
+        <div className="w-full lg:w-1/2 flex flex-col">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
+            className="flex items-center gap-3 mb-8"
+          >
+            <div className="w-10 h-10 rounded-full bg-accent/10 flex items-center justify-center">
+              <ShieldCheck className="w-5 h-5 text-accent" />
+            </div>
+            <span className="text-sm font-semibold tracking-wide uppercase text-ink/70">
+              Insight Insurance
+            </span>
+          </motion.div>
+          
+          <h1 className="text-fluid-h1 text-ink mb-8 flex flex-col">
+            <span className="overflow-hidden py-1">
+              <motion.span 
+                initial={{ y: "100%" }}
+                animate={{ y: 0 }}
+                transition={{ duration: 1, delay: 0.1, ease: [0.16, 1, 0.3, 1] }}
+                className="block"
+              >
+                Uncompromising
+              </motion.span>
+            </span>
+            <span className="overflow-hidden py-1">
+              <motion.span 
+                initial={{ y: "100%" }}
+                animate={{ y: 0 }}
+                transition={{ duration: 1, delay: 0.2, ease: [0.16, 1, 0.3, 1] }}
+                className="block text-accent"
+              >
+                Asset Protection.
+              </motion.span>
+            </span>
+          </h1>
 
-        <motion.div
-          initial={{ opacity: 0, y: 40 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 1, delay: 0.5, ease: [0.16, 1, 0.3, 1] }}
-          className="flex flex-col sm:flex-row gap-4 max-w-2xl"
-        >
-          <div className="glass-panel rounded-full p-2 flex w-full items-center">
-            <input 
-              type="text" 
-              placeholder="What are we protecting today?" 
-              className="bg-transparent border-none outline-none text-white placeholder:text-white/50 px-6 w-full font-sans"
+          <motion.p
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, delay: 0.4, ease: [0.16, 1, 0.3, 1] }}
+            className="text-xl text-ink/70 font-medium leading-relaxed max-w-lg mb-12"
+          >
+            We don't sell policies; we construct defensive architectures around your life's work. Precision coverage for high-value homes, premium auto, and commercial enterprise.
+          </motion.p>
+
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, delay: 0.5, ease: [0.16, 1, 0.3, 1] }}
+            className="flex flex-col sm:flex-row gap-4"
+          >
+            <button className="bg-ink text-stone rounded-lg px-8 py-4 font-semibold hover:bg-accent transition-colors flex items-center justify-center gap-2 group">
+              Speak with an Advisor 
+              <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
+            </button>
+            <button className="bg-stone text-ink border border-slate/30 rounded-lg px-8 py-4 font-semibold hover:border-ink transition-colors flex items-center justify-center gap-2">
+              Explore Coverages
+            </button>
+          </motion.div>
+        </div>
+
+        {/* Right Visual Column */}
+        <div className="w-full lg:w-1/2 relative">
+          <motion.div
+            initial={{ opacity: 0, scale: 0.95 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ duration: 1.2, delay: 0.3, ease: [0.16, 1, 0.3, 1] }}
+            className="w-full aspect-square md:aspect-[4/3] relative rounded-2xl overflow-hidden shadow-2xl shadow-ink/10"
+          >
+            <div className="absolute inset-0 bg-ink/5 mix-blend-multiply z-10" />
+            <img 
+              src="https://images.unsplash.com/photo-1512917774080-9991f1c4c750?q=80&w=2070&auto=format&fit=crop" 
+              alt="High-value premium estate" 
+              className="w-full h-full object-cover"
             />
-            <MagneticButton className="bg-white text-ink rounded-full px-8 py-4 font-medium flex items-center gap-2 whitespace-nowrap hover:bg-stone transition-colors">
-              Begin Quote <ArrowRight className="w-4 h-4" />
-            </MagneticButton>
-          </div>
-        </motion.div>
+          </motion.div>
+          
+          {/* Trust Metric Overlay */}
+          <motion.div
+            initial={{ opacity: 0, x: 20 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.8, delay: 0.8, ease: [0.16, 1, 0.3, 1] }}
+            className="absolute -bottom-8 -left-8 md:-left-16 bg-stone p-8 rounded-xl shadow-xl shadow-ink/5 border border-slate/10 max-w-[280px]"
+          >
+            <div className="text-4xl font-bold text-ink mb-2">$140M+</div>
+            <div className="text-sm font-semibold tracking-wide text-slate uppercase">
+              Client Assets Protected Successfully
+            </div>
+            <div className="mt-4 pt-4 border-t border-slate/20 flex items-center gap-2">
+              <span className="w-2 h-2 rounded-full bg-accent animate-pulse" />
+              <span className="text-xs font-semibold text-ink/80">Active Defense</span>
+            </div>
+          </motion.div>
+        </div>
+        
       </div>
     </section>
   );
