@@ -3,16 +3,9 @@ import { ArrowRight, ShieldCheck } from 'lucide-react';
 
 export function Hero() {
   return (
-    <section className="relative min-h-screen w-full bg-paper flex flex-col justify-center pt-32 pb-24 px-6 md:px-12 lg:px-24 overflow-hidden">
+    <section className="relative min-h-screen w-full bg-paper flex flex-col justify-center pt-32 pb-16 px-6 md:px-12 lg:px-24 overflow-hidden">
       
-      {/* Background architectural lines for subtle texture */}
-      <div className="absolute inset-0 z-0 opacity-[0.03] pointer-events-none flex justify-center">
-        <div className="w-[1px] h-full bg-ink mx-auto" />
-        <div className="w-[1px] h-full bg-ink absolute left-1/4" />
-        <div className="w-[1px] h-full bg-ink absolute right-1/4" />
-      </div>
-
-      <div className="relative z-10 w-full max-w-7xl mx-auto flex flex-col lg:flex-row items-center gap-16">
+      <div className="relative z-10 w-full max-w-7xl mx-auto flex flex-col lg:flex-row items-center gap-12 lg:gap-16">
         
         {/* Left Typography Column */}
         <div className="w-full lg:w-1/2 flex flex-col">
@@ -30,34 +23,30 @@ export function Hero() {
             </span>
           </motion.div>
           
-          <h1 className="text-fluid-h1 text-ink mb-8 flex flex-col">
-            <span className="overflow-hidden py-1">
-              <motion.span 
-                initial={{ y: "100%" }}
-                animate={{ y: 0 }}
-                transition={{ duration: 1, delay: 0.1, ease: [0.16, 1, 0.3, 1] }}
-                className="block"
-              >
-                Uncompromising
-              </motion.span>
-            </span>
-            <span className="overflow-hidden py-1">
-              <motion.span 
-                initial={{ y: "100%" }}
-                animate={{ y: 0 }}
-                transition={{ duration: 1, delay: 0.2, ease: [0.16, 1, 0.3, 1] }}
-                className="block text-accent"
-              >
-                Asset Protection.
-              </motion.span>
-            </span>
+          <h1 className="text-fluid-h1 text-ink mb-6 flex flex-col font-bold tracking-tight">
+            <motion.span 
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 1, delay: 0.1, ease: [0.16, 1, 0.3, 1] }}
+              className="block"
+            >
+              Uncompromising
+            </motion.span>
+            <motion.span 
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 1, delay: 0.2, ease: [0.16, 1, 0.3, 1] }}
+              className="block text-accent"
+            >
+              Asset Protection.
+            </motion.span>
           </h1>
 
           <motion.p
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.4, ease: [0.16, 1, 0.3, 1] }}
-            className="text-xl text-ink/70 font-medium leading-relaxed max-w-lg mb-12"
+            className="text-xl text-ink/70 font-medium leading-relaxed max-w-lg mb-10"
           >
             We don't sell policies; we construct defensive architectures around your life's work. Precision coverage for high-value homes, premium auto, and commercial enterprise.
           </motion.p>

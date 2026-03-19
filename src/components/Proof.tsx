@@ -2,7 +2,7 @@ import { motion } from 'motion/react';
 
 export function Proof() {
   return (
-    <section className="py-32 px-6 md:px-12 lg:px-24 bg-paper border-t border-ink/5">
+    <section className="py-20 px-6 md:px-12 lg:px-24 bg-paper border-t border-ink/5">
       <div className="max-w-7xl mx-auto">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-24">
           
@@ -18,13 +18,13 @@ export function Proof() {
               The Independent Advantage
             </motion.h2>
             
-            <h3 className="text-fluid-h3 font-sans font-bold text-ink mb-8 overflow-hidden py-2 tracking-tight">
+            <h3 className="text-fluid-h3 font-sans font-bold text-ink mb-8 overflow-hidden pb-4 tracking-tight">
               <motion.span 
                 initial={{ y: "100%", opacity: 0 }}
                 whileInView={{ y: 0, opacity: 1 }}
                 viewport={{ once: true }}
                 transition={{ duration: 1, delay: 0.1, ease: [0.16, 1, 0.3, 1] }}
-                className="block"
+                className="block pt-2 -mt-2"
               >
                 The math of 50+ elite carriers.
               </motion.span>
@@ -48,14 +48,30 @@ export function Proof() {
               whileInView={{ opacity: 1 }}
               viewport={{ once: true }}
               transition={{ duration: 1.5, delay: 0.4 }}
-              className="grid grid-cols-2 md:grid-cols-3 gap-8 opacity-40 mix-blend-multiply"
+              className="grid grid-cols-2 lg:grid-cols-3 gap-8 items-center"
             >
-              <div className="font-sans font-bold text-xl tracking-wider text-ink">CHUBB</div>
-              <div className="font-sans font-bold text-xl tracking-wider text-ink">PURE</div>
-              <div className="font-sans font-bold text-xl tracking-wider text-ink">AIG</div>
-              <div className="font-sans font-bold text-xl tracking-wider text-ink">CINCINNATI</div>
-              <div className="font-sans font-bold text-xl tracking-wider text-ink">TRAVELERS</div>
-              <div className="font-sans font-bold text-xl tracking-wider text-ink">PROGRESSIVE</div>
+              {/* Carrier Logos */}
+              {[
+                { id: 'chubb', url: 'https://logo.clearbit.com/chubb.com', name: 'Chubb' },
+                { id: 'pure', url: 'https://logo.clearbit.com/pureinsurance.com', name: 'PURE' },
+                { id: 'cincinnati', url: 'https://logo.clearbit.com/cinfin.com', name: 'Cincinnati' },
+                { id: 'travelers', url: 'https://logo.clearbit.com/travelers.com', name: 'Travelers' },
+                { id: 'aig', url: 'https://logo.clearbit.com/aig.com', name: 'AIG' },
+                { id: 'progressive', url: 'https://logo.clearbit.com/progressive.com', name: 'Progressive' }
+              ].map((carrier) => (
+                <div key={carrier.id} className="w-full h-12 flex justify-start items-center">
+                  <img 
+                    src={carrier.url} 
+                    alt={carrier.name} 
+                    className="max-h-8 max-w-[120px] object-contain grayscale opacity-50 hover:grayscale-0 hover:opacity-100 transition-all duration-300"
+                    onError={(e) => {
+                      e.currentTarget.style.display = 'none';
+                      e.currentTarget.parentElement?.setAttribute('data-fallback', carrier.name);
+                      e.currentTarget.parentElement?.classList.add('after:content-[attr(data-fallback)]', 'after:text-lg', 'after:font-bold', 'after:text-ink/50', 'after:tracking-wider');
+                    }}
+                  />
+                </div>
+              ))}
             </motion.div>
           </div>
 
@@ -71,13 +87,13 @@ export function Proof() {
               Our Impact
             </motion.h2>
             
-            <h3 className="text-fluid-h3 font-sans font-bold text-ink mb-8 overflow-hidden py-2 tracking-tight">
+            <h3 className="text-fluid-h3 font-sans font-bold text-ink mb-8 overflow-hidden pb-4 tracking-tight">
               <motion.span 
                 initial={{ y: "100%", opacity: 0 }}
                 whileInView={{ y: 0, opacity: 1 }}
                 viewport={{ once: true }}
                 transition={{ duration: 1, delay: 0.1, ease: [0.16, 1, 0.3, 1] }}
-                className="block"
+                className="block pt-2 -mt-2"
               >
                 Human-Centric Claims.
               </motion.span>

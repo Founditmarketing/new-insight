@@ -11,9 +11,9 @@ import { ServicesGrid } from './components/ServicesGrid';
 import { Proof } from './components/Proof';
 import { Testimonials } from './components/Testimonials';
 import { LouisianaStory } from './components/LouisianaStory';
+import { CTA } from './components/CTA';
 import { Footer } from './components/Footer';
 import { Navbar } from './components/Navbar';
-import { CustomCursor } from './components/CustomCursor';
 import { Preloader } from './components/Preloader';
 
 export default function App() {
@@ -40,8 +40,7 @@ export default function App() {
   }, []);
 
   return (
-    <main className="min-h-screen bg-paper selection:bg-accent selection:text-white relative cursor-none md:cursor-auto">
-      <CustomCursor />
+    <main className="min-h-screen bg-paper selection:bg-accent selection:text-white relative">
       <div className="noise-overlay" />
       {loading && <Preloader onComplete={() => setLoading(false)} />}
       <Navbar />
@@ -51,6 +50,7 @@ export default function App() {
       <Proof />
       <Testimonials />
       <LouisianaStory />
+      <CTA />
       <Footer />
     </main>
   );

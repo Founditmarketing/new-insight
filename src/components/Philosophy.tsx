@@ -2,8 +2,8 @@ import { motion } from 'motion/react';
 
 export function Philosophy() {
   return (
-    <section id="about" className="py-32 px-6 md:px-12 lg:px-24 bg-ink text-paper relative overflow-hidden">
-      <div className="max-w-7xl mx-auto flex flex-col lg:flex-row gap-16 lg:gap-32">
+    <section id="about" className="py-20 px-6 md:px-12 lg:px-24 bg-ink text-paper relative overflow-hidden">
+      <div className="max-w-7xl mx-auto flex flex-col lg:flex-row gap-12 lg:gap-24">
         
         {/* Left Column: Title & Methodology */}
         <div className="w-full lg:w-1/3 flex flex-col shrink-0">
@@ -32,10 +32,10 @@ export function Philosophy() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, margin: "-100px" }}
             transition={{ duration: 0.8, delay: 0.2, ease: [0.16, 1, 0.3, 1] }}
-            className="text-2xl md:text-3xl text-paper/90 font-medium leading-relaxed mb-12 tracking-tight"
+            className="text-2xl md:text-3xl text-paper/90 font-medium leading-relaxed mb-10 tracking-tight"
           >
-            We operate on a singular premise: complex wealth demands engineered defense. 
-            A standard policy is a reactive document. At Insight, we build proactive architectural structures designed to immunize your legacy against absolute ruin.
+            We operate on a singular premise: significant wealth demands engineered defense. 
+            A standard policy is a reactive document. At Insight, we build proactive, trusted structures designed to secure your legacy against unforeseen risk.
           </motion.p>
           
           <div className="grid grid-cols-1 md:grid-cols-2 gap-12 border-t border-paper/10 pt-12">
@@ -59,7 +59,7 @@ export function Philosophy() {
             >
               <h4 className="text-lg font-bold text-accent mb-3 uppercase tracking-wide">Claims Concierge</h4>
               <p className="text-paper/70 leading-relaxed font-medium">
-                When disaster violently interrupts your life or business, our entire infrastructure pivots to rapid stabilization. We handle the friction of claims so you don't break stride.
+                When unexpected events interrupt your life or business, our entire infrastructure pivots to provide immediate, trusted support. We handle the friction of claims so you retain absolute peace of mind.
               </p>
             </motion.div>
           </div>

@@ -1,5 +1,5 @@
 import { motion } from 'motion/react';
-import { Home, Car, Droplets, Wind, Briefcase, Anchor, Heart, ShieldAlert, Umbrella } from 'lucide-react';
+import { Home, Car, Droplets, Wind, Briefcase, Anchor, Heart, ShieldAlert, Umbrella, ArrowRight } from 'lucide-react';
 
 const services = [
   { id: 'home', title: 'High-Value Home', icon: Home, statement: 'Safeguarding your most significant sanctuary with absolute precision.', colSpan: 'col-span-1 md:col-span-2', rowSpan: 'row-span-1' },
@@ -15,7 +15,7 @@ const services = [
 
 export function ServicesGrid() {
   return (
-    <section className="py-32 px-6 md:px-12 lg:px-24 bg-stone relative overflow-hidden border-t border-slate/10">
+    <section className="py-20 px-6 md:px-12 lg:px-24 bg-stone relative overflow-hidden border-t border-slate/10">
       
       <div className="max-w-7xl mx-auto relative z-10">
         <div className="mb-20 max-w-3xl">
@@ -32,13 +32,13 @@ export function ServicesGrid() {
             </span>
           </motion.div>
 
-          <h2 className="text-fluid-h2 font-sans mb-6 text-ink tracking-tight overflow-hidden py-2">
+          <h2 className="text-fluid-h2 font-sans mb-6 text-ink tracking-tight overflow-hidden pb-4">
             <motion.span 
               initial={{ y: "100%", opacity: 0 }}
               whileInView={{ y: 0, opacity: 1 }}
               viewport={{ once: true, margin: "-100px" }}
               transition={{ duration: 1, ease: [0.16, 1, 0.3, 1] }}
-              className="block"
+              className="block pt-2 -mt-2"
             >
               Specialized Portfolios
             </motion.span>
@@ -54,7 +54,7 @@ export function ServicesGrid() {
           </motion.p>
         </div>
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 auto-rows-[220px]">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 auto-rows-[250px]">
           {services.map((service, index) => (
             <motion.div
               key={service.id}
@@ -62,19 +62,23 @@ export function ServicesGrid() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: "-50px" }}
               transition={{ duration: 0.6, delay: index * 0.05, ease: [0.16, 1, 0.3, 1] }}
-              className={`group trust-card p-8 flex flex-col justify-between ${service.colSpan} ${service.rowSpan}`}
+              className={`group trust-card p-8 flex flex-col justify-between cursor-pointer ${service.colSpan} ${service.rowSpan}`}
             >
-              <div className="flex justify-between items-start">
-                <div className="w-12 h-12 rounded-lg bg-paper flex items-center justify-center border border-slate/10 group-hover:border-accent/20 group-hover:bg-accent/5 transition-colors">
-                  <service.icon className="w-6 h-6 text-ink group-hover:text-accent transition-colors" />
-                </div>
-              </div>
-              
               <div>
+                <div className="flex justify-between items-start mb-6">
+                  <div className="w-12 h-12 rounded-lg bg-paper flex items-center justify-center border border-slate/10 group-hover:border-accent/20 group-hover:bg-accent/5 transition-colors">
+                    <service.icon className="w-6 h-6 text-ink group-hover:text-accent transition-colors" />
+                  </div>
+                </div>
+                
                 <h3 className="text-xl font-bold mb-2 text-ink tracking-tight">{service.title}</h3>
                 <p className="text-sm text-ink/70 font-medium leading-relaxed">
                   {service.statement}
                 </p>
+              </div>
+
+              <div className="mt-4 flex items-center text-sm font-bold tracking-widest text-accent uppercase opacity-0 -translate-x-4 group-hover:opacity-100 group-hover:translate-x-0 transition-all duration-300">
+                Learn More <ArrowRight className="w-4 h-4 ml-2" />
               </div>
             </motion.div>
           ))}

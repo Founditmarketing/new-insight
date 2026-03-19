@@ -10,7 +10,7 @@ export function LouisianaStory() {
   const y = useTransform(scrollYProgress, [0, 1], ["-15%", "15%"]);
 
   return (
-    <section ref={containerRef} className="py-32 px-6 md:px-12 lg:px-24 bg-stone text-ink relative overflow-hidden border-t border-slate/10">
+    <section ref={containerRef} className="py-20 px-6 md:px-12 lg:px-24 bg-stone text-ink relative overflow-hidden border-t border-slate/10">
       
       <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-12 gap-16 items-center relative z-10">
         
@@ -29,35 +29,35 @@ export function LouisianaStory() {
           </motion.div>
           
           <h3 className="text-fluid-h2 font-sans font-bold text-ink mb-8 flex flex-col tracking-tight">
-            <span className="overflow-hidden py-1">
+            <span className="overflow-hidden pb-4 pt-2 -mt-2 -mb-4">
               <motion.span 
                 initial={{ y: "100%", opacity: 0 }}
                 whileInView={{ y: 0, opacity: 1 }}
                 viewport={{ once: true }}
                 transition={{ duration: 1, delay: 0.1, ease: [0.16, 1, 0.3, 1] }}
-                className="block pb-1"
+                className="block"
               >
                 Rooted in Alexandria.
               </motion.span>
             </span>
-            <span className="overflow-hidden py-1">
+            <span className="overflow-hidden pb-4 pt-2 -mt-2 -mb-4">
               <motion.span 
                 initial={{ y: "100%", opacity: 0 }}
                 whileInView={{ y: 0, opacity: 1 }}
                 viewport={{ once: true }}
                 transition={{ duration: 1, delay: 0.25, ease: [0.16, 1, 0.3, 1] }}
-                className="block text-accent pb-1"
+                className="block text-accent"
               >
                 Guarding Ponchatoula.
               </motion.span>
             </span>
-            <span className="overflow-hidden py-1">
+            <span className="overflow-hidden pb-4 pt-2 -mt-2 -mb-4">
               <motion.span 
                 initial={{ y: "100%", opacity: 0 }}
                 whileInView={{ y: 0, opacity: 1 }}
                 viewport={{ once: true }}
                 transition={{ duration: 1, delay: 0.4, ease: [0.16, 1, 0.3, 1] }}
-                className="block pb-1"
+                className="block"
               >
                 Securing Slidell.
               </motion.span>
@@ -93,7 +93,7 @@ export function LouisianaStory() {
           >
             <motion.img 
               style={{ y, scale: 1.1 }}
-              src="/images/institutional_louisiana.png" 
+              src="/images/bayou_prestige.png" 
               alt="Louisiana landscape" 
               className="w-full h-full object-cover opacity-90 mix-blend-multiply"
               referrerPolicy="no-referrer"
