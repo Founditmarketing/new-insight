@@ -28,7 +28,7 @@ export function Footer() {
           <ul className="flex flex-col gap-4 text-sm font-medium text-ink/70">
             <li className="flex items-start gap-3 hover:text-ink transition-colors">
               <MapPin className="w-5 h-5 text-accent shrink-0" />
-              <span>123 Security Blvd, Suite 400<br/>Alexandria, LA 71301</span>
+              <span>5215 Jackson St, Suite B<br/>Alexandria, LA 71303</span>
             </li>
             <li className="flex items-center gap-3 hover:text-ink transition-colors">
               <Phone className="w-5 h-5 text-accent shrink-0" />

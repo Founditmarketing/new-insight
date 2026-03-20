@@ -9,13 +9,13 @@ import { Hero } from './components/Hero';
 import { LouisianaStory } from './components/LouisianaStory';
 import { ServicesGrid } from './components/ServicesGrid';
 import { Testimonials } from './components/Testimonials';
-import { ThreatTracker } from './components/ThreatTracker';
 import { CTA } from './components/CTA';
 import { Footer } from './components/Footer';
 import { Navbar } from './components/Navbar';
 import { Preloader } from './components/Preloader';
 import { QuoteModal } from './components/QuoteModal';
 import { Concierge } from './components/Concierge';
+import { WeatherBadge } from './components/WeatherBadge';
 
 export default function App() {
   const [loading, setLoading] = useState(true);
@@ -48,11 +48,11 @@ export default function App() {
       <Navbar onOpenQuote={() => setIsQuoteOpen(true)} />
       <Hero onOpenQuote={() => setIsQuoteOpen(true)} />
       <LouisianaStory />
-      <ThreatTracker />
       <ServicesGrid />
       <Testimonials />
       <CTA onOpenQuote={() => setIsQuoteOpen(true)} />
       <Footer />
+      <WeatherBadge />
       <QuoteModal isOpen={isQuoteOpen} onClose={() => setIsQuoteOpen(false)} />
       <Concierge />
     </main>
