@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import { Menu, X, ShieldCheck } from 'lucide-react';
 
-export function Navbar({ onOpenQuote }: { onOpenQuote?: () => void }) {
+export function Navbar({ onOpenQuote, onOpenPortal }: { onOpenQuote?: () => void, onOpenPortal?: () => void }) {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
@@ -34,9 +34,9 @@ export function Navbar({ onOpenQuote }: { onOpenQuote?: () => void }) {
         {/* Desktop Menu */}
         <div className="hidden md:flex items-center gap-8">
           {[
-            { name: 'Services', href: '#services' },
-            { name: 'Our Story', href: '#story' },
-            { name: 'Reviews', href: '#reviews' },
+            { name: 'Services', href: '/#services' },
+            { name: 'Our Story', href: '/#story' },
+            { name: 'Reviews', href: '/#reviews' },
           ].map((item) => (
             <a 
               key={item.name}
@@ -47,7 +47,9 @@ export function Navbar({ onOpenQuote }: { onOpenQuote?: () => void }) {
               <span className="absolute -bottom-1 left-0 w-0 h-[2px] bg-accent transition-all duration-300 group-hover:w-full"></span>
             </a>
           ))}
-          <button className={`ml-4 px-8 py-4 rounded-sm font-semibold tracking-widest uppercase text-sm transition-all duration-300 cursor-none shadow-institutional flex items-center justify-center ${
+          <button 
+            onClick={onOpenPortal}
+            className={`ml-4 px-8 py-4 rounded-sm font-semibold tracking-widest uppercase text-sm transition-all duration-300 cursor-none shadow-institutional flex items-center justify-center ${
             isScrolled 
               ? 'bg-ink text-paper hover:bg-accent' 
               : 'bg-paper text-ink hover:bg-accent hover:text-paper shadow-[0_0_20px_rgba(255,255,255,0.1)]'
@@ -73,9 +75,9 @@ export function Navbar({ onOpenQuote }: { onOpenQuote?: () => void }) {
       >
         <div className="flex flex-col gap-6 text-2xl font-bold tracking-tight text-ink">
           {[
-            { name: 'Services', href: '#services' },
-            { name: 'Our Story', href: '#story' },
-            { name: 'Reviews', href: '#reviews' },
+            { name: 'Services', href: '/#services' },
+            { name: 'Our Story', href: '/#story' },
+            { name: 'Reviews', href: '/#reviews' },
           ].map((item) => (
             <a 
               key={item.name}
@@ -86,7 +88,13 @@ export function Navbar({ onOpenQuote }: { onOpenQuote?: () => void }) {
               {item.name}
             </a>
           ))}
-          <button className="mt-8 bg-ink text-stone px-8 py-4 rounded-sm font-semibold tracking-widest uppercase text-sm flex items-center justify-center hover:bg-accent transition-colors w-full">
+          <button 
+            onClick={() => {
+              setIsMobileMenuOpen(false);
+              onOpenPortal?.();
+            }}
+            className="mt-8 bg-ink text-stone px-8 py-4 rounded-sm font-semibold tracking-widest uppercase text-sm flex items-center justify-center hover:bg-accent transition-colors w-full"
+          >
             Client Portal
           </button>
         </div>

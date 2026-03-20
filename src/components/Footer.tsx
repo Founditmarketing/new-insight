@@ -51,7 +51,7 @@ export function Footer() {
           <ul className="flex flex-col gap-3 text-sm font-medium text-ink/70">
             {['Private Client Group', 'Commercial Risk', 'Claims Concierge', 'About Our Firm', 'Strategic Partners'].map((link) => (
               <li key={link}>
-                <a href="#" className="hover:text-accent transition-colors relative inline-block group">
+                <a href="/" className="hover:text-accent transition-colors relative inline-block group">
                   {link}
                   <span className="absolute -bottom-1 left-0 w-0 h-[1px] bg-accent transition-all duration-300 group-hover:w-full"></span>
                 </a>
@@ -66,7 +66,7 @@ export function Footer() {
           <ul className="flex flex-col gap-3 text-sm font-medium text-ink/70">
             {['Privacy Policy', 'Terms of Service', 'Licensing Information', 'Accessibility'].map((link) => (
               <li key={link}>
-                <a href="#" className="hover:text-accent transition-colors">{link}</a>
+                <a href="/" className="hover:text-accent transition-colors">{link}</a>
               </li>
             ))}
           </ul>
