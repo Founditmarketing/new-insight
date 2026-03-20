@@ -216,7 +216,7 @@ export function QuoteModal({ isOpen, onClose }: QuoteModalProps) {
                               onClick={() => setFormData({...formData, coverage: opt.id})}
                               className={`flex flex-col items-start p-5 rounded-xl border transition-all duration-300 text-left ${
                                 isSelected 
-                                  ? 'border-accent bg-accent/10 shadow-[0_0_20px_rgba(234,88,12,0.2)]' 
+                                  ? 'border-accent bg-accent/10 shadow-[0_0_20px_rgba(227,38,54,0.2)]' 
                                   : 'border-white/10 bg-white/5 hover:bg-white/10 hover:border-white/20'
                               }`}
                             >
@@ -255,7 +255,7 @@ export function QuoteModal({ isOpen, onClose }: QuoteModalProps) {
                       </p>
                       <button 
                         onClick={onClose}
-                        className="bg-accent text-white px-8 py-4 rounded-sm font-bold tracking-widest uppercase text-sm hover:bg-white hover:text-ink hover:shadow-[0_4px_20px_rgba(234,88,12,0.4)] transition-all duration-300"
+                        className="bg-accent text-white px-8 py-4 rounded-sm font-bold tracking-widest uppercase text-sm hover:bg-white hover:text-ink hover:shadow-[0_4px_20px_rgba(227,38,54,0.4)] transition-all duration-300"
                       >
                         Return to Site
                       </button>
@@ -280,7 +280,7 @@ export function QuoteModal({ isOpen, onClose }: QuoteModalProps) {
                   
                   <button
                     onClick={nextStep}
-                    className="bg-accent text-white px-8 py-3 rounded-sm font-bold tracking-widest uppercase text-sm hover:bg-white hover:text-ink shadow-[0_0_20px_rgba(234,88,12,0.3)] hover:shadow-[0_0_30px_rgba(255,255,255,0.5)] transition-all flex items-center gap-2"
+                    className="bg-accent text-white px-8 py-3 rounded-sm font-bold tracking-widest uppercase text-sm hover:bg-white hover:text-ink shadow-[0_0_20px_rgba(227,38,54,0.3)] hover:shadow-[0_0_30px_rgba(255,255,255,0.5)] transition-all flex items-center gap-2"
                   >
                     {step === 3 ? 'Submit Request' : 'Continue'} <ArrowRight className="w-4 h-4" />
                   </button>

@@ -17,7 +17,7 @@ export function Hero({ onOpenQuote }: { onOpenQuote?: () => void }) {
         delay: Math.random() * 5 * -1, 
         opacity: Math.random() * 0.4 + 0.3, // 0.3 to 0.7 sharper, brighter embers
         colorClass: isOrange ? 'bg-accent' : 'bg-paper',
-        shadow: isOrange ? 'rgba(234,88,12,0.8)' : 'rgba(255,255,255,0.8)',
+        shadow: isOrange ? 'rgba(227,38,54,0.8)' : 'rgba(255,255,255,0.8)',
       };
     }), []
   );
@@ -101,7 +101,7 @@ export function Hero({ onOpenQuote }: { onOpenQuote?: () => void }) {
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 1.2, delay: 0.2, ease: [0.16, 1, 0.3, 1] }}
-            className="block text-accent drop-shadow-[0_0_40px_rgba(234,88,12,0.5)]"
+            className="block text-accent drop-shadow-[0_0_40px_rgba(227,38,54,0.5)]"
           >
             Protection.
           </motion.span>
@@ -122,7 +122,7 @@ export function Hero({ onOpenQuote }: { onOpenQuote?: () => void }) {
           transition={{ duration: 1, delay: 0.5, ease: [0.16, 1, 0.3, 1] }}
           className="flex flex-col sm:flex-row gap-6 w-full sm:w-auto px-4 sm:px-0"
         >
-          <button onClick={onOpenQuote} className="w-full sm:w-auto bg-accent text-white px-8 py-4 rounded-sm font-bold tracking-widest uppercase text-sm hover:bg-stone hover:text-ink hover:shadow-[0_4px_30px_rgba(234,88,12,0.5)] transition-all duration-300 flex items-center justify-center gap-3 group shadow-institutional hover:-translate-y-1">
+          <button onClick={onOpenQuote} className="w-full sm:w-auto bg-accent text-white px-8 py-4 rounded-sm font-bold tracking-widest uppercase text-sm hover:bg-stone hover:text-ink hover:shadow-[0_4px_30px_rgba(227,38,54,0.5)] transition-all duration-300 flex items-center justify-center gap-3 group shadow-institutional hover:-translate-y-1">
             Speak with an Advisor 
             <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
           </button>

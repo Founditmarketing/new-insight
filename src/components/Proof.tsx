@@ -146,7 +146,7 @@ export function Proof() {
               >
                 {/* 10% Accent Tab */}
                 <div className="absolute -left-4 top-2 bottom-2 w-1 bg-accent/20 rounded-full" />
-                <div className="text-6xl md:text-7xl font-bold mb-4 text-accent tracking-tighter tabular-nums drop-shadow-[0_0_20px_rgba(234,88,12,0.3)] pl-4">
+                <div className="text-6xl md:text-7xl font-bold mb-4 text-accent tracking-tighter tabular-nums drop-shadow-[0_0_20px_rgba(227,38,54,0.3)] pl-4">
                   <AnimatedStat value={stat.num} prefix={stat.prefix} suffix={stat.suffix} />
                 </div>
                 <div className="text-sm font-bold tracking-widest uppercase text-paper/60 pl-4">{stat.label}</div>

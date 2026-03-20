@@ -24,7 +24,7 @@ export function CTA({ onOpenQuote }: { onOpenQuote?: () => void }) {
         delay: Math.random() * 5 * -1, 
         opacity: Math.random() * 0.4 + 0.3,
         colorClass: isOrange ? 'bg-accent' : 'bg-paper',
-        shadow: isOrange ? 'rgba(234,88,12,0.8)' : 'rgba(255,255,255,0.8)',
+        shadow: isOrange ? 'rgba(227,38,54,0.8)' : 'rgba(255,255,255,0.8)',
       };
     }), []
   );
