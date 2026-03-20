@@ -9,14 +9,19 @@ export function Philosophy() {
         {/* Left Column: Title & Methodology */}
         <div className="w-full lg:w-1/3 flex flex-col shrink-0 relative">
           
-          {/* Subtle Ambient Graphic Anchor */}
+          {/* Massive 10% Accent Orange Graphic Anchor */}
           <motion.div 
-            animate={{ rotate: 360 }}
-            transition={{ duration: 150, repeat: Infinity, ease: "linear" }}
-            className="absolute -top-32 -left-32 w-96 h-96 text-ink/5 z-0 pointer-events-none"
+            initial={{ scale: 0.8, opacity: 0 }}
+            whileInView={{ scale: 1, opacity: 1 }}
+            viewport={{ once: true }}
+            transition={{ duration: 1.5, ease: "easeOut" }}
+            className="absolute -top-16 -left-16 md:-top-24 md:-left-24 text-[15rem] md:text-[20rem] font-serif text-accent/10 leading-none select-none z-0 rotate-12"
           >
-            <Compass className="w-full h-full" />
+            "
           </motion.div>
+
+          {/* Solid 10% Accent Line */}
+          <div className="absolute top-0 -left-6 md:-left-12 w-2 h-32 bg-accent" />
 
           <motion.div
             initial={{ opacity: 0, y: 20 }}

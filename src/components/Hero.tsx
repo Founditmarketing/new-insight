@@ -88,7 +88,7 @@ export function Hero() {
           </div>
         </motion.div>
         
-        <h1 className="text-[10vw] sm:text-[4rem] lg:text-[5.5rem] text-paper mb-6 flex flex-col font-bold tracking-tighter leading-[1] mix-blend-plus-lighter relative z-20">
+        <h1 className="text-[10vw] sm:text-[4rem] lg:text-[5.5rem] text-paper mb-6 flex flex-col font-bold tracking-tighter leading-[1] relative z-20">
           <motion.span 
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
@@ -101,7 +101,7 @@ export function Hero() {
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 1.2, delay: 0.2, ease: [0.16, 1, 0.3, 1] }}
-            className="block text-paper drop-shadow-[0_0_30px_rgba(255,255,255,0.3)]"
+            className="block text-accent drop-shadow-[0_0_40px_rgba(234,88,12,0.5)]"
           >
             Protection.
           </motion.span>
