@@ -1,5 +1,5 @@
 import { motion } from 'motion/react';
-import { Home, Car, Droplets, Wind, Briefcase, Anchor, Heart, ShieldAlert, Umbrella, ArrowRight } from 'lucide-react';
+import { Home, Car, Droplets, Wind, Briefcase, Anchor, Heart, ShieldAlert, Umbrella, ArrowRight, Laptop } from 'lucide-react';
 
 const services = [
   // ROW 1 & 2
@@ -87,10 +87,22 @@ const services = [
     spanClass: 'col-span-1 row-span-1',
     iconBg: 'bg-slate/10',
     iconColor: 'text-slate'
+  },
+  // ROW 5 (Full Width Cap)
+  { 
+    id: 'portal', 
+    title: '24/7 Secure Portal & Bill Pay', 
+    icon: Laptop, 
+    statement: 'Absolute control over your risk architecture. Access policies, file claims, and securely process premium payments instantly from anywhere on the globe.',
+    spanClass: 'col-span-1 md:col-span-4 row-span-1 !bg-ink text-paper group-hover:shadow-[0_40px_80px_-20px_rgba(227,38,54,0.3)]',
+    iconBg: 'bg-white/10',
+    iconColor: 'text-paper group-hover:text-accent transition-colors',
+    titleClass: 'text-paper group-hover:text-white',
+    textClass: 'text-paper/70'
   }
 ];
 
-function BentoCard({ service, index }: { service: typeof services[0], index: number }) {
+function BentoCard({ service, index }: { service: typeof services[0]; index: number; key?: string | number }) {
   return (
     <motion.div
       initial={{ opacity: 0, y: 30 }}
@@ -109,10 +121,10 @@ function BentoCard({ service, index }: { service: typeof services[0], index: num
 
       {/* Content */}
       <div className="mt-12 relative z-10">
-        <h3 className="text-xl md:text-2xl font-bold font-sans tracking-tight text-ink mb-3 group-hover:text-accent transition-colors duration-300">
+        <h3 className={`text-xl md:text-2xl font-bold font-sans tracking-tight mb-3 transition-colors duration-300 ${service.titleClass || 'text-ink group-hover:text-accent'}`}>
           {service.title}
         </h3>
-        <p className={`text-slate/80 font-medium leading-relaxed ${service.spanClass.includes('row-span-2') ? 'text-base lg:text-lg' : 'text-sm'}`}>
+        <p className={`font-medium leading-relaxed ${service.textClass || 'text-slate/80'} ${service.spanClass.includes('row-span-2') || service.spanClass.includes('col-span-4') ? 'text-base lg:text-lg' : 'text-sm'}`}>
           {service.statement}
         </p>
       </div>
