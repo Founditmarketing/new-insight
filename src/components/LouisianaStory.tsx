@@ -79,21 +79,21 @@ function LocationCard({ loc, index }: { loc: typeof locations[0]; index: number;
         </div>
       </div>
 
-      {/* Default State: Bottom Typography */}
-      <div className="absolute inset-x-0 bottom-0 p-8 z-10 flex flex-col justify-end h-full pointer-events-none transition-opacity duration-500 group-hover:opacity-0">
+      {/* Default State: Bottom Typography (Hidden on mobile where reveal is permanent) */}
+      <div className="absolute inset-x-0 bottom-0 p-6 md:p-8 z-10 hidden md:flex flex-col justify-end h-full pointer-events-none transition-opacity duration-500 group-hover:opacity-0">
         <h3 className="font-serif italic text-4xl text-paper drop-shadow-lg">{loc.tagline}</h3>
       </div>
 
-      {/* Hover Reveal: Frosted Glass Panel */}
-      <div className="absolute inset-x-0 bottom-0 p-8 z-20 bg-ink/50 backdrop-blur-xl border-t border-white/10 translate-y-[100%] group-hover:translate-y-0 transition-transform duration-[0.6s] ease-[cubic-bezier(0.16,1,0.3,1)] flex flex-col h-[55%]">
-        <h3 className="font-serif italic text-3xl text-paper mb-4">{loc.tagline}</h3>
-        <p className="text-paper/80 text-sm leading-relaxed mb-8 font-medium">
+      {/* Reveal: Frosted Glass Panel (Always visible on mobile, hover-only on desktop) */}
+      <div className="absolute inset-x-0 bottom-0 p-6 md:p-8 z-20 bg-ink/40 backdrop-blur-xl border-t border-white/10 translate-y-0 md:translate-y-[100%] group-hover:translate-y-0 transition-transform duration-[0.6s] ease-[cubic-bezier(0.16,1,0.3,1)] flex flex-col h-auto md:h-[55%]">
+        <h3 className="font-serif italic text-3xl md:text-3xl text-paper mb-3 md:mb-4">{loc.tagline}</h3>
+        <p className="text-paper/80 text-sm font-medium leading-relaxed mb-6 md:mb-8">
           {loc.description}
         </p>
         <div className="mt-auto flex items-center justify-between">
-          <span className="text-accent text-xs uppercase tracking-widest font-bold">Explore Jurisdiction</span>
-          <div className="w-10 h-10 rounded-full border border-white/20 flex items-center justify-center bg-white/5 text-paper group-hover:-rotate-45 transition-transform duration-500">
-            <ArrowRight className="w-4 h-4" />
+          <span className="text-accent text-[10px] md:text-xs uppercase tracking-widest font-bold">Explore Jurisdiction</span>
+          <div className="w-8 h-8 md:w-10 md:h-10 rounded-full border border-white/20 flex items-center justify-center bg-white/5 text-paper md:group-hover:-rotate-45 transition-transform duration-500">
+            <ArrowRight className="w-3 h-3 md:w-4 md:h-4" />
           </div>
         </div>
       </div>

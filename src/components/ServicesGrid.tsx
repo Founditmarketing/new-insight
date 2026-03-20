@@ -1,5 +1,7 @@
+import { useState } from 'react';
 import { motion } from 'motion/react';
 import { Home, Car, Droplets, Wind, Briefcase, Anchor, Heart, ShieldAlert, Umbrella, ArrowRight, Laptop } from 'lucide-react';
+import { ClientPortalModal } from './ClientPortalModal';
 
 const services = [
   // ROW 1 & 2
@@ -100,14 +102,15 @@ const services = [
   }
 ];
 
-function BentoCard({ service, index }: { service: typeof services[0]; index: number; key?: string | number }) {
+function BentoCard({ service, index, onClick }: { service: typeof services[0]; index: number; onClick?: () => void; key?: string | number }) {
   return (
     <motion.div
+      onClick={onClick}
       initial={{ opacity: 0, y: 30 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, margin: "-50px" }}
       transition={{ duration: 0.7, delay: index * 0.08, ease: [0.16, 1, 0.3, 1] }}
-      className={`group relative bg-white rounded-3xl overflow-hidden p-8 lg:p-10 flex flex-col justify-between border border-ink/[0.03] shadow-[0_20px_40px_-15px_rgba(0,0,0,0.03)] hover:shadow-[0_40px_80px_-20px_rgba(227,38,54,0.08)] hover:-translate-y-1 transition-all duration-[0.4s] ease-out ${service.spanClass}`}
+      className={`group relative bg-white rounded-3xl overflow-hidden p-8 lg:p-10 flex flex-col justify-between border border-ink/[0.03] shadow-[0_20px_40px_-15px_rgba(0,0,0,0.03)] hover:shadow-[0_40px_80px_-20px_rgba(227,38,54,0.08)] hover:-translate-y-1 transition-all duration-[0.4s] ease-out ${service.spanClass} ${onClick ? 'cursor-pointer' : ''}`}
     >
       {/* Soft Gradient Hover Glow */}
       <div className="absolute inset-0 bg-gradient-to-br from-[#FAF9F6] to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none" />
@@ -137,6 +140,8 @@ function BentoCard({ service, index }: { service: typeof services[0]; index: num
 }
 
 export function ServicesGrid() {
+  const [isPortalOpen, setIsPortalOpen] = useState(false);
+
   return (
     <section id="services" className="py-24 md:py-32 bg-[#FAF9F6] relative overflow-hidden border-t-[8px] border-accent">
       
@@ -197,11 +202,18 @@ export function ServicesGrid() {
         {/* The Vanguard Bento Grid */}
         <div className="grid grid-cols-1 md:grid-cols-4 auto-rows-min gap-4 md:gap-6 grid-flow-row-dense">
           {services.map((service, index) => (
-            <BentoCard key={service.id} service={service} index={index} />
+            <BentoCard 
+              key={service.id} 
+              service={service} 
+              index={index} 
+              onClick={service.id === 'portal' ? () => setIsPortalOpen(true) : undefined} 
+            />
           ))}
         </div>
 
       </div>
+
+      <ClientPortalModal isOpen={isPortalOpen} onClose={() => setIsPortalOpen(false)} />
     </section>
   );
 }

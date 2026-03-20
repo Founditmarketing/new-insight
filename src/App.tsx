@@ -9,6 +9,7 @@ import { Hero } from './components/Hero';
 import { LouisianaStory } from './components/LouisianaStory';
 import { ServicesGrid } from './components/ServicesGrid';
 import { Testimonials } from './components/Testimonials';
+import { ThreatTracker } from './components/ThreatTracker';
 import { CTA } from './components/CTA';
 import { Footer } from './components/Footer';
 import { Navbar } from './components/Navbar';
@@ -47,6 +48,7 @@ export default function App() {
       <Navbar onOpenQuote={() => setIsQuoteOpen(true)} />
       <Hero onOpenQuote={() => setIsQuoteOpen(true)} />
       <LouisianaStory />
+      <ThreatTracker />
       <ServicesGrid />
       <Testimonials />
       <CTA onOpenQuote={() => setIsQuoteOpen(true)} />
