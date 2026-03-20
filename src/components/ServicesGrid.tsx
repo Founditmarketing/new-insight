@@ -83,7 +83,7 @@ export function ServicesGrid() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: "-50px" }}
               transition={{ duration: 0.6, delay: index * 0.1, ease: [0.16, 1, 0.3, 1] }}
-              className={`group relative overflow-hidden flex flex-col justify-between p-10 md:p-14 min-h-[400px] cursor-pointer rounded-xl border border-slate/10 transition-all duration-500 hover:-translate-y-2 hover:shadow-institutional ${service.theme}`}
+              className={`group relative overflow-hidden flex flex-col justify-between p-8 md:p-14 min-h-[400px] cursor-pointer rounded-xl border border-slate/10 transition-all duration-500 hover:-translate-y-2 hover:shadow-institutional ${service.theme}`}
             >
               {/* Image Background with Dark Gradient Overlay */}
               <div className="absolute inset-0 z-0 transition-transform duration-1000 group-hover:scale-105">
@@ -112,7 +112,7 @@ export function ServicesGrid() {
         </div>
 
         {/* Standard Services */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 auto-rows-[260px]">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 auto-rows-min md:auto-rows-[260px]">
           {standardServices.map((service, index) => (
             <motion.div
               key={service.id}
@@ -120,7 +120,7 @@ export function ServicesGrid() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: "-50px" }}
               transition={{ duration: 0.6, delay: 0.2 + (index * 0.05), ease: [0.16, 1, 0.3, 1] }}
-              className="group trust-card bg-stone p-8 flex flex-col justify-between cursor-pointer transition-all duration-500 hover:-translate-y-1 hover:shadow-institutional relative overflow-hidden rounded-xl border border-slate/10"
+              className="group trust-card bg-stone p-8 flex flex-col justify-between min-h-[260px] md:min-h-0 cursor-pointer transition-all duration-500 hover:-translate-y-1 hover:shadow-institutional relative overflow-hidden rounded-xl border border-slate/10"
             >
               {/* Subtle top gradient texture and corner geometry */}
               <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-transparent via-slate/20 to-transparent group-hover:via-accent/60 transition-colors duration-500" />

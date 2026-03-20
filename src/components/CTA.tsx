@@ -11,7 +11,7 @@ export function CTA() {
   const y = useTransform(scrollYProgress, [0, 1], ["-15%", "15%"]);
 
   return (
-    <section ref={ref} className="py-32 px-6 md:px-12 lg:px-24 bg-ink text-paper relative overflow-hidden flex items-center justify-center min-h-[70vh]">
+    <section ref={ref} className="py-24 md:py-32 px-6 md:px-12 lg:px-24 bg-ink text-paper relative overflow-hidden flex items-center justify-center min-h-[50vh] md:min-h-[70vh]">
       
       {/* Immersive Background Image */}
       <motion.div 
@@ -69,10 +69,10 @@ export function CTA() {
           transition={{ duration: 0.8, delay: 0.3, ease: [0.16, 1, 0.3, 1] }}
           className="flex flex-col sm:flex-row gap-6 w-full sm:w-auto"
         >
-          <button className="bg-accent text-ink px-10 py-5 rounded-sm font-bold tracking-widest uppercase text-sm hover:bg-stone transition-colors flex items-center justify-center group shadow-institutional">
+          <button className="w-full sm:w-auto bg-accent text-ink px-10 py-5 rounded-sm font-bold tracking-widest uppercase text-sm hover:bg-stone transition-colors flex items-center justify-center group shadow-institutional">
             Schedule a Consultation <ArrowRight className="w-4 h-4 ml-3 group-hover:translate-x-1 transition-transform" />
           </button>
-          <button className="border-2 border-paper/20 bg-ink/40 backdrop-blur-md text-paper px-10 py-5 rounded-sm font-bold tracking-widest uppercase text-sm hover:bg-paper hover:text-ink hover:border-paper transition-colors flex items-center justify-center group shadow-institutional">
+          <button className="w-full sm:w-auto border-2 border-paper/20 bg-ink/40 backdrop-blur-md text-paper px-10 py-5 rounded-sm font-bold tracking-widest uppercase text-sm hover:bg-paper hover:text-ink hover:border-paper transition-colors flex items-center justify-center group shadow-institutional">
             <Phone className="w-4 h-4 mr-3 group-hover:rotate-12 transition-transform" /> Call (318) 555-0123
           </button>
         </motion.div>

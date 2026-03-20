@@ -62,7 +62,7 @@ export function Testimonials() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, margin: "-50px" }}
             transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
-            className="lg:col-span-7 relative flex flex-col justify-between bg-stone p-12 lg:p-16 rounded-2xl border border-slate/10 shadow-institutional"
+            className="lg:col-span-7 relative flex flex-col justify-between bg-stone p-8 md:p-12 lg:p-16 rounded-2xl border border-slate/10 shadow-institutional"
           >
             <Quote className="absolute top-10 left-10 w-32 h-32 text-accent/10 -translate-x-4 -translate-y-6 z-0" />
             <div className="relative z-10 flex-grow mb-16">
@@ -74,7 +74,7 @@ export function Testimonials() {
               <img 
                 src={testimonials[0].image} 
                 alt={testimonials[0].author}
-                className="w-20 h-20 rounded-full object-cover border-4 border-paper shadow-institutional"
+                className="w-16 h-16 md:w-20 md:h-20 rounded-full object-cover border-4 border-paper shadow-institutional"
               />
               <div className="flex flex-col">
                 <span className="font-bold text-xl text-ink uppercase tracking-wide">
