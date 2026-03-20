@@ -15,6 +15,7 @@ import { WeatherBadge } from './components/WeatherBadge';
 import { Home } from './pages/Home';
 import { CityPage } from './pages/CityPage';
 import { ClientPortalModal } from './components/ClientPortalModal';
+import { ScrollToTop } from './components/ScrollToTop';
 
 
 export default function App() {
@@ -47,6 +48,7 @@ export default function App() {
       <main className="min-h-screen bg-paper selection:bg-accent selection:text-white relative">
         <div className="noise-overlay" />
         {loading && <Preloader onComplete={() => setLoading(false)} />}
+        <ScrollToTop />
         <Navbar 
           onOpenQuote={() => setIsQuoteOpen(true)} 
           onOpenPortal={() => setIsPortalOpen(true)}
