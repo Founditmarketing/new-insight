@@ -92,8 +92,8 @@ export function LouisianaStory() {
           >
             <motion.img 
               style={{ y, scale: 1.1 }}
-              src="/images/louisiana_colored.png" 
-              alt="Louisiana Southern Estate Corporate Operations" 
+              src="/images/french_country_estate.png" 
+              alt="Louisiana Upper-Middle Class French Country Estate by Lake" 
               className="w-full h-full object-cover opacity-100"
               referrerPolicy="no-referrer"
             />
