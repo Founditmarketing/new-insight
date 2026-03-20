@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import { Menu, X, ShieldCheck } from 'lucide-react';
 
-export function Navbar() {
+export function Navbar({ onOpenQuote }: { onOpenQuote?: () => void }) {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 

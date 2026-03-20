@@ -2,7 +2,7 @@ import { motion } from 'motion/react';
 import { ArrowRight, ShieldCheck } from 'lucide-react';
 import { useMemo } from 'react';
 
-export function Hero() {
+export function Hero({ onOpenQuote }: { onOpenQuote?: () => void }) {
   // Cinematic Space Dust / Ember Particles
   const particles = useMemo(() => 
     Array.from({ length: 80 }).map((_, i) => {
@@ -122,7 +122,7 @@ export function Hero() {
           transition={{ duration: 1, delay: 0.5, ease: [0.16, 1, 0.3, 1] }}
           className="flex flex-col sm:flex-row gap-6 w-full sm:w-auto px-4 sm:px-0"
         >
-          <button className="w-full sm:w-auto bg-accent text-white px-8 py-4 rounded-sm font-bold tracking-widest uppercase text-sm hover:bg-stone hover:text-ink hover:shadow-[0_4px_30px_rgba(234,88,12,0.5)] transition-all duration-300 flex items-center justify-center gap-3 group shadow-institutional hover:-translate-y-1">
+          <button onClick={onOpenQuote} className="w-full sm:w-auto bg-accent text-white px-8 py-4 rounded-sm font-bold tracking-widest uppercase text-sm hover:bg-stone hover:text-ink hover:shadow-[0_4px_30px_rgba(234,88,12,0.5)] transition-all duration-300 flex items-center justify-center gap-3 group shadow-institutional hover:-translate-y-1">
             Speak with an Advisor 
             <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
           </button>

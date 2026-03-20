@@ -14,9 +14,11 @@ import { CTA } from './components/CTA';
 import { Footer } from './components/Footer';
 import { Navbar } from './components/Navbar';
 import { Preloader } from './components/Preloader';
+import { QuoteModal } from './components/QuoteModal';
 
 export default function App() {
   const [loading, setLoading] = useState(true);
+  const [isQuoteOpen, setIsQuoteOpen] = useState(false);
 
   useEffect(() => {
     const lenis = new Lenis({
@@ -42,14 +44,15 @@ export default function App() {
     <main className="min-h-screen bg-paper selection:bg-accent selection:text-white relative">
       <div className="noise-overlay" />
       {loading && <Preloader onComplete={() => setLoading(false)} />}
-      <Navbar />
-      <Hero />
+      <Navbar onOpenQuote={() => setIsQuoteOpen(true)} />
+      <Hero onOpenQuote={() => setIsQuoteOpen(true)} />
       <LouisianaStory />
       <ServicesGrid />
       <Proof />
       <Testimonials />
-      <CTA />
+      <CTA onOpenQuote={() => setIsQuoteOpen(true)} />
       <Footer />
+      <QuoteModal isOpen={isQuoteOpen} onClose={() => setIsQuoteOpen(false)} />
     </main>
   );
 }
