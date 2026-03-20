@@ -18,47 +18,21 @@ export function CTA() {
         {/* Absolute Black Base */}
         <div className="absolute inset-0 bg-ink z-0" />
         
-        {/* The Extraordinary Solar Orb */}
-        <div className="absolute top-[40%] left-1/2 -translate-x-1/2 -translate-y-1/2 w-[120vw] h-[120vw] sm:w-[90vw] sm:h-[90vw] md:w-[60vw] md:h-[60vw] flex items-center justify-center pointer-events-none">
+        {/* Elegant, Toned-Down Ambient Core */}
+        <div className="absolute top-[40%] left-1/2 -translate-x-1/2 -translate-y-1/2 w-[100vw] h-[100vw] sm:w-[80vw] sm:h-[80vw] md:w-[50vw] md:h-[50vw] flex items-center justify-center pointer-events-none z-0">
           
-          {/* Deep Ambient Edge Glow */}
+          {/* Deep Outer Diffuse Glow */}
           <motion.div 
-            animate={{ scale: [1, 1.1, 1], opacity: [0.2, 0.4, 0.2] }}
-            transition={{ duration: 8, repeat: Infinity, ease: "easeInOut", delay: 1 }}
-            className="absolute inset-0 rounded-full bg-[#EA580C] mix-blend-screen blur-[120px]"
+            animate={{ scale: [1, 1.05, 1], opacity: [0.3, 0.5, 0.3] }}
+            transition={{ duration: 15, repeat: Infinity, ease: "easeInOut", delay: 1 }}
+            className="absolute inset-0 rounded-full bg-accent/20 blur-[120px] mix-blend-screen"
           />
 
-          {/* Rotating Solar Flare Ring 1 (Horizontal) */}
+          {/* Centered Soft Ember */}
           <motion.div 
-            animate={{ rotate: 360, scale: [1, 1.05, 1] }}
-            transition={{ rotate: { duration: 30, repeat: Infinity, ease: "linear" }, scale: { duration: 8, repeat: Infinity, ease: "easeInOut" } }}
-            className="absolute w-[90%] h-[30%] rounded-[100%] bg-gradient-to-r from-[#FFB347]/0 via-[#EA580C]/40 to-[#FFB347]/0 mix-blend-screen blur-[50px]"
-          />
-
-          {/* Rotating Solar Flare Ring 2 (Vertical) */}
-          <motion.div 
-            animate={{ rotate: -360, scale: [1, 1.1, 1] }}
-            transition={{ rotate: { duration: 25, repeat: Infinity, ease: "linear" }, scale: { duration: 6, repeat: Infinity, ease: "easeInOut" } }}
-            className="absolute w-[30%] h-[90%] rounded-[100%] bg-gradient-to-b from-[#EA580C]/0 via-[#FF4500]/40 to-[#EA580C]/0 mix-blend-screen blur-[50px]"
-          />
-
-          {/* The Structural Corona Rings */}
-          <motion.div 
-            animate={{ rotate: 360 }}
-            transition={{ duration: 50, repeat: Infinity, ease: "linear" }}
-            className="absolute w-[50%] h-[50%] rounded-full border border-[#EA580C]/20 border-t-[#FFB347]/60 border-b-[#FF4500]/60 mix-blend-screen blur-[2px]"
-          />
-          <motion.div 
-            animate={{ rotate: -360 }}
-            transition={{ duration: 40, repeat: Infinity, ease: "linear" }}
-            className="absolute w-[45%] h-[45%] rounded-full border border-[#EA580C]/10 border-r-[#FFFFFF]/40 mix-blend-screen blur-[1px]"
-          />
-
-          {/* The Superdense Sun Core */}
-          <motion.div 
-            animate={{ scale: [1, 1.03, 1], opacity: [0.7, 1, 0.7] }}
-            transition={{ duration: 4, repeat: Infinity, ease: "easeInOut", delay: 1 }}
-            className="absolute w-[35%] h-[35%] rounded-full bg-gradient-to-tr from-[#EA580C] via-[#FFB347] to-[#FFFFFF] mix-blend-screen blur-[40px] shadow-[0_0_120px_rgba(255,255,255,0.3)]"
+            animate={{ scale: [1, 1.1, 1], opacity: [0.5, 0.7, 0.5] }}
+            transition={{ duration: 10, repeat: Infinity, ease: "easeInOut", delay: 3 }}
+            className="absolute w-[60%] h-[60%] rounded-full bg-gradient-to-tr from-accent to-[#FFB347] blur-[80px] mix-blend-screen opacity-50"
           />
         </div>
 
