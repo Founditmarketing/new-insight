@@ -1,136 +1,130 @@
 import { motion } from 'motion/react';
-import { Quote, ArrowRight } from 'lucide-react';
+import { Star, ArrowRight } from 'lucide-react';
 
-const testimonials = [
-  {
-    id: 1,
-    quote: "Cory and the team in Alexandria completely overhauled our coverage. We were with a captive agent for years and didn't realize how much we were overpaying until Insight shopped our home and auto. Saved us over $2,000 a year with better coverage.",
-    author: "Michael T.",
-    entity: "Local Homeowner, Alexandria",
-    image: "https://images.unsplash.com/photo-1560250097-0b93528c311a?q=80&w=100&auto=format&fit=crop"
-  },
-  {
-    id: 2,
-    quote: "Robbie in the Ponchatoula office is phenomenal. After the storms, while everyone else was fighting 1-800 numbers, they were responsive and got our claim handled immediately. It’s rare to find an agency that genuinely cares about their clients like this.",
-    author: "Sarah J.",
-    entity: "Private Client, Ponchatoula",
-    image: "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?q=80&w=100&auto=format&fit=crop"
-  },
-  {
-    id: 3,
-    quote: "Allen and his entire team have been handling our commercial policies for our business. They made the complex world of liability completely painless. Highly recommend Insight if you want a true partner in Louisiana.",
-    author: "David M.",
-    entity: "Local Business Owner",
-    image: "https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?q=80&w=100&auto=format&fit=crop"
-  }
+const reviewsRow1 = [
+  { id: 1, author: "Michael T.", entity: "Alexandria, LA", text: "Saved us over $2,000 a year with significantly better coverage. The team is hyper-responsive.", stars: 5 },
+  { id: 2, author: "Sarah J.", entity: "Ponchatoula, LA", text: "Handled our claim immediately after the storm while everyone else was stuck on 1-800 numbers.", stars: 5 },
+  { id: 3, author: "David M.", entity: "Slidell, LA", text: "Insight transformed our commercial liability architecture. True partners in Louisiana.", stars: 5 },
+  { id: 4, author: "Robert C.", entity: "Pineville, LA", text: "Unmatched expertise in high-value home insurance. They caught critical gaps my old captive agent completely missed.", stars: 5 },
 ];
+
+const reviewsRow2 = [
+  { id: 5, author: "Amanda L.", entity: "Mandeville, LA", text: "Their preventative risk audits for our coastal property were eye-opening. Exceptional, world-class service.", stars: 5 },
+  { id: 6, author: "James W.", entity: "Baton Rouge, LA", text: "We moved our entire corporate fleet over. The premium savings and executive service level are night and day.", stars: 5 },
+  { id: 7, author: "Elena R.", entity: "Hammond, LA", text: "A breath of fresh air. They actually answer the phone and know exactly who you are. Best agency on the Northshore.", stars: 5 },
+  { id: 8, author: "Thomas K.", entity: "Covington, LA", text: "Secured our historic estate perfectly. The onboarding process was seamless, transparent, and incredibly professional.", stars: 5 },
+];
+
+const reviewsRow3 = [
+  { id: 9, author: "William P.", entity: "Natchitoches, LA", text: "Insight engineered a massive umbrella policy for our portfolio. I finally sleep well during hurricane season.", stars: 5 },
+  { id: 10, author: "Jessica H.", entity: "Alexandria, LA", text: "The team locally here in Alex is world-class. They treat your assets like their own.", stars: 5 },
+  { id: 11, author: "Brian D.", entity: "Slidell, LA", text: "Incredible marine portfolio structuring. Absolutely dialed in to the reality of operating heavily in the Gulf.", stars: 5 },
+  { id: 12, author: "Karen S.", entity: "Ponchatoula, LA", text: "Switched all our policies over last year. Unbeatable value and true white-glove concierge service from day one.", stars: 5 },
+];
+
+function ReviewCard({ review }: { review: any }) {
+  return (
+    <div className="flex-shrink-0 w-[300px] md:w-[400px] bg-white rounded-2xl p-6 md:p-8 border border-slate/10 shadow-[0_10px_20px_-10px_rgba(0,0,0,0.05)] mx-3 group hover:shadow-[0_30px_60px_-15px_rgba(227,38,54,0.15)] hover:-translate-y-2 transition-all duration-500 cursor-pointer relative z-10 hover:z-50 bg-opacity-90 backdrop-blur-xl">
+      <div className="flex items-center gap-1 mb-4">
+        {[...Array(review.stars)].map((_, i) => (
+          <Star key={i} className="w-4 h-4 text-amber-400 fill-amber-400" />
+        ))}
+      </div>
+      <p className="font-serif italic text-ink/80 text-lg md:text-xl leading-relaxed mb-6">
+        "{review.text}"
+      </p>
+      <div className="mt-auto flex items-center gap-4 border-t border-slate/10 pt-4">
+        <div className="w-10 h-10 rounded-full bg-slate/10 flex flex-shrink-0 items-center justify-center font-bold text-ink">
+          {review.author.charAt(0)}
+        </div>
+        <div className="flex flex-col">
+          <span className="font-bold text-ink tracking-tight uppercase text-sm">
+            {review.author}
+          </span>
+          <span className="font-semibold text-xs text-slate tracking-widest uppercase">
+            {review.entity}
+          </span>
+        </div>
+      </div>
+    </div>
+  );
+}
+
+// A single marquee row that duplicates its children for infinite scrolling
+function MarqueeRow({ reviews, reverse = false }: { reviews: any[], reverse?: boolean }) {
+  // Duplicate the array to ensure we have enough content to scroll infinitely (creates the illusion of an endless loop)
+  const duplicatedReviews = [...reviews, ...reviews, ...reviews, ...reviews];
+  
+  return (
+    <div className="relative flex overflow-hidden group">
+      <div className={`flex whitespace-nowrap ${reverse ? 'animate-marquee-reverse' : 'animate-marquee'} group-hover:[animation-play-state:paused] py-4`}>
+        {duplicatedReviews.map((review, i) => (
+          <ReviewCard key={`${review.id}-${i}`} review={review} />
+        ))}
+      </div>
+    </div>
+  );
+}
 
 export function Testimonials() {
   return (
-    <section id="reviews" className="py-24 px-6 md:px-12 lg:px-24 bg-paper text-ink relative overflow-hidden border-t border-slate/10">
-      <div className="max-w-7xl mx-auto flex flex-col h-full justify-between">
-        
-        <div className="flex flex-col sm:flex-row justify-between items-start sm:items-end gap-6 mb-16 pb-8">
-          <motion.div
-            initial={{ opacity: 0, x: -20 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
-            className="flex items-center gap-4"
-          >
-            <span className="text-sm font-bold tracking-widest uppercase text-accent font-mono">
-              05 // Client Relations
-            </span>
-          </motion.div>
+    <section id="reviews" className="py-24 md:py-32 bg-[#F8F9FA] text-ink relative overflow-hidden">
+      
+      {/* Background Architectural Mesh */}
+      <div className="absolute inset-0 opacity-[0.03] pointer-events-none z-0" 
+           style={{ backgroundImage: 'radial-gradient(#000 1px, transparent 1px)', backgroundSize: '24px 24px' }} />
 
-          <motion.div 
+      <div className="max-w-7xl mx-auto px-6 md:px-12 lg:px-24 mb-16 relative z-20">
+        <div className="flex flex-col md:flex-row justify-between items-start md:items-end gap-6 pb-8">
+          
+          <div className="flex flex-col">
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
+              className="flex items-center gap-4 mb-6"
+            >
+              <span className="text-sm font-bold tracking-widest uppercase text-accent font-mono bg-accent/5 px-3 py-1 rounded-full border border-accent/20">
+                05 // Proof of Architecture
+              </span>
+            </motion.div>
+            
+            <motion.h2
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.8, delay: 0.1, ease: [0.16, 1, 0.3, 1] }}
+              className="text-fluid-h2 font-sans font-bold text-ink tracking-tight leading-[1.1]"
+            >
+              Over 100 <span className="text-accent italic font-serif">5-Star</span> Verifications.
+            </motion.h2>
+          </div>
+
+          <motion.a 
+            href="#"
             initial={{ opacity: 0, x: 20 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.8, delay: 0.2, ease: [0.16, 1, 0.3, 1] }}
-            className="text-sm font-bold tracking-widest uppercase text-ink/70 hover:text-accent cursor-pointer transition-colors flex items-center group bg-stone px-6 py-3 rounded-full border border-slate/10"
+            className="text-sm font-bold tracking-widest uppercase text-white hover:bg-ink/90 cursor-pointer transition-colors flex items-center group bg-ink px-6 py-4 rounded-full shadow-lg"
           >
-            Review Private Case Studies <ArrowRight className="w-4 h-4 ml-2 group-hover:translate-x-1 transition-transform" />
-          </motion.div>
+            Read All Google Reviews <ArrowRight className="w-4 h-4 ml-3 group-hover:translate-x-1 transition-transform" />
+          </motion.a>
         </div>
-
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 mt-8">
-          
-          {/* Featured Pull Quote */}
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, margin: "-50px" }}
-            transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
-            className="lg:col-span-7 relative flex flex-col justify-between bg-gradient-to-br from-stone to-slate/5 p-8 md:p-12 lg:p-16 rounded-2xl border border-slate/10 shadow-[0_20px_60px_-15px_rgba(0,0,0,0.3)]"
-          >
-            <div className="absolute inset-0 bg-[url('https://www.transparenttextures.com/patterns/cubes.png')] opacity-5 mix-blend-overlay rounded-2xl pointer-events-none"></div>
-            <Quote className="absolute top-10 left-10 w-40 h-40 text-accent/10 -translate-x-6 -translate-y-8 z-0 rotate-180" />
-            <div className="relative z-10 flex-grow mb-16 pt-8">
-              <p className="text-3xl md:text-[2.5rem] font-bold leading-tight tracking-tight text-ink font-serif italic relative">
-                <span className="text-5xl text-accent absolute -left-8 md:-left-12 -top-4 font-sans">"</span>
-                {testimonials[0].quote}
-                <span className="text-5xl text-accent absolute -bottom-8 font-sans">"</span>
-              </p>
-            </div>
-            <div className="flex items-center gap-6 md:gap-8 mt-auto relative z-10">
-              <img 
-                src={testimonials[0].image} 
-                alt={testimonials[0].author}
-                className="w-24 h-24 md:w-32 md:h-32 rounded-full object-cover border-[6px] border-paper shadow-[0_10px_30px_rgba(0,0,0,0.2)]"
-              />
-              <div className="flex flex-col border-l-2 border-accent pl-6">
-                <span className="font-bold text-xl md:text-2xl text-ink uppercase tracking-wide">
-                  {testimonials[0].author}
-                </span>
-                <span className="font-semibold text-sm md:text-base text-accent tracking-widest uppercase mt-1">
-                  {testimonials[0].entity}
-                </span>
-              </div>
-            </div>
-          </motion.div>
-
-          {/* Secondary Stack - Staggered */}
-          <div className="lg:col-span-5 flex flex-col gap-8 justify-center h-full relative">
-            {/* Ambient connecting line */}
-            <div className="hidden lg:block absolute left-[-3rem] top-1/4 bottom-1/4 w-[1px] bg-slate/10" />
-
-            {[testimonials[1], testimonials[2]].map((testimonial, i) => (
-              <motion.div
-                key={testimonial.id}
-                initial={{ opacity: 0, x: 30 }}
-                whileInView={{ opacity: 1, x: 0 }}
-                viewport={{ once: true, margin: "-50px" }}
-                transition={{ duration: 0.8, delay: 0.2 + (i * 0.15), ease: [0.16, 1, 0.3, 1] }}
-                className={`relative flex flex-col justify-between p-8 md:p-10 bg-paper hover:bg-stone/30 rounded-xl border border-slate/10 transition-colors shadow-sm ${i === 1 ? 'lg:ml-12' : 'lg:-ml-6'} z-10`}
-              >
-                <div className="relative z-10 flex-grow mb-8">
-                  <p className="text-lg md:text-xl font-medium leading-relaxed tracking-tight text-ink/80 font-serif italic">
-                    "{testimonial.quote}"
-                  </p>
-                </div>
-                <div className="flex items-center gap-5 mt-auto">
-                  <img 
-                    src={testimonial.image} 
-                    alt={testimonial.author}
-                    className="w-16 h-16 rounded-full object-cover border-[3px] border-slate/10 shadow-sm"
-                  />
-                  <div className="flex flex-col border-l border-slate/20 pl-4">
-                    <span className="font-bold text-sm md:text-base text-ink uppercase tracking-wide">
-                      {testimonial.author}
-                    </span>
-                    <span className="font-semibold text-xs py-1 text-slate tracking-widest uppercase mt-0.5">
-                      {testimonial.entity}
-                    </span>
-                  </div>
-                </div>
-              </motion.div>
-            ))}
-          </div>
-
-        </div>
-        
       </div>
+
+      {/* The Draggable Marquee Matrix! */}
+      <div className="relative w-full overflow-hidden flex flex-col gap-2 z-10 py-4 pb-12">
+        {/* Soft edge masks to fade out the scrolling cards at screen edges */}
+        <div className="absolute inset-y-0 left-0 w-12 md:w-32 bg-gradient-to-r from-[#F8F9FA] to-transparent z-20 pointer-events-none" />
+        <div className="absolute inset-y-0 right-0 w-12 md:w-32 bg-gradient-to-l from-[#F8F9FA] to-transparent z-20 pointer-events-none" />
+        
+        <MarqueeRow reviews={reviewsRow1} />
+        <MarqueeRow reviews={reviewsRow2} reverse={true} />
+        <MarqueeRow reviews={reviewsRow3} />
+      </div>
+
     </section>
   );
 }

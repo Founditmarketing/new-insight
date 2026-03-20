@@ -35,7 +35,7 @@ const services = [
     id: 'marine', 
     title: 'Marine Portfolio', 
     icon: Anchor, 
-    statement: 'Navigating risk comprehensively on the open water. Specialized hull, cargo, and P&I structuring.',
+    statement: 'Specialized coverage for hull, cargo, and open water liabilities.',
     spanClass: 'col-span-1 row-span-1',
     iconBg: 'bg-slate/10',
     iconColor: 'text-slate'
