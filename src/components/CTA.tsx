@@ -96,7 +96,7 @@ export function CTA() {
           transition={{ duration: 0.8, delay: 0.1, ease: [0.16, 1, 0.3, 1] }}
           className="text-fluid-h2 font-sans font-bold text-paper mb-8 tracking-tight drop-shadow-[0_0_30px_rgba(255,255,255,0.3)] mix-blend-plus-lighter relative z-20"
         >
-          Ready to Architect Your Protection?
+          Ready to Find Your Protection?
         </motion.h2>
 
         <motion.p 

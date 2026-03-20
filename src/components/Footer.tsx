@@ -18,7 +18,7 @@ export function Footer() {
             <span className="text-[10px] uppercase tracking-widest font-semibold text-accent/80 ml-2">Insurance</span>
           </div>
           <p className="text-ink/70 text-sm font-medium leading-relaxed max-w-sm">
-            Architecting protection for Louisiana's most significant private assets and commercial enterprises.
+            Finding the right protection for Louisiana's most significant private assets and commercial enterprises.
           </p>
         </div>
 
