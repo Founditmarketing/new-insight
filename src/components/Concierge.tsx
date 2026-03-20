@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
 import { MessageSquare, X, Send, Bot, User, CheckCircle2, ShieldAlert } from 'lucide-react';
 
@@ -15,6 +15,15 @@ export function Concierge() {
   const [isTyping, setIsTyping] = useState(false);
   const [step, setStep] = useState(0);
   const [reportReady, setReportReady] = useState(false);
+  const messagesEndRef = useRef<HTMLDivElement>(null);
+
+  const scrollToBottom = () => {
+    messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
+  };
+
+  useEffect(() => {
+    scrollToBottom();
+  }, [messages, isTyping, reportReady]);
 
   // The predefined conversation flow
   const flow = [
@@ -130,7 +139,7 @@ export function Concierge() {
             </div>
 
             {/* Chat Area */}
-            <div className="flex-grow overflow-y-auto p-5 space-y-4 scrollbar-hide relative z-10 flex flex-col">
+            <div className="flex-grow overflow-y-auto p-5 space-y-4 scrollbar-hide relative z-10 flex flex-col" data-lenis-prevent="true">
               {messages.map((msg) => (
                 <motion.div 
                   key={msg.id}
@@ -192,6 +201,8 @@ export function Concierge() {
                   </button>
                 </motion.div>
               )}
+              
+              <div ref={messagesEndRef} />
             </div>
 
             {/* Input Area (Disabled during guided flow) */}
