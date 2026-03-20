@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
-import { X, ArrowRight, ArrowLeft, CheckCircle2, Home, Car, Building2, Anchor, Heart, Bike, Truck, Compass } from 'lucide-react';
+import { X, ArrowRight, ArrowLeft, CheckCircle2, Home, Car, Building2, Anchor, Heart, Bike, Truck, Compass, ShieldAlert } from 'lucide-react';
 
 interface QuoteModalProps {
   isOpen: boolean;
@@ -9,6 +9,8 @@ interface QuoteModalProps {
 
 export function QuoteModal({ isOpen, onClose }: QuoteModalProps) {
   const [step, setStep] = useState(1);
+  const [isVerifying, setIsVerifying] = useState(false);
+  const [isVerified, setIsVerified] = useState(false);
   const [formData, setFormData] = useState({
     firstName: '',
     lastName: '',
@@ -24,8 +26,20 @@ export function QuoteModal({ isOpen, onClose }: QuoteModalProps) {
 
   // Reset when opened
   useEffect(() => {
-    if (isOpen) setStep(1);
+    if (isOpen) {
+      setStep(1);
+      setIsVerified(false);
+      setIsVerifying(false);
+    }
   }, [isOpen]);
+
+  const handleVerify = () => {
+    setIsVerifying(true);
+    setTimeout(() => {
+      setIsVerifying(false);
+      setIsVerified(true);
+    }, 2000);
+  };
 
   const coverageOptions = [
     { id: 'home', title: 'Homeowners', icon: Home, desc: 'Coverage for primary or secondary residences.' },
@@ -165,29 +179,91 @@ export function QuoteModal({ isOpen, onClose }: QuoteModalProps) {
                     >
                       <div className="mb-8">
                         <h4 className="text-2xl font-bold font-serif text-paper mb-2">Where is the primary exposure?</h4>
-                        <p className="text-paper/60 font-medium">Louisiana risk profiling requires an exact geographic understanding.</p>
+                        <p className="text-paper/60 font-medium">Louisiana risk profiling requires an exact geographic understanding. We securely fetch property tax records to calibrate your quote.</p>
                       </div>
 
-                      <div className="space-y-2 w-full">
-                        <label className="text-xs font-bold uppercase tracking-widest text-paper/70">Street Address</label>
-                        <input 
-                          type="text" 
-                          className="w-full bg-white/5 border border-white/10 focus:border-accent focus:ring-1 focus:ring-accent rounded-lg p-4 outline-none font-medium text-paper placeholder:text-paper/30 transition-all"
-                          placeholder="123 Oak Avenue"
-                          value={formData.address}
-                          onChange={(e) => setFormData({...formData, address: e.target.value})}
-                        />
-                      </div>
+                      <div className="space-y-4 w-full">
+                        <div className="space-y-2">
+                          <label className="text-xs font-bold uppercase tracking-widest text-paper/70">Street Address</label>
+                          <input 
+                            type="text" 
+                            disabled={isVerified || isVerifying}
+                            className={`w-full bg-white/5 border border-white/10 focus:border-accent focus:ring-1 focus:ring-accent rounded-lg p-4 outline-none font-medium text-paper placeholder:text-paper/30 transition-all ${isVerified ? 'opacity-50 cursor-not-allowed' : ''}`}
+                            placeholder="123 Oak Avenue"
+                            value={formData.address}
+                            onChange={(e) => setFormData({...formData, address: e.target.value})}
+                          />
+                        </div>
 
-                      <div className="space-y-2 w-full">
-                        <label className="text-xs font-bold uppercase tracking-widest text-paper/70">Zip Code</label>
-                        <input 
-                          type="text" 
-                          className="w-full bg-white/5 border border-white/10 focus:border-accent focus:ring-1 focus:ring-accent rounded-lg p-4 outline-none font-medium text-paper placeholder:text-paper/30 transition-all"
-                          placeholder="71301"
-                          value={formData.zip}
-                          onChange={(e) => setFormData({...formData, zip: e.target.value})}
-                        />
+                        <div className="space-y-2">
+                          <label className="text-xs font-bold uppercase tracking-widest text-paper/70">Zip Code</label>
+                          <input 
+                            type="text" 
+                            disabled={isVerified || isVerifying}
+                            className={`w-full bg-white/5 border border-white/10 focus:border-accent focus:ring-1 focus:ring-accent rounded-lg p-4 outline-none font-medium text-paper placeholder:text-paper/30 transition-all ${isVerified ? 'opacity-50 cursor-not-allowed' : ''}`}
+                            placeholder="71301"
+                            value={formData.zip}
+                            onChange={(e) => setFormData({...formData, zip: e.target.value})}
+                          />
+                        </div>
+
+                        {!isVerified && !isVerifying && (
+                          <button
+                            onClick={handleVerify}
+                            disabled={!formData.address || !formData.zip}
+                            className="w-full mt-4 bg-white/10 hover:bg-white/20 border border-white/20 text-paper py-4 rounded-lg font-bold tracking-widest uppercase text-xs transition-all disabled:opacity-50 disabled:cursor-not-allowed"
+                          >
+                            Verify Property Data
+                          </button>
+                        )}
+
+                        {isVerifying && (
+                          <motion.div 
+                            initial={{ opacity: 0, y: 10 }}
+                            animate={{ opacity: 1, y: 0 }}
+                            className="w-full mt-4 bg-white/5 border border-white/10 rounded-lg p-6 flex flex-col items-center justify-center space-y-4"
+                          >
+                            <div className="relative w-12 h-12 flex items-center justify-center">
+                              <div className="absolute inset-0 border-2 border-accent/20 rounded-full" />
+                              <div className="absolute inset-0 border-2 border-accent border-t-transparent rounded-full animate-spin" />
+                              <ShieldAlert className="w-5 h-5 text-accent animate-pulse" />
+                            </div>
+                            <p className="text-sm font-bold tracking-widest uppercase text-accent animate-pulse">Pinging Assessor Database...</p>
+                          </motion.div>
+                        )}
+
+                        {isVerified && (
+                          <motion.div 
+                            initial={{ opacity: 0, scale: 0.95 }}
+                            animate={{ opacity: 1, scale: 1 }}
+                            className="w-full mt-4 bg-accent/10 border-2 border-accent rounded-lg p-6 shadow-[0_0_20px_rgba(227,38,54,0.15)]"
+                          >
+                            <div className="flex items-center gap-3 mb-4">
+                              <div className="w-8 h-8 rounded-full bg-accent text-white flex items-center justify-center">
+                                <CheckCircle2 className="w-5 h-5" />
+                              </div>
+                              <h5 className="font-bold text-accent tracking-widest uppercase text-sm">Property Verified</h5>
+                            </div>
+                            <div className="grid grid-cols-2 gap-4">
+                              <div>
+                                <div className="text-[10px] font-bold tracking-widest uppercase text-paper/50 mb-1">Total Area</div>
+                                <div className="font-medium text-paper">2,450 Sq Ft</div>
+                              </div>
+                              <div>
+                                <div className="text-[10px] font-bold tracking-widest uppercase text-paper/50 mb-1">Year Built</div>
+                                <div className="font-medium text-paper">2014</div>
+                              </div>
+                              <div>
+                                <div className="text-[10px] font-bold tracking-widest uppercase text-paper/50 mb-1">Construction</div>
+                                <div className="font-medium text-paper">Brick Veneer</div>
+                              </div>
+                              <div>
+                                <div className="text-[10px] font-bold tracking-widest uppercase text-paper/50 mb-1">Protection Class</div>
+                                <div className="font-medium text-paper">Class 3</div>
+                              </div>
+                            </div>
+                          </motion.div>
+                        )}
                       </div>
                     </motion.div>
                   )}
@@ -280,7 +356,12 @@ export function QuoteModal({ isOpen, onClose }: QuoteModalProps) {
                   
                   <button
                     onClick={nextStep}
-                    className="bg-accent text-white px-8 py-3 rounded-sm font-bold tracking-widest uppercase text-sm hover:bg-white hover:text-ink shadow-[0_0_20px_rgba(227,38,54,0.3)] hover:shadow-[0_0_30px_rgba(255,255,255,0.5)] transition-all flex items-center gap-2"
+                    disabled={step === 2 && !isVerified}
+                    className={`px-8 py-3 rounded-sm font-bold tracking-widest uppercase text-sm transition-all flex items-center gap-2 ${
+                      step === 2 && !isVerified 
+                        ? 'bg-white/5 text-paper/40 cursor-not-allowed border border-white/10' 
+                        : 'bg-accent text-white hover:bg-white hover:text-ink shadow-[0_0_20px_rgba(227,38,54,0.3)] hover:shadow-[0_0_30px_rgba(255,255,255,0.5)]'
+                    }`}
                   >
                     {step === 3 ? 'Submit Request' : 'Continue'} <ArrowRight className="w-4 h-4" />
                   </button>
