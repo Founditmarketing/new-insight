@@ -32,7 +32,7 @@ export function Hero({ onOpenQuote }: { onOpenQuote?: () => void }) {
 
 
         {/* Atmospheric Particle Dust Layer (Z-15 to render above the vignette) */}
-        <div className="absolute inset-0 z-[15] overflow-hidden pointer-events-none opacity-60">
+        <div className="absolute inset-0 z-[15] overflow-hidden pointer-events-none">
           {particles.map((p) => (
             <motion.div
               key={p.id}
