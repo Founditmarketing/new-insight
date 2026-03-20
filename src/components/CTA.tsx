@@ -1,8 +1,17 @@
 import { motion, useScroll, useTransform } from 'motion/react';
 import { ArrowRight, Phone } from 'lucide-react';
-import { useRef, useMemo } from 'react';
+import { useRef, useMemo, useState, useEffect } from 'react';
 
 export function CTA({ onOpenQuote }: { onOpenQuote?: () => void }) {
+  const [isMobile, setIsMobile] = useState(false);
+
+  useEffect(() => {
+    const checkMobile = () => setIsMobile(window.innerWidth < 768);
+    checkMobile();
+    window.addEventListener('resize', checkMobile);
+    return () => window.removeEventListener('resize', checkMobile);
+  }, []);
+
   const ref = useRef<HTMLElement>(null);
   const { scrollYProgress } = useScroll({
     target: ref,
@@ -11,8 +20,9 @@ export function CTA({ onOpenQuote }: { onOpenQuote?: () => void }) {
   const y = useTransform(scrollYProgress, [0, 1], ["-15%", "15%"]);
 
   // Cinematic Space Dust / Ember Particles (Mirrored from Hero)
-  const particles = useMemo(() => 
-    Array.from({ length: 120 }).map((_, i) => {
+  const particles = useMemo(() => {
+    const count = isMobile ? 30 : 120;
+    return Array.from({ length: count }).map((_, i) => {
       const isOrange = Math.random() > 0.4;
       return {
         id: i,
@@ -26,8 +36,8 @@ export function CTA({ onOpenQuote }: { onOpenQuote?: () => void }) {
         colorClass: isOrange ? 'bg-accent' : 'bg-paper',
         shadow: isOrange ? 'rgba(227,38,54,1)' : 'rgba(255,255,255,1)',
       };
-    }), []
-  );
+    });
+  }, [isMobile]);
 
   return (
     <section ref={ref} className="py-24 md:py-32 px-6 md:px-12 lg:px-24 bg-ink text-paper relative overflow-hidden flex items-center justify-center min-h-[50vh] md:min-h-[70vh]">

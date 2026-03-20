@@ -1,11 +1,22 @@
 import { motion } from 'motion/react';
 import { ArrowRight, ShieldCheck } from 'lucide-react';
-import { useMemo } from 'react';
+import { useMemo, useState, useEffect } from 'react';
 
 export function Hero({ onOpenQuote }: { onOpenQuote?: () => void }) {
+  const [isMobile, setIsMobile] = useState(false);
+
+  useEffect(() => {
+    // Check if window is less than md breakpoint (768px)
+    const checkMobile = () => setIsMobile(window.innerWidth < 768);
+    checkMobile(); // initial check
+    window.addEventListener('resize', checkMobile);
+    return () => window.removeEventListener('resize', checkMobile);
+  }, []);
+
   // Cinematic Space Dust / Ember Particles
-  const particles = useMemo(() => 
-    Array.from({ length: 180 }).map((_, i) => {
+  const particles = useMemo(() => {
+    const count = isMobile ? 40 : 180; // Dramatically reduce particles on mobile to prevent lag
+    return Array.from({ length: count }).map((_, i) => {
       const isOrange = Math.random() > 0.4; // 60% orange, 40% white
       return {
         id: i,
@@ -19,8 +30,8 @@ export function Hero({ onOpenQuote }: { onOpenQuote?: () => void }) {
         colorClass: isOrange ? 'bg-accent' : 'bg-paper',
         shadow: isOrange ? 'rgba(227,38,54,1)' : 'rgba(255,255,255,1)',
       };
-    }), []
-  );
+    });
+  }, [isMobile]);
 
   return (
     <section className="relative min-h-[100svh] w-full flex flex-col justify-center items-center pt-20 md:pt-32 pb-16 px-6 md:px-12 lg:px-24 overflow-hidden bg-ink">
