@@ -5,11 +5,11 @@
   --font-sans: "Plus Jakarta Sans", ui-sans-serif, system-ui, sans-serif;
   --font-serif: "Plus Jakarta Sans", ui-serif, Georgia, Cambria, "Times New Roman", Times, serif;
   
-  --color-ink: #0A1D3D; /* Deep Trust Navy */
-  --color-paper: #FAFAFA; /* Alabaster */
-  --color-stone: #FFFFFF; /* Pure White */
-  --color-accent: #BFA15F; /* Champagne Gold / Warmth */
-  --color-slate: #8A9AAB; /* Subtle gray for borders/text */
+  --color-ink: #1F2937; /* High-contrast Charcoal Black */
+  --color-paper: #FFFFFF; /* Pure White */
+  --color-stone: #F9FAFB; /* Off-White / Alabaster */
+  --color-accent: #EA580C; /* Vibrant Brand Orange (Tailwind orange-600) */
+  --color-slate: #9CA3AF; /* Neutral gray for borders */
 }
 
 body {

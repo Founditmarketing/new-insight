@@ -9,12 +9,13 @@ export function Footer() {
         
         {/* Brand & Mission */}
         <div className="flex flex-col gap-6">
-          <div className="flex items-center gap-2 group cursor-none">
-            <ShieldCheck className="w-8 h-8 text-accent transition-transform duration-300" />
-            <div className="flex flex-col">
-              <span className="font-bold tracking-tight text-xl leading-none text-ink">INSIGHT</span>
-              <span className="text-[10px] uppercase tracking-widest text-slate font-semibold">Insurance</span>
+          <div className="flex items-center gap-3 group cursor-none mb-2">
+            <div className="flex gap-1.5 items-baseline">
+              {['I', 'N', 'S', 'I', 'G', 'H', 'T'].map((letter, i) => (
+                <span key={i} className="font-serif text-2xl tracking-widest text-ink block group-hover:text-accent transition-colors duration-300 transform group-hover:-translate-y-0.5" style={{ transitionDelay: `${i * 30}ms` }}>{letter}</span>
+              ))}
             </div>
+            <span className="text-[10px] uppercase tracking-widest font-semibold text-accent/80 ml-2">Insurance</span>
           </div>
           <p className="text-ink/70 text-sm font-medium leading-relaxed max-w-sm">
             Architecting protection for Louisiana's most significant private assets and commercial enterprises.

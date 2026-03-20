@@ -22,12 +22,13 @@ export function Navbar() {
       }`}
     >
       <div className="max-w-7xl mx-auto px-6 md:px-12 lg:px-24 flex items-center justify-between">
-        <a href="#" className="flex items-center gap-2 group cursor-none">
-          <ShieldCheck className="w-8 h-8 text-accent group-hover:scale-110 transition-transform duration-300" />
-          <div className="flex flex-col">
-            <span className={`font-bold tracking-tight text-xl leading-none transition-colors duration-300 ${isScrolled ? 'text-ink' : 'text-paper'}`}>INSIGHT</span>
-            <span className={`text-[10px] uppercase tracking-widest transition-colors font-semibold duration-300 ${isScrolled ? 'text-slate' : 'text-paper/80'}`}>Insurance</span>
+        <a href="#" className="flex items-center gap-3 group cursor-none">
+          <div className="flex gap-1.5 items-baseline">
+            {['I', 'N', 'S', 'I', 'G', 'H', 'T'].map((letter, i) => (
+              <span key={i} className="font-serif text-2xl tracking-widest text-ink block group-hover:text-accent transition-colors duration-300 transform group-hover:-translate-y-0.5" style={{ transitionDelay: `${i * 30}ms` }}>{letter}</span>
+            ))}
           </div>
+          <span className="text-[10px] uppercase tracking-widest font-semibold text-accent/80 ml-2">Insurance</span>
         </a>
 
         {/* Desktop Menu */}
@@ -36,24 +37,20 @@ export function Navbar() {
             <a 
               key={item}
               href={`#${item.toLowerCase()}`}
-              className={`text-sm font-semibold transition-colors uppercase tracking-wide cursor-none relative group ${isScrolled ? 'text-ink/80 hover:text-accent' : 'text-paper/90 hover:text-accent'}`}
+              className="text-sm font-semibold transition-colors uppercase tracking-wide cursor-none relative group text-ink/80 hover:text-accent"
             >
               {item}
               <span className="absolute -bottom-1 left-0 w-0 h-[2px] bg-accent transition-all duration-300 group-hover:w-full"></span>
             </a>
           ))}
-          <button className={`ml-4 px-8 py-4 rounded-sm font-semibold tracking-widest uppercase text-sm transition-all duration-300 cursor-none shadow-institutional flex items-center justify-center ${
-            isScrolled 
-              ? 'bg-ink text-stone hover:bg-accent' 
-              : 'bg-paper text-ink hover:bg-stone hover:text-ink border-transparent shadow-[0_0_20px_rgba(255,255,255,0.1)]'
-          }`}>
+          <button className="ml-4 px-8 py-4 rounded-sm font-semibold tracking-widest uppercase text-sm transition-all duration-300 cursor-none shadow-institutional flex items-center justify-center bg-ink text-paper hover:bg-accent hover:text-paper hover:shadow-[0_0_20px_rgba(234,88,12,0.3)]">
             Client Portal
           </button>
         </div>
 
         {/* Mobile Menu Toggle */}
         <button 
-          className={`md:hidden p-2 transition-colors cursor-none ${isScrolled ? 'text-ink' : 'text-paper'}`}
+          className="md:hidden p-2 transition-colors cursor-none text-ink hover:text-accent"
           onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
         >
           {isMobileMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
