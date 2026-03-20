@@ -1,4 +1,4 @@
-import { useRef, MouseEvent } from 'react';
+import { useRef, MouseEvent, useState, useEffect, useMemo } from 'react';
 import { motion, useScroll, useTransform, useMotionTemplate, useMotionValue } from 'motion/react';
 import { MapPin, ArrowRight } from 'lucide-react';
 
@@ -27,7 +27,7 @@ const locations = [
 ];
 
 // Interactive Spotlight Card Component
-function LocationCard({ loc, index }: { loc: typeof locations[0], index: number }) {
+function LocationCard({ loc, index }: { loc: typeof locations[0]; index: number; key?: string | number }) {
   const mouseX = useMotionValue(0);
   const mouseY = useMotionValue(0);
 
@@ -105,6 +105,36 @@ function LocationCard({ loc, index }: { loc: typeof locations[0], index: number 
 }
 
 export function LouisianaStory() {
+  const [isMobile, setIsMobile] = useState(false);
+
+  useEffect(() => {
+    // Check if window is less than md breakpoint (768px)
+    const checkMobile = () => setIsMobile(window.innerWidth < 768);
+    checkMobile(); // initial check
+    window.addEventListener('resize', checkMobile);
+    return () => window.removeEventListener('resize', checkMobile);
+  }, []);
+
+  // Cinematic Space Dust / Ember Particles
+  const particles = useMemo(() => {
+    const count = isMobile ? 40 : 180; // Dramatically reduce particles on mobile to prevent lag
+    return Array.from({ length: count }).map((_, i) => {
+      const isOrange = Math.random() > 0.4; // 60% orange, 40% white
+      return {
+        id: i,
+        size: Math.random() * 8 + 4, // 4px to 12px
+        xOrigin: Math.random() * 100, // 0 to 100vw
+        yOrigin: Math.random() * 100, // 0 to 100vh
+        xOffset: Math.random() * 40 - 20, // sweeping drift
+        duration: Math.random() * 15 + 10, // 15s to 25s
+        delay: Math.random() * 5 * -1, 
+        opacity: Math.random() * 0.4 + 0.6, // 0.6 to 1.0 peak brightness
+        colorClass: isOrange ? 'bg-accent' : 'bg-paper',
+        shadow: isOrange ? 'rgba(227,38,54,1)' : 'rgba(255,255,255,1)',
+      };
+    });
+  }, [isMobile]);
+
   const containerRef = useRef<HTMLElement>(null);
   const { scrollYProgress } = useScroll({
     target: containerRef,
@@ -115,11 +145,43 @@ export function LouisianaStory() {
   const titleY = useTransform(scrollYProgress, [0, 1], ["-20%", "20%"]);
 
   return (
-    <section id="story" ref={containerRef} className="py-24 md:py-32 bg-ink text-paper relative overflow-hidden">
+    <section id="story" ref={containerRef} className="py-24 md:py-32 bg-[#0A0A0A] text-paper relative overflow-hidden">
       
-      {/* Background Architectural Texture */}
-      <div className="absolute inset-0 opacity-[0.02] pointer-events-none" 
+      {/* Background Architectural Texture & Particles */}
+      <div className="absolute inset-0 opacity-[0.02] pointer-events-none z-0" 
            style={{ backgroundImage: 'radial-gradient(#fff 1px, transparent 1px)', backgroundSize: '40px 40px' }} />
+           
+      <div className="absolute inset-0 z-[5] overflow-hidden pointer-events-none">
+        {particles.map((p) => (
+          <motion.div
+            key={p.id}
+            initial={{ 
+              x: `${p.xOrigin}vw`, 
+              y: `${p.yOrigin + 20}vh`, 
+              opacity: 0,
+              scale: 0
+            }}
+            animate={{ 
+              x: [`${p.xOrigin}vw`, `${p.xOrigin + p.xOffset}vw`],
+              y: [`${p.yOrigin + 20}vh`, `${p.yOrigin - 50}vh`],
+              opacity: [0, p.opacity, 0],
+              scale: [0, 1, 0]
+            }}
+            transition={{ 
+              duration: p.duration,
+              repeat: Infinity,
+              ease: "linear",
+              delay: p.delay
+            }}
+            className={`absolute rounded-full shadow-[0_0_30px_rgba(255,255,255,0.4)] mix-blend-screen ${p.colorClass}`}
+            style={{
+              width: `${p.size}px`,
+              height: `${p.size}px`,
+              boxShadow: `0 0 ${p.size * 5}px ${p.shadow}`
+            }}
+          />
+        ))}
+      </div>
 
       <div className="max-w-7xl mx-auto px-6 md:px-12 lg:px-24 mb-20 relative z-20">
         <motion.div
