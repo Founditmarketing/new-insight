@@ -54,7 +54,7 @@ export function Hero({ onOpenQuote }: { onOpenQuote?: () => void }) {
                 ease: "linear",
                 delay: p.delay
               }}
-              className={`absolute rounded-full mix-blend-screen ${p.colorClass}`}
+              className={`absolute rounded-full ${p.colorClass}`}
               style={{
                 width: `${p.size}px`,
                 height: `${p.size}px`,
