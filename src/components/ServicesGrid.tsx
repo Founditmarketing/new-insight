@@ -181,7 +181,7 @@ export function ServicesGrid() {
               transition={{ duration: 0.8, delay: 0.1, ease: [0.16, 1, 0.3, 1] }}
               className="text-fluid-h2 font-sans font-bold text-ink tracking-tight leading-[1.1]"
             >
-              Absolute precision across <span className="text-accent italic font-serif opacity-90">every dimension.</span>
+              Uncompromising protection for your <span className="text-accent italic font-serif opacity-90">greatest assets.</span>
             </motion.h2>
           </div>
           
