@@ -7,7 +7,6 @@ import { useEffect, useState } from 'react';
 import Lenis from 'lenis';
 import { Hero } from './components/Hero';
 import { ServicesGrid } from './components/ServicesGrid';
-import { Proof } from './components/Proof';
 import { Testimonials } from './components/Testimonials';
 import { LouisianaStory } from './components/LouisianaStory';
 import { CTA } from './components/CTA';
@@ -48,7 +47,6 @@ export default function App() {
       <Hero onOpenQuote={() => setIsQuoteOpen(true)} />
       <LouisianaStory />
       <ServicesGrid />
-      <Proof />
       <Testimonials />
       <CTA onOpenQuote={() => setIsQuoteOpen(true)} />
       <Footer />
