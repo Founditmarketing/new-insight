@@ -74,9 +74,9 @@ export function Footer() {
 
       </div>
 
-      <div className="max-w-7xl mx-auto mt-24 pt-8 border-t border-slate/10 flex flex-col md:flex-row justify-between items-center gap-4 text-xs font-semibold text-slate uppercase tracking-widest relative z-10">
-        <p>© {new Date().getFullYear()} Insight Insurance. All rights reserved.</p>
-        <p>A licensed Louisiana brokerage.</p>
+      <div className="max-w-7xl mx-auto mt-24 pt-8 border-t border-slate/10 flex flex-col justify-center items-center gap-3 text-xs md:text-sm font-semibold text-slate uppercase tracking-widest relative z-10 text-center">
+        <p className="text-ink/80">© {new Date().getFullYear()} Insight Insurance. Proudly protecting our Louisiana neighbors.</p>
+        <p className="text-ink/50 text-[10px] md:text-xs">Family Owned. Locally Operated. Always here when you need us.</p>
       </div>
     </footer>
   );
