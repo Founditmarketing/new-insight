@@ -15,26 +15,19 @@ export function CTA() {
       
       {/* Immersive Interactive Mesh Background (Mirrors Hero) */}
       <div className="absolute inset-0 z-0 overflow-hidden pointer-events-none">
+        {/* Absolute Black Base */}
         <div className="absolute inset-0 bg-ink z-0" />
         
-        {/* Animated Orange Orb */}
+        {/* The Singular Glowing Orange Orb */}
         <motion.div 
-          animate={{ x: ["-10%", "10%", "-10%"], y: ["0%", "10%", "0%"], scale: [1, 1.1, 1] }}
-          transition={{ duration: 15, repeat: Infinity, ease: "easeInOut" }}
-          style={{ filter: "blur(120px)" }}
-          className="absolute -bottom-[20%] -left-[10%] w-[50vw] h-[50vw] rounded-full bg-[#EA580C]/20 mix-blend-screen"
+          animate={{ scale: [1, 1.05, 1], opacity: [0.6, 0.9, 0.6] }}
+          transition={{ duration: 6, repeat: Infinity, ease: "easeInOut", delay: 1 }}
+          style={{ filter: "blur(80px)" }}
+          className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[60vw] h-[60vw] md:w-[40vw] md:h-[40vw] rounded-full bg-accent mix-blend-screen shadow-[0_0_150px_rgba(234,88,12,0.8)]"
         />
 
-        {/* Animated Peach Orb */}
-        <motion.div 
-          animate={{ x: ["10%", "-10%", "10%"], y: ["10%", "-10%", "10%"], scale: [1, 1.2, 1] }}
-          transition={{ duration: 20, repeat: Infinity, ease: "easeInOut", delay: 2 }}
-          style={{ filter: "blur(130px)" }}
-          className="absolute top-[10%] -right-[10%] w-[40vw] h-[40vw] rounded-full bg-[#FFB347]/15 mix-blend-screen"
-        />
-
-        {/* Dark Vignette Overlay */}
-        <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,transparent_0%,#111827_100%)] z-10 opacity-80" />
+        {/* Dense Black Vignette Overlay to force contrast to the center */}
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,transparent_0%,#050505_80%)] z-10 opacity-90" />
       </div>
 
       <div className="max-w-5xl mx-auto flex flex-col items-center text-center relative z-10">
@@ -57,7 +50,7 @@ export function CTA() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.8, delay: 0.1, ease: [0.16, 1, 0.3, 1] }}
-          className="text-fluid-h2 font-sans font-bold text-paper mb-8 tracking-tight drop-shadow-lg"
+          className="text-fluid-h2 font-sans font-bold text-paper mb-8 tracking-tight drop-shadow-[0_0_30px_rgba(255,255,255,0.3)] mix-blend-plus-lighter relative z-20"
         >
           Ready to Architect Your Protection?
         </motion.h2>

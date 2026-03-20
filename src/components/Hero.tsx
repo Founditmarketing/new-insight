@@ -7,38 +7,22 @@ export function Hero() {
       
       {/* Immersive Interactive Mesh Background */}
       <div className="absolute inset-0 z-0 overflow-hidden pointer-events-none">
-        {/* Deep Charcoal Base */}
+        {/* Absolute Black Base */}
         <div className="absolute inset-0 bg-ink z-0" />
         
-        {/* Animated Brand Orange Orb */}
+        {/* The Singular Glowing Orange Orb */}
         <motion.div 
-          animate={{ x: ["-10%", "20%", "-10%"], y: ["0%", "30%", "0%"], scale: [1, 1.2, 1] }}
-          transition={{ duration: 15, repeat: Infinity, ease: "easeInOut" }}
-          style={{ filter: "blur(120px)" }}
-          className="absolute -top-[20%] -left-[10%] w-[60vw] h-[60vw] rounded-full bg-[#EA580C]/20 mix-blend-screen"
+          animate={{ scale: [1, 1.05, 1], opacity: [0.6, 0.9, 0.6] }}
+          transition={{ duration: 6, repeat: Infinity, ease: "easeInOut" }}
+          style={{ filter: "blur(80px)" }}
+          className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[60vw] h-[60vw] md:w-[40vw] md:h-[40vw] rounded-full bg-accent mix-blend-screen shadow-[0_0_150px_rgba(234,88,12,0.8)]"
         />
 
-        {/* Animated Peach/Warm Glow Orb */}
-        <motion.div 
-          animate={{ x: ["10%", "-20%", "10%"], y: ["20%", "-10%", "20%"], scale: [1, 1.5, 1] }}
-          transition={{ duration: 20, repeat: Infinity, ease: "easeInOut", delay: 2 }}
-          style={{ filter: "blur(130px)" }}
-          className="absolute top-[20%] -right-[10%] w-[50vw] h-[50vw] rounded-full bg-[#FFB347]/15 mix-blend-screen"
-        />
-
-        {/* Ambient Center Glow */}
-        <motion.div 
-          animate={{ opacity: [0.1, 0.4, 0.1] }}
-          transition={{ duration: 8, repeat: Infinity, ease: "easeInOut" }}
-          style={{ filter: "blur(100px)" }}
-          className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[40vw] h-[40vw] rounded-full bg-[#EA580C]/10 mix-blend-screen"
-        />
-
-        {/* Dark Vignette Overlay */}
-        <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,transparent_0%,#111827_100%)] z-10 opacity-80" />
+        {/* Dense Black Vignette Overlay to force contrast to the center */}
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,transparent_0%,#050505_80%)] z-10 opacity-90" />
         
         {/* Top Navbar Protection Layer */}
-        <div className="absolute inset-x-0 top-0 h-48 bg-gradient-to-b from-ink to-transparent z-20 opacity-80" />
+        <div className="absolute inset-x-0 top-0 h-48 bg-gradient-to-b from-ink to-transparent z-20 opacity-90" />
       </div>
       
       {/* Foreground Content */}
@@ -58,7 +42,7 @@ export function Hero() {
           </div>
         </motion.div>
         
-        <h1 className="text-[10vw] sm:text-[4rem] lg:text-[5.5rem] text-paper mb-6 flex flex-col font-bold tracking-tighter leading-[1]">
+        <h1 className="text-[10vw] sm:text-[4rem] lg:text-[5.5rem] text-paper mb-6 flex flex-col font-bold tracking-tighter leading-[1] mix-blend-plus-lighter relative z-20">
           <motion.span 
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
@@ -71,7 +55,7 @@ export function Hero() {
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 1.2, delay: 0.2, ease: [0.16, 1, 0.3, 1] }}
-            className="block text-accent drop-shadow-[0_4px_20px_rgba(234,88,12,0.4)]"
+            className="block text-paper drop-shadow-[0_0_30px_rgba(255,255,255,0.3)]"
           >
             Protection.
           </motion.span>

@@ -5,9 +5,9 @@
   --font-sans: "Plus Jakarta Sans", ui-sans-serif, system-ui, sans-serif;
   --font-serif: "Plus Jakarta Sans", ui-serif, Georgia, Cambria, "Times New Roman", Times, serif;
   
-  --color-ink: #1F2937; /* High-contrast Charcoal Black */
+  --color-ink: #050505; /* Absolute Black for extreme contrast */
   --color-paper: #FFFFFF; /* Pure White */
-  --color-stone: #F9FAFB; /* Off-White / Alabaster */
+  --color-stone: #F3F4F6; /* Sharper Off-White (Gray-100) for structural depth */
   --color-accent: #EA580C; /* Vibrant Brand Orange (Tailwind orange-600) */
   --color-slate: #9CA3AF; /* Neutral gray for borders */
 }
