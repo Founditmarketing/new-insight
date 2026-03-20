@@ -1,6 +1,6 @@
 import { motion, useScroll, useTransform } from 'motion/react';
 import { ArrowRight, Phone } from 'lucide-react';
-import { useRef } from 'react';
+import { useRef, useMemo } from 'react';
 
 export function CTA() {
   const ref = useRef<HTMLElement>(null);
@@ -10,6 +10,25 @@ export function CTA() {
   });
   const y = useTransform(scrollYProgress, [0, 1], ["-15%", "15%"]);
 
+  // Cinematic Space Dust / Ember Particles (Mirrored from Hero)
+  const particles = useMemo(() => 
+    Array.from({ length: 80 }).map((_, i) => {
+      const isOrange = Math.random() > 0.4;
+      return {
+        id: i,
+        size: Math.random() * 4 + 1.5,
+        xOrigin: Math.random() * 100,
+        yOrigin: Math.random() * 100,
+        xOffset: Math.random() * 30 - 15,
+        duration: Math.random() * 20 + 15,
+        delay: Math.random() * 5 * -1, 
+        opacity: Math.random() * 0.4 + 0.3,
+        colorClass: isOrange ? 'bg-accent' : 'bg-paper',
+        shadow: isOrange ? 'rgba(234,88,12,0.8)' : 'rgba(255,255,255,0.8)',
+      };
+    }), []
+  );
+
   return (
     <section ref={ref} className="py-24 md:py-32 px-6 md:px-12 lg:px-24 bg-ink text-paper relative overflow-hidden flex items-center justify-center min-h-[50vh] md:min-h-[70vh]">
       
@@ -17,28 +36,43 @@ export function CTA() {
       <div className="absolute inset-0 z-0 overflow-hidden pointer-events-none">
         {/* Absolute Black Base */}
         <div className="absolute inset-0 bg-ink z-0" />
-        
-        {/* Elegant, Toned-Down Ambient Core */}
-        <div className="absolute top-[40%] left-1/2 -translate-x-1/2 -translate-y-1/2 w-[100vw] h-[100vw] sm:w-[80vw] sm:h-[80vw] md:w-[50vw] md:h-[50vw] flex items-center justify-center pointer-events-none z-0">
-          
-          {/* Deep Outer Diffuse Glow */}
-          <motion.div 
-            animate={{ scale: [1, 1.05, 1], opacity: [0.3, 0.5, 0.3] }}
-            transition={{ duration: 15, repeat: Infinity, ease: "easeInOut", delay: 1 }}
-            className="absolute inset-0 rounded-full bg-accent/20 blur-[120px] mix-blend-screen"
-          />
-
-          {/* Centered Soft Ember */}
-          <motion.div 
-            animate={{ scale: [1, 1.1, 1], opacity: [0.5, 0.7, 0.5] }}
-            transition={{ duration: 10, repeat: Infinity, ease: "easeInOut", delay: 3 }}
-            className="absolute w-[60%] h-[60%] rounded-full bg-gradient-to-tr from-accent to-[#FFB347] blur-[80px] mix-blend-screen opacity-50"
-          />
-        </div>
-
-        {/* Dense Black Vignette Overlay to force contrast to the center */}
-        <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,transparent_0%,#050505_80%)] z-10 opacity-90" />
       </div>
+
+      {/* Atmospheric Particle Dust Layer */}
+      <div className="absolute inset-0 z-[15] overflow-hidden pointer-events-none opacity-80">
+        {particles.map((p) => (
+          <motion.div
+            key={p.id}
+            initial={{ 
+              x: `${p.xOrigin}vw`, 
+              y: `${p.yOrigin + 20}vh`, 
+              opacity: 0,
+              scale: 0
+            }}
+            animate={{ 
+              x: [`${p.xOrigin}vw`, `${p.xOrigin + p.xOffset}vw`],
+              y: [`${p.yOrigin + 20}vh`, `${p.yOrigin - 50}vh`],
+              opacity: [0, p.opacity, 0],
+              scale: [0, 1, 0]
+            }}
+            transition={{ 
+              duration: p.duration,
+              repeat: Infinity,
+              ease: "linear",
+              delay: p.delay
+            }}
+            className={`absolute rounded-full mix-blend-screen ${p.colorClass}`}
+            style={{
+              width: `${p.size}px`,
+              height: `${p.size}px`,
+              boxShadow: `0 0 ${p.size * 3}px ${p.shadow}`
+            }}
+          />
+        ))}
+      </div>
+
+      {/* Dense Black Vignette Overlay to force contrast to the center */}
+      <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,transparent_0%,#050505_80%)] z-10 pointer-events-none opacity-90" />
 
       <div className="max-w-5xl mx-auto flex flex-col items-center text-center relative z-10">
         <motion.div

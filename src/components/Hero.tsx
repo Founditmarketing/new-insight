@@ -5,19 +5,19 @@ import { useMemo } from 'react';
 export function Hero() {
   // Cinematic Space Dust / Ember Particles
   const particles = useMemo(() => 
-    Array.from({ length: 25 }).map((_, i) => {
-      const isOrange = Math.random() > 0.5;
+    Array.from({ length: 80 }).map((_, i) => {
+      const isOrange = Math.random() > 0.4; // 60% orange, 40% white
       return {
         id: i,
-        size: Math.random() * 3 + 1, // 1px to 4px
+        size: Math.random() * 4 + 1.5, // 1.5px to 5.5px
         xOrigin: Math.random() * 100, // 0 to 100vw
         yOrigin: Math.random() * 100, // 0 to 100vh
-        xOffset: Math.random() * 20 - 10, // gentle drift
-        duration: Math.random() * 20 + 20, // 20s to 40s (slow, majestic)
+        xOffset: Math.random() * 30 - 15, // sweeping drift
+        duration: Math.random() * 20 + 15, // 15s to 35s (varying speeds)
         delay: Math.random() * 5 * -1, 
-        opacity: Math.random() * 0.3 + 0.1, // 0.1 to 0.4 very subtle glow
+        opacity: Math.random() * 0.4 + 0.3, // 0.3 to 0.7 sharper, brighter embers
         colorClass: isOrange ? 'bg-accent' : 'bg-paper',
-        shadow: isOrange ? 'rgba(234,88,12,0.5)' : 'rgba(255,255,255,0.5)',
+        shadow: isOrange ? 'rgba(234,88,12,0.8)' : 'rgba(255,255,255,0.8)',
       };
     }), []
   );
@@ -29,24 +29,7 @@ export function Hero() {
       <div className="absolute inset-0 z-0 overflow-hidden pointer-events-none">
         {/* Absolute Black Base */}
         <div className="absolute inset-0 bg-ink z-0" />
-        
-        {/* Elegant, Toned-Down Ambient Core */}
-        <div className="absolute top-[40%] left-1/2 -translate-x-1/2 -translate-y-1/2 w-[100vw] h-[100vw] sm:w-[80vw] sm:h-[80vw] md:w-[50vw] md:h-[50vw] flex items-center justify-center pointer-events-none z-0">
-          
-          {/* Deep Outer Diffuse Glow */}
-          <motion.div 
-            animate={{ scale: [1, 1.05, 1], opacity: [0.3, 0.5, 0.3] }}
-            transition={{ duration: 15, repeat: Infinity, ease: "easeInOut" }}
-            className="absolute inset-0 rounded-full bg-accent/20 blur-[120px] mix-blend-screen"
-          />
 
-          {/* Centered Soft Ember */}
-          <motion.div 
-            animate={{ scale: [1, 1.1, 1], opacity: [0.5, 0.7, 0.5] }}
-            transition={{ duration: 10, repeat: Infinity, ease: "easeInOut", delay: 2 }}
-            className="absolute w-[60%] h-[60%] rounded-full bg-gradient-to-tr from-accent to-[#FFB347] blur-[80px] mix-blend-screen opacity-50"
-          />
-        </div>
 
         {/* Atmospheric Particle Dust Layer (Z-15 to render above the vignette) */}
         <div className="absolute inset-0 z-[15] overflow-hidden pointer-events-none opacity-60">
