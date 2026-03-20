@@ -1,60 +1,79 @@
-import { motion } from 'motion/react';
+import { motion, useScroll, useTransform } from 'motion/react';
 import { ArrowRight, Phone } from 'lucide-react';
+import { useRef } from 'react';
 
 export function CTA() {
-  return (
-    <section className="py-24 px-6 md:px-12 lg:px-24 bg-ink text-paper relative overflow-hidden">
-      {/* Background accents */}
-      <div className="absolute top-0 right-0 w-1/3 h-full bg-accent/5 skew-x-12 translate-x-32" />
-      <div className="absolute top-1/2 left-0 w-full h-[1px] bg-paper/5" />
+  const ref = useRef<HTMLElement>(null);
+  const { scrollYProgress } = useScroll({
+    target: ref,
+    offset: ["start end", "end start"]
+  });
+  const y = useTransform(scrollYProgress, [0, 1], ["-15%", "15%"]);
 
-      <div className="max-w-4xl mx-auto flex flex-col items-center text-center relative z-10">
+  return (
+    <section ref={ref} className="py-32 px-6 md:px-12 lg:px-24 bg-ink text-paper relative overflow-hidden flex items-center justify-center min-h-[70vh]">
+      
+      {/* Immersive Background Image */}
+      <motion.div 
+        style={{ y }}
+        className="absolute inset-0 z-0 origin-center scale-110"
+      >
+        <div className="absolute inset-0 bg-gradient-to-t from-ink via-ink/80 to-ink/40 mix-blend-multiply z-10" />
+        <div className="absolute inset-0 bg-ink/60 z-10" />
+        <img 
+          src="/images/cta_atmospheric.png" 
+          alt="Corporate Boardroom Advisor Interaction" 
+          className="w-full h-full object-cover"
+        />
+      </motion.div>
+
+      <div className="max-w-5xl mx-auto flex flex-col items-center text-center relative z-10">
         <motion.div
-          initial={{ opacity: 0, y: 20 }}
+          initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
           className="flex items-center justify-center gap-4 mb-8"
         >
-          <div className="w-8 h-[2px] bg-accent" />
-          <span className="text-sm font-bold tracking-wide uppercase text-accent">
+          <div className="w-12 h-[1px] bg-accent/50" />
+          <span className="text-sm font-bold tracking-widest uppercase text-accent font-mono drop-shadow-md">
             Next Steps
           </span>
-          <div className="w-8 h-[2px] bg-accent" />
+          <div className="w-12 h-[1px] bg-accent/50" />
         </motion.div>
 
         <motion.h2 
-          initial={{ opacity: 0, y: 20 }}
+          initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.8, delay: 0.1, ease: [0.16, 1, 0.3, 1] }}
-          className="text-fluid-h2 font-sans font-bold text-paper mb-8 tracking-tight"
+          className="text-fluid-h2 font-sans font-bold text-paper mb-8 tracking-tight drop-shadow-lg"
         >
           Ready to Architect Your Protection?
         </motion.h2>
 
         <motion.p 
-          initial={{ opacity: 0, y: 20 }}
+          initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.8, delay: 0.2, ease: [0.16, 1, 0.3, 1] }}
-          className="text-xl text-paper/70 font-medium leading-relaxed max-w-2xl mb-12"
+          className="text-xl md:text-2xl text-paper/80 font-medium leading-relaxed max-w-3xl mb-12 drop-shadow-md"
         >
           Speak with a senior advisor today. We'll comprehensively audit your current liabilities and construct a resilient, high-performance portfolio.
         </motion.p>
 
         <motion.div 
-          initial={{ opacity: 0, y: 20 }}
+          initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.8, delay: 0.3, ease: [0.16, 1, 0.3, 1] }}
           className="flex flex-col sm:flex-row gap-6 w-full sm:w-auto"
         >
-          <button className="bg-accent text-ink px-8 py-4 rounded-md font-bold text-lg hover:bg-white transition-colors flex items-center justify-center gap-3">
-            Schedule a Consultation <ArrowRight className="w-5 h-5" />
+          <button className="bg-accent text-ink px-10 py-5 rounded-sm font-bold tracking-widest uppercase text-sm hover:bg-stone transition-colors flex items-center justify-center group shadow-institutional">
+            Schedule a Consultation <ArrowRight className="w-4 h-4 ml-3 group-hover:translate-x-1 transition-transform" />
           </button>
-          <button className="border border-paper/20 bg-transparent text-paper px-8 py-4 rounded-md font-bold text-lg hover:bg-paper/10 transition-colors flex items-center justify-center gap-3">
-            <Phone className="w-5 h-5" /> Call (318) 555-0123
+          <button className="border-2 border-paper/20 bg-ink/40 backdrop-blur-md text-paper px-10 py-5 rounded-sm font-bold tracking-widest uppercase text-sm hover:bg-paper hover:text-ink hover:border-paper transition-colors flex items-center justify-center group shadow-institutional">
+            <Phone className="w-4 h-4 mr-3 group-hover:rotate-12 transition-transform" /> Call (318) 555-0123
           </button>
         </motion.div>
       </div>

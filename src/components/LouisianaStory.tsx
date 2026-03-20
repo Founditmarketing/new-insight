@@ -10,7 +10,7 @@ export function LouisianaStory() {
   const y = useTransform(scrollYProgress, [0, 1], ["-15%", "15%"]);
 
   return (
-    <section ref={containerRef} className="py-20 px-6 md:px-12 lg:px-24 bg-stone text-ink relative overflow-hidden border-t border-slate/10">
+    <section ref={containerRef} className="py-16 px-6 md:px-12 lg:px-24 bg-stone text-ink relative overflow-hidden border-t border-slate/10">
       
       <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-12 gap-16 items-center relative z-10">
         
@@ -82,7 +82,7 @@ export function LouisianaStory() {
           </motion.div>
         </div>
 
-        <div className="lg:col-span-7 relative h-[600px] rounded-2xl overflow-hidden bg-paper shadow-2xl shadow-ink/5 border border-slate/10">
+        <div className="lg:col-span-7 relative h-[600px] rounded-2xl overflow-hidden bg-paper shadow-institutional border border-slate/10">
           <motion.div
             initial={{ opacity: 0, scale: 1.05 }}
             whileInView={{ opacity: 1, scale: 1 }}
@@ -92,12 +92,12 @@ export function LouisianaStory() {
           >
             <motion.img 
               style={{ y, scale: 1.1 }}
-              src="/images/institutional_hero_modern.png" 
-              alt="Alexandria Corporate Operations" 
-              className="w-full h-full object-cover opacity-90 mix-blend-multiply"
+              src="/images/louisiana_colored.png" 
+              alt="Louisiana Southern Estate Corporate Operations" 
+              className="w-full h-full object-cover opacity-100"
               referrerPolicy="no-referrer"
             />
-            <div className="absolute inset-0 bg-ink/5 mix-blend-multiply pointer-events-none" />
+            <div className="absolute inset-0 bg-ink/10 pointer-events-none" />
           </motion.div>
         </div>
 

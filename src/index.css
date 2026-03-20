@@ -8,7 +8,7 @@
   --color-ink: #0A1D3D; /* Deep Trust Navy */
   --color-paper: #FAFAFA; /* Alabaster */
   --color-stone: #FFFFFF; /* Pure White */
-  --color-accent: #0052FF; /* Institutional Electric Blue */
+  --color-accent: #BFA15F; /* Champagne Gold / Warmth */
   --color-slate: #8A9AAB; /* Subtle gray for borders/text */
 }
 
@@ -58,6 +58,16 @@ h1, h2, h3, h4, h5, h6, .font-serif {
 
 .trust-card:hover {
   transform: translateY(-4px);
-  box-shadow: 0 20px 25px -5px rgba(10, 29, 61, 0.08), 0 10px 10px -5px rgba(10, 29, 61, 0.04);
-  border-color: rgba(0, 82, 255, 0.3); /* Electric Blue subtle border */
+  box-shadow: 0 30px 60px -15px rgba(10, 29, 61, 0.05); /* 5% Soft Shadow */
+  border-color: rgba(191, 161, 95, 0.4); /* Subtle Gold border on hover */
+}
+
+/* Base Editorial Typography */
+p {
+  line-height: 1.8;
+}
+
+/* Bespoke Institutional Shadow */
+.shadow-institutional {
+  box-shadow: 0 30px 60px -15px rgba(0, 0, 0, 0.05); /* Extremely diffused, elegant 5% shadow */
 }

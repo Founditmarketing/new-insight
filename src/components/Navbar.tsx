@@ -42,7 +42,7 @@ export function Navbar() {
               <span className="absolute -bottom-1 left-0 w-0 h-[2px] bg-accent transition-all duration-300 group-hover:w-full"></span>
             </a>
           ))}
-          <button className={`ml-4 px-6 py-2.5 rounded-md font-semibold text-sm transition-all duration-300 cursor-none shadow-sm ${
+          <button className={`ml-4 px-8 py-4 rounded-sm font-semibold tracking-widest uppercase text-sm transition-all duration-300 cursor-none shadow-institutional flex items-center justify-center ${
             isScrolled 
               ? 'bg-ink text-stone hover:bg-accent' 
               : 'bg-ink text-stone hover:bg-accent'
@@ -77,7 +77,7 @@ export function Navbar() {
               {item}
             </a>
           ))}
-          <button className="mt-8 bg-ink text-stone px-6 py-4 rounded-md font-semibold text-lg text-left hover:bg-accent transition-colors w-full">
+          <button className="mt-8 bg-ink text-stone px-8 py-4 rounded-sm font-semibold tracking-widest uppercase text-sm flex items-center justify-center hover:bg-accent transition-colors w-full">
             Client Portal
           </button>
         </div>

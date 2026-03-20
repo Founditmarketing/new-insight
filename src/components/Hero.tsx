@@ -1,29 +1,61 @@
-import { motion } from 'motion/react';
+import { motion, useScroll, useTransform } from 'motion/react';
 import { ArrowRight, ShieldCheck } from 'lucide-react';
+import { useRef } from 'react';
 
 export function Hero() {
+  const ref = useRef<HTMLElement>(null);
+  const { scrollYProgress } = useScroll({
+    target: ref,
+    offset: ["start start", "end start"]
+  });
+  
+  // Parallax the background image down slightly as we scroll down
+  const backgroundY = useTransform(scrollYProgress, [0, 1], ["0%", "50%"]);
+  // Fade out text slightly
+  const textOpacity = useTransform(scrollYProgress, [0, 0.5], [1, 0]);
+
   return (
-    <section className="relative min-h-screen w-full bg-paper flex flex-col justify-center pt-32 pb-16 px-6 md:px-12 lg:px-24 overflow-hidden">
+    <section ref={ref} className="relative min-h-screen w-full flex flex-col justify-center pt-32 pb-16 px-6 md:px-12 lg:px-24 overflow-hidden bg-ink">
       
-      <div className="relative z-10 w-full max-w-7xl mx-auto flex flex-col lg:flex-row items-center gap-12 lg:gap-16">
-        
+      {/* Immersive Parallax Background */}
+      <motion.div 
+        style={{ y: backgroundY }}
+        className="absolute inset-0 z-0 origin-center"
+      >
+        <div className="absolute inset-x-0 top-0 h-48 bg-gradient-to-b from-ink to-transparent z-20 pointer-events-none opacity-90" />
+        <div className="absolute inset-0 bg-gradient-to-r from-ink/95 via-ink/70 to-ink/20 mix-blend-multiply z-10" />
+        <div className="absolute inset-0 bg-gradient-to-t from-ink via-transparent to-transparent z-10" />
+        <motion.img 
+          initial={{ scale: 1.05 }}
+          animate={{ scale: 1 }}
+          transition={{ duration: 2, ease: "easeOut" }}
+          src="/images/hero_luxury.png" 
+          alt="High-Value Estate Corporate Identity" 
+          className="w-full h-[120%] -top-[10%] absolute object-cover"
+        />
+      </motion.div>
+      
+      <motion.div 
+        style={{ opacity: textOpacity }}
+        className="relative z-10 w-full max-w-7xl mx-auto flex flex-col lg:flex-row items-center gap-12 lg:gap-16 justify-between"
+      >
         {/* Left Typography Column */}
-        <div className="w-full lg:w-1/2 flex flex-col">
+        <div className="w-full lg:w-3/5 flex flex-col pt-12">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
             className="flex items-center gap-3 mb-8"
           >
-            <div className="w-10 h-10 rounded-full bg-accent/10 flex items-center justify-center">
+            <div className="w-10 h-10 rounded-full bg-accent/20 flex items-center justify-center">
               <ShieldCheck className="w-5 h-5 text-accent" />
             </div>
-            <span className="text-sm font-semibold tracking-wide uppercase text-ink/70">
+            <span className="text-sm font-bold tracking-widest uppercase text-paper/90">
               Insight Insurance
             </span>
           </motion.div>
           
-          <h1 className="text-fluid-h1 text-ink mb-6 flex flex-col font-bold tracking-tight">
+          <h1 className="text-fluid-h1 text-paper mb-6 flex flex-col font-bold tracking-tight leading-none">
             <motion.span 
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
@@ -36,7 +68,7 @@ export function Hero() {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 1, delay: 0.2, ease: [0.16, 1, 0.3, 1] }}
-              className="block text-accent"
+              className="block text-accent drop-shadow-2xl"
             >
               Asset Protection.
             </motion.span>
@@ -46,7 +78,7 @@ export function Hero() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.4, ease: [0.16, 1, 0.3, 1] }}
-            className="text-xl text-ink/70 font-medium leading-relaxed max-w-lg mb-10"
+            className="text-xl text-paper/80 font-medium leading-relaxed max-w-lg mb-12"
           >
             We don't sell policies; we construct defensive architectures around your life's work. Precision coverage for high-value homes, premium auto, and commercial enterprise.
           </motion.p>
@@ -57,51 +89,35 @@ export function Hero() {
             transition={{ duration: 0.8, delay: 0.5, ease: [0.16, 1, 0.3, 1] }}
             className="flex flex-col sm:flex-row gap-4"
           >
-            <button className="bg-ink text-stone rounded-lg px-8 py-4 font-semibold hover:bg-accent transition-colors flex items-center justify-center gap-2 group">
+            <button className="bg-accent text-ink px-8 py-4 rounded-sm font-bold tracking-widest uppercase text-sm hover:bg-stone transition-colors flex items-center justify-center gap-2 group">
               Speak with an Advisor 
               <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
             </button>
-            <button className="bg-stone text-ink border border-slate/30 rounded-lg px-8 py-4 font-semibold hover:border-ink transition-colors flex items-center justify-center gap-2">
+            <button className="bg-transparent text-paper px-8 py-4 rounded-sm font-bold tracking-widest uppercase text-sm border border-paper/30 hover:border-paper hover:bg-paper/10 transition-colors flex items-center justify-center gap-2">
               Explore Coverages
             </button>
           </motion.div>
         </div>
 
-        {/* Right Visual Column */}
-        <div className="w-full lg:w-1/2 relative">
-          <motion.div
+        {/* Floating Trust Metric */}
+        <motion.div
             initial={{ opacity: 0, scale: 0.95 }}
             animate={{ opacity: 1, scale: 1 }}
-            transition={{ type: "spring", stiffness: 100, damping: 20, delay: 0.3 }}
-            className="w-full aspect-square md:aspect-[4/3] relative rounded-2xl overflow-hidden shadow-2xl shadow-ink/10"
+            transition={{ duration: 1, delay: 0.8, ease: [0.16, 1, 0.3, 1] }}
+            className="hidden lg:block bg-stone/5 backdrop-blur-md p-8 rounded-xl border border-stone/10 max-w-[300px] shadow-2xl relative overflow-hidden mt-24"
           >
-            <div className="absolute inset-0 bg-ink/5 mix-blend-multiply z-10" />
-            <img 
-              src="/images/bayou_prestige.png" 
-              alt="Louisiana Bayou Corporate Identity" 
-              className="w-full h-full object-cover"
-            />
-          </motion.div>
-          
-          {/* Trust Metric Overlay */}
-          <motion.div
-            initial={{ opacity: 0, x: 20 }}
-            animate={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.8, delay: 0.8, ease: [0.16, 1, 0.3, 1] }}
-            className="absolute -bottom-8 -left-8 md:-left-16 bg-stone p-8 rounded-xl shadow-xl shadow-ink/5 border border-slate/10 max-w-[280px]"
-          >
-            <div className="text-4xl font-bold text-ink mb-2">$140M+</div>
-            <div className="text-sm font-semibold tracking-wide text-slate uppercase">
+            <div className="absolute top-0 right-0 w-32 h-32 bg-accent/20 blur-3xl -z-10 rounded-full" />
+            <div className="text-5xl font-bold text-paper mb-2">$140M+</div>
+            <div className="text-sm font-semibold tracking-wide text-stone/70 uppercase">
               Client Assets Protected Successfully
             </div>
-            <div className="mt-4 pt-4 border-t border-slate/20 flex items-center gap-2">
-              <span className="w-2 h-2 rounded-full bg-accent animate-pulse" />
-              <span className="text-xs font-semibold text-ink/80">Active Defense</span>
+            <div className="mt-6 pt-6 border-t border-stone/10 flex items-center gap-3">
+              <span className="w-2 h-2 rounded-full bg-accent animate-[pulse_2s_ease-in-out_infinite] shadow-[0_0_10px_rgba(191,161,95,0.8)]" />
+              <span className="text-xs font-bold tracking-widest uppercase text-stone/90">Active Defense</span>
             </div>
-          </motion.div>
-        </div>
+        </motion.div>
         
-      </div>
+      </motion.div>
     </section>
   );
 }
