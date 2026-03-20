@@ -120,14 +120,17 @@ export function CTA({ onOpenQuote }: { onOpenQuote?: () => void }) {
         </motion.p>
 
         <motion.div 
-          initial={{ opacity: 0, y: 30 }}
+          initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.8, delay: 0.3, ease: [0.16, 1, 0.3, 1] }}
           className="flex flex-col sm:flex-row gap-6 w-full sm:w-auto"
         >
-          <button onClick={onOpenQuote} className="w-full sm:w-auto bg-accent text-white px-10 py-5 rounded-sm font-bold tracking-widest uppercase text-sm hover:bg-paper hover:text-ink transition-colors flex items-center justify-center group shadow-institutional">
-            Schedule a Consultation <ArrowRight className="w-4 h-4 ml-3 group-hover:translate-x-1 transition-transform" />
+          <button onClick={onOpenQuote} className="group relative px-8 py-5 bg-accent hover:bg-white text-white hover:text-accent font-bold tracking-widest uppercase text-sm flex items-center justify-center shadow-[0_0_40px_rgba(227,38,54,0.4)] transition-all duration-500 overflow-hidden w-full sm:w-auto">
+            <span className="absolute inset-0 bg-white translate-y-[100%] group-hover:translate-y-0 transition-transform duration-500 ease-[cubic-bezier(0.87,0,0.13,1)]" />
+            <span className="relative z-10 flex items-center">
+              Get a Quote <ArrowRight className="w-4 h-4 ml-3 group-hover:translate-x-1 transition-transform" />
+            </span>
           </button>
           <button className="w-full sm:w-auto border-2 border-paper/20 bg-ink/40 backdrop-blur-md text-paper px-10 py-5 rounded-sm font-bold tracking-widest uppercase text-sm hover:bg-paper hover:text-ink hover:border-paper transition-colors flex items-center justify-center group shadow-institutional">
             <Phone className="w-4 h-4 mr-3 group-hover:rotate-12 transition-transform" /> Call (318) 555-0123
