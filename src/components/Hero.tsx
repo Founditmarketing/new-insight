@@ -9,15 +9,15 @@ export function Hero() {
       const isOrange = Math.random() > 0.4; // 60% orange, 40% white
       return {
         id: i,
-        size: Math.random() * 3 + 1, // 1px to 4px
+        size: Math.random() * 4 + 2, // 2px to 6px
         xOrigin: Math.random() * 100, // 0 to 100vw
         yOrigin: Math.random() * 100, // 0 to 100vh
-        xOffset: Math.random() * 20 - 10, // drift left or right
-        duration: Math.random() * 20 + 20, // 20s to 40s
-        delay: Math.random() * 10, // 0 to 10s delay start
-        opacity: Math.random() * 0.4 + 0.2, // 0.2 to 0.6 max opacity
+        xOffset: Math.random() * 30 - 15, // drift left or right more
+        duration: Math.random() * 10 + 15, // 15s to 25s (faster)
+        delay: Math.random() * 3 * -1, // Negative delay so they are instantly scattered on load
+        opacity: Math.random() * 0.5 + 0.5, // 0.5 to 1.0 extremely bright
         colorClass: isOrange ? 'bg-accent' : 'bg-paper',
-        shadow: isOrange ? 'rgba(234,88,12,0.8)' : 'rgba(255,255,255,0.8)',
+        shadow: isOrange ? 'rgba(234,88,12,1)' : 'rgba(255,255,255,1)',
       };
     }), []
   );
@@ -74,8 +74,8 @@ export function Hero() {
           />
         </div>
 
-        {/* Atmospheric Particle Dust Layer */}
-        <div className="absolute inset-0 z-[1] overflow-hidden pointer-events-none opacity-80">
+        {/* Atmospheric Particle Dust Layer (Z-15 to render above the vignette) */}
+        <div className="absolute inset-0 z-[15] overflow-hidden pointer-events-none opacity-90">
           {particles.map((p) => (
             <motion.div
               key={p.id}
