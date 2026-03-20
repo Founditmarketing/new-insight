@@ -92,8 +92,8 @@ export function LouisianaStory() {
           >
             <motion.img 
               style={{ y, scale: 1.1 }}
-              src="/images/french_country_estate.png" 
-              alt="Louisiana Upper-Middle Class French Country Estate by Lake" 
+              src="/images/acadian_home.png" 
+              alt="Beautiful Middle-Class Acadian Home in Louisiana" 
               className="w-full h-full object-cover opacity-100"
               referrerPolicy="no-referrer"
             />
