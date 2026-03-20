@@ -71,3 +71,14 @@ p {
 .shadow-institutional {
   box-shadow: 0 30px 60px -15px rgba(0, 0, 0, 0.05); /* Extremely diffused, elegant 5% shadow */
 }
+
+/* Hide scrollbar for Chrome, Safari and Opera */
+.scrollbar-hide::-webkit-scrollbar {
+    display: none;
+}
+
+/* Hide scrollbar for IE, Edge and Firefox */
+.scrollbar-hide {
+    -ms-overflow-style: none;  /* IE and Edge */
+    scrollbar-width: none;  /* Firefox */
+}
