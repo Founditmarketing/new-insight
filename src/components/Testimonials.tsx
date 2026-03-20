@@ -22,9 +22,9 @@ const reviewsRow3 = [
   { id: 12, author: "Karen S.", entity: "Ponchatoula, LA", text: "Switched all our policies over last year. Unbeatable value and true white-glove concierge service from day one.", stars: 5 },
 ];
 
-function ReviewCard({ review }: { review: any }) {
+function ReviewCard({ review }: { review: any; key?: string | number }) {
   return (
-    <div className="flex-shrink-0 w-[300px] md:w-[400px] bg-white rounded-2xl p-6 md:p-8 border border-slate/10 shadow-[0_10px_20px_-10px_rgba(0,0,0,0.05)] mx-3 group hover:shadow-[0_30px_60px_-15px_rgba(227,38,54,0.15)] hover:-translate-y-2 transition-all duration-500 cursor-pointer relative z-10 hover:z-50 bg-opacity-90 backdrop-blur-xl">
+    <div className="flex-shrink-0 w-[300px] md:w-[420px] whitespace-normal bg-white rounded-2xl p-6 md:p-8 border border-slate/10 shadow-[0_10px_20px_-10px_rgba(0,0,0,0.05)] mx-3 group hover:shadow-[0_30px_60px_-15px_rgba(227,38,54,0.15)] hover:-translate-y-2 transition-all duration-500 cursor-pointer relative z-10 hover:z-50 bg-opacity-90 backdrop-blur-xl flex flex-col justify-between min-h-[260px]">
       <div className="flex items-center gap-1 mb-4">
         {[...Array(review.stars)].map((_, i) => (
           <Star key={i} className="w-4 h-4 text-amber-400 fill-amber-400" />
