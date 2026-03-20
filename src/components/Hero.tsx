@@ -5,19 +5,19 @@ import { useMemo } from 'react';
 export function Hero({ onOpenQuote }: { onOpenQuote?: () => void }) {
   // Cinematic Space Dust / Ember Particles
   const particles = useMemo(() => 
-    Array.from({ length: 80 }).map((_, i) => {
+    Array.from({ length: 180 }).map((_, i) => {
       const isOrange = Math.random() > 0.4; // 60% orange, 40% white
       return {
         id: i,
-        size: Math.random() * 4 + 1.5, // 1.5px to 5.5px
+        size: Math.random() * 8 + 4, // 4px to 12px
         xOrigin: Math.random() * 100, // 0 to 100vw
         yOrigin: Math.random() * 100, // 0 to 100vh
-        xOffset: Math.random() * 30 - 15, // sweeping drift
-        duration: Math.random() * 20 + 15, // 15s to 35s (varying speeds)
+        xOffset: Math.random() * 40 - 20, // sweeping drift
+        duration: Math.random() * 15 + 10, // 15s to 25s
         delay: Math.random() * 5 * -1, 
-        opacity: Math.random() * 0.4 + 0.3, // 0.3 to 0.7 sharper, brighter embers
+        opacity: Math.random() * 0.4 + 0.6, // 0.6 to 1.0 peak brightness
         colorClass: isOrange ? 'bg-accent' : 'bg-paper',
-        shadow: isOrange ? 'rgba(227,38,54,0.8)' : 'rgba(255,255,255,0.8)',
+        shadow: isOrange ? 'rgba(227,38,54,1)' : 'rgba(255,255,255,1)',
       };
     }), []
   );
@@ -54,11 +54,11 @@ export function Hero({ onOpenQuote }: { onOpenQuote?: () => void }) {
                 ease: "linear",
                 delay: p.delay
               }}
-              className={`absolute rounded-full ${p.colorClass}`}
+              className={`absolute rounded-full shadow-[0_0_30px_rgba(255,255,255,0.4)] mix-blend-screen ${p.colorClass}`}
               style={{
                 width: `${p.size}px`,
                 height: `${p.size}px`,
-                boxShadow: `0 0 ${p.size * 3}px ${p.shadow}`
+                boxShadow: `0 0 ${p.size * 5}px ${p.shadow}`
               }}
             />
           ))}
