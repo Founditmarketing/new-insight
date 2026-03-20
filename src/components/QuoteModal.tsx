@@ -88,7 +88,7 @@ export function QuoteModal({ isOpen, onClose }: QuoteModalProps) {
               </div>
 
               {/* Scrollable Content Area */}
-              <div className="p-6 md:p-8 overflow-y-auto w-full relative flex-grow scrollbar-hide">
+              <div className="p-6 md:p-8 overflow-y-auto w-full relative flex-grow scrollbar-hide" data-lenis-prevent="true">
                 <AnimatePresence mode="wait">
                   
                   {/* Step 1: Personal Details */}
