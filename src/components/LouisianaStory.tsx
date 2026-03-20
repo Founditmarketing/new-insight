@@ -5,7 +5,7 @@ import { Home, Car, Briefcase, ArrowRight } from 'lucide-react';
 const pillars = [
   {
     id: 'home',
-    title: 'High-Value Home',
+    title: 'Home',
     icon: Home,
     description: 'Safeguarding your most significant sanctuary with absolute precision. Designed specifically for properties exceeding $2M in replacement cost, shielding you against Gulf Coast wind, water, and catastrophic loss.',
     stat: 'Unlimited',
@@ -13,7 +13,7 @@ const pillars = [
   },
   {
     id: 'auto',
-    title: 'Premium Auto',
+    title: 'Auto',
     icon: Car,
     description: 'Coverage that respects the engineering of your vehicles. Securing your luxury fleets, secondary collections, and high-performance assets against liability and depreciative loss across all Louisiana parishes.',
     stat: 'Agreed Value',
@@ -21,7 +21,7 @@ const pillars = [
   },
   {
     id: 'commercial',
-    title: 'Commercial Entity',
+    title: 'Commercial',
     icon: Briefcase,
     description: 'Protecting the legacy of local business builders. Comprehensive proactive liability, property, and operational continuity for complex enterprises from Alexandria to Slidell.',
     stat: '360°',

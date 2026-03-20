@@ -4,7 +4,7 @@ import { Home, Car, Droplets, Wind, Briefcase, Anchor, Heart, ShieldAlert, Umbre
 const flagshipServices = [
   { 
     id: 'home', 
-    title: 'High-Value Home', 
+    title: 'Home', 
     icon: Home, 
     statement: 'Safeguarding your most significant sanctuary with absolute precision. Designed specifically for properties exceeding $2M in replacement cost.',
     theme: 'text-paper',
@@ -14,7 +14,7 @@ const flagshipServices = [
   },
   { 
     id: 'commercial', 
-    title: 'Commercial Entity', 
+    title: 'Commercial', 
     icon: Briefcase, 
     statement: 'Protecting the legacy of local business builders. Comprehensive liability, property, and operational continuity for complex enterprises.',
     theme: 'text-paper',
@@ -25,7 +25,7 @@ const flagshipServices = [
 ];
 
 const standardServices = [
-  { id: 'auto', title: 'Premium Auto', icon: Car, statement: 'Coverage that respects the engineering of your vehicles.' },
+  { id: 'auto', title: 'Auto', icon: Car, statement: 'Coverage that respects the engineering of your vehicles.' },
   { id: 'flood', title: 'Flood & Water', icon: Droplets, statement: 'Essential defense against Louisiana\'s rising tides.' },
   { id: 'hurricane', title: 'Named Storm', icon: Wind, statement: 'Resilience engineered for the Gulf Coast reality.' },
   { id: 'marine', title: 'Marine Portfolio', icon: Anchor, statement: 'Navigating risk comprehensively on the open water.' },
