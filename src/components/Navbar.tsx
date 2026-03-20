@@ -25,8 +25,8 @@ export function Navbar() {
         <a href="#" className="flex items-center gap-2 group cursor-none">
           <ShieldCheck className="w-8 h-8 text-accent group-hover:scale-110 transition-transform duration-300" />
           <div className="flex flex-col">
-            <span className={`font-bold tracking-tight text-xl leading-none transition-colors duration-300 ${isScrolled ? 'text-ink' : 'text-ink'}`}>INSIGHT</span>
-            <span className={`text-[10px] uppercase tracking-widest transition-colors font-semibold duration-300 ${isScrolled ? 'text-slate' : 'text-slate'}`}>Insurance</span>
+            <span className={`font-bold tracking-tight text-xl leading-none transition-colors duration-300 ${isScrolled ? 'text-ink' : 'text-paper'}`}>INSIGHT</span>
+            <span className={`text-[10px] uppercase tracking-widest transition-colors font-semibold duration-300 ${isScrolled ? 'text-slate' : 'text-paper/80'}`}>Insurance</span>
           </div>
         </a>
 
@@ -36,7 +36,7 @@ export function Navbar() {
             <a 
               key={item}
               href={`#${item.toLowerCase()}`}
-              className={`text-sm font-semibold transition-colors uppercase tracking-wide cursor-none relative group ${isScrolled ? 'text-ink/80 hover:text-accent' : 'text-ink/80 hover:text-accent'}`}
+              className={`text-sm font-semibold transition-colors uppercase tracking-wide cursor-none relative group ${isScrolled ? 'text-ink/80 hover:text-accent' : 'text-paper/90 hover:text-accent'}`}
             >
               {item}
               <span className="absolute -bottom-1 left-0 w-0 h-[2px] bg-accent transition-all duration-300 group-hover:w-full"></span>
@@ -45,7 +45,7 @@ export function Navbar() {
           <button className={`ml-4 px-8 py-4 rounded-sm font-semibold tracking-widest uppercase text-sm transition-all duration-300 cursor-none shadow-institutional flex items-center justify-center ${
             isScrolled 
               ? 'bg-ink text-stone hover:bg-accent' 
-              : 'bg-ink text-stone hover:bg-accent'
+              : 'bg-paper text-ink hover:bg-stone hover:text-ink border-transparent shadow-[0_0_20px_rgba(255,255,255,0.1)]'
           }`}>
             Client Portal
           </button>
@@ -53,7 +53,7 @@ export function Navbar() {
 
         {/* Mobile Menu Toggle */}
         <button 
-          className={`md:hidden p-2 transition-colors cursor-none ${isScrolled ? 'text-ink' : 'text-ink'}`}
+          className={`md:hidden p-2 transition-colors cursor-none ${isScrolled ? 'text-ink' : 'text-paper'}`}
           onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
         >
           {isMobileMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
