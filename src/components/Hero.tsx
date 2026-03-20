@@ -1,7 +1,27 @@
 import { motion } from 'motion/react';
 import { ArrowRight, ShieldCheck } from 'lucide-react';
+import { useMemo } from 'react';
 
 export function Hero() {
+  // Cinematic Space Dust / Ember Particles
+  const particles = useMemo(() => 
+    Array.from({ length: 40 }).map((_, i) => {
+      const isOrange = Math.random() > 0.4; // 60% orange, 40% white
+      return {
+        id: i,
+        size: Math.random() * 3 + 1, // 1px to 4px
+        xOrigin: Math.random() * 100, // 0 to 100vw
+        yOrigin: Math.random() * 100, // 0 to 100vh
+        xOffset: Math.random() * 20 - 10, // drift left or right
+        duration: Math.random() * 20 + 20, // 20s to 40s
+        delay: Math.random() * 10, // 0 to 10s delay start
+        opacity: Math.random() * 0.4 + 0.2, // 0.2 to 0.6 max opacity
+        colorClass: isOrange ? 'bg-accent' : 'bg-paper',
+        shadow: isOrange ? 'rgba(234,88,12,0.8)' : 'rgba(255,255,255,0.8)',
+      };
+    }), []
+  );
+
   return (
     <section className="relative min-h-screen w-full flex flex-col justify-center items-center pt-32 pb-16 px-6 md:px-12 lg:px-24 overflow-hidden bg-ink">
       
@@ -52,6 +72,39 @@ export function Hero() {
             transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
             className="absolute w-[35%] h-[35%] rounded-full bg-gradient-to-tr from-[#EA580C] via-[#FFB347] to-[#FFFFFF] mix-blend-screen blur-[40px] shadow-[0_0_120px_rgba(255,255,255,0.3)]"
           />
+        </div>
+
+        {/* Atmospheric Particle Dust Layer */}
+        <div className="absolute inset-0 z-[1] overflow-hidden pointer-events-none opacity-80">
+          {particles.map((p) => (
+            <motion.div
+              key={p.id}
+              initial={{ 
+                x: `${p.xOrigin}vw`, 
+                y: `${p.yOrigin + 20}vh`, 
+                opacity: 0,
+                scale: 0
+              }}
+              animate={{ 
+                x: [`${p.xOrigin}vw`, `${p.xOrigin + p.xOffset}vw`],
+                y: [`${p.yOrigin + 20}vh`, `${p.yOrigin - 50}vh`],
+                opacity: [0, p.opacity, 0],
+                scale: [0, 1, 0]
+              }}
+              transition={{ 
+                duration: p.duration,
+                repeat: Infinity,
+                ease: "linear",
+                delay: p.delay
+              }}
+              className={`absolute rounded-full mix-blend-screen ${p.colorClass}`}
+              style={{
+                width: `${p.size}px`,
+                height: `${p.size}px`,
+                boxShadow: `0 0 ${p.size * 3}px ${p.shadow}`
+              }}
+            />
+          ))}
         </div>
 
         {/* Dense Black Vignette Overlay to force contrast to the center */}
