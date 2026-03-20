@@ -1,5 +1,6 @@
 import { motion, useMotionValue, useTransform, animate, useInView } from 'motion/react';
 import { useEffect, useRef } from 'react';
+import { Umbrella } from 'lucide-react';
 
 function AnimatedStat({ value, prefix = "", suffix = "" }: { value: number, prefix?: string, suffix?: string }) {
   const count = useMotionValue(0);
@@ -57,29 +58,43 @@ export function Proof() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 1.5, delay: 0.2 }}
-            className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-8 items-center justify-items-center pt-12 border-t border-slate/10"
+            className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-12 items-center justify-items-center pt-12 border-t border-slate/10"
           >
-            {[
-              { id: 'chubb', url: 'https://logo.clearbit.com/chubb.com', name: 'Chubb' },
-              { id: 'pure', url: 'https://logo.clearbit.com/pureinsurance.com', name: 'PURE' },
-              { id: 'cincinnati', url: 'https://logo.clearbit.com/cinfin.com', name: 'Cincinnati' },
-              { id: 'travelers', url: 'https://logo.clearbit.com/travelers.com', name: 'Travelers' },
-              { id: 'aig', url: 'https://logo.clearbit.com/aig.com', name: 'AIG' },
-              { id: 'progressive', url: 'https://logo.clearbit.com/progressive.com', name: 'Progressive' }
-            ].map((carrier) => (
-              <div key={carrier.id} className="w-full flex justify-center items-center">
-                <img 
-                  src={carrier.url} 
-                  alt={carrier.name} 
-                  className="max-h-12 max-w-[120px] object-contain transition-all duration-500 hover:scale-105"
-                  onError={(e) => {
-                    e.currentTarget.style.display = 'none';
-                    e.currentTarget.parentElement?.setAttribute('data-fallback', carrier.name);
-                    e.currentTarget.parentElement?.classList.add('after:content-[attr(data-fallback)]', 'after:text-lg', 'after:font-bold', 'after:text-ink/60', 'after:tracking-wider');
-                  }}
-                />
+            {/* Chubb */}
+            <div className="w-full flex justify-center items-center opacity-60 hover:opacity-100 transition-opacity duration-500 cursor-default grayscale hover:grayscale-0">
+              <span className="font-sans font-black text-3xl tracking-tighter text-[#000000]">CHUBB</span>
+            </div>
+            
+            {/* PURE */}
+            <div className="w-full flex justify-center items-center opacity-60 hover:opacity-100 transition-opacity duration-500 cursor-default grayscale hover:grayscale-0 mt-1">
+              <span className="font-serif font-light text-3xl tracking-[0.25em] text-[#000000]">PURE</span>
+            </div>
+
+            {/* Cincinnati */}
+            <div className="w-full flex justify-center items-center opacity-70 hover:opacity-100 transition-opacity duration-500 cursor-default grayscale hover:grayscale-0">
+              <div className="flex flex-col items-center leading-none">
+                <span className="font-serif italic font-bold text-2xl text-[#003B71]">Cincinnati</span>
+                <span className="font-sans font-bold text-[0.45rem] tracking-[0.2em] text-[#000000] mt-1">INSURANCE COMPANIES</span>
               </div>
-            ))}
+            </div>
+
+            {/* Travelers */}
+            <div className="w-full flex justify-center items-center opacity-60 hover:opacity-100 transition-opacity duration-500 cursor-default grayscale hover:grayscale-0 gap-2">
+              <Umbrella className="w-8 h-8 text-[#E2231A] fill-current" />
+              <span className="font-sans font-black text-xl tracking-wide text-[#000000] mt-1 pt-0.5">TRAVELERS</span>
+            </div>
+
+            {/* AIG */}
+            <div className="w-full flex justify-center items-center opacity-60 hover:opacity-100 transition-opacity duration-500 cursor-default grayscale hover:grayscale-0">
+              <div className="bg-[#00A4E4] px-2 py-1 flex items-center justify-center">
+                <span className="font-sans font-bold text-2xl text-white">AIG</span>
+              </div>
+            </div>
+
+            {/* Progressive */}
+            <div className="w-full flex justify-center items-center opacity-60 hover:opacity-100 transition-opacity duration-500 cursor-default grayscale hover:grayscale-0 mt-1">
+              <span className="font-sans font-bold italic text-2xl tracking-tighter text-[#008CC1]">PROGRESSIVE</span>
+            </div>
           </motion.div>
         </div>
       </section>

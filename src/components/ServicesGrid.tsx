@@ -120,17 +120,16 @@ export function ServicesGrid() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: "-50px" }}
               transition={{ duration: 0.6, delay: 0.2 + (index * 0.05), ease: [0.16, 1, 0.3, 1] }}
-              className="group trust-card bg-stone p-8 flex flex-col justify-between min-h-[260px] md:min-h-0 cursor-pointer transition-all duration-500 hover:-translate-y-1 hover:shadow-institutional relative overflow-hidden rounded-xl border border-slate/10"
+              className="group trust-card bg-gradient-to-br from-paper to-stone p-8 flex flex-col justify-between min-h-[260px] md:min-h-0 cursor-pointer transition-all duration-500 hover:-translate-y-1 hover:shadow-[0_10px_40px_-10px_rgba(0,0,0,0.1)] relative overflow-hidden rounded-xl border border-slate/10 border-t-4 border-t-slate/5 hover:border-t-accent"
             >
               {/* Subtle top gradient texture and corner geometry */}
-              <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-transparent via-slate/20 to-transparent group-hover:via-accent/60 transition-colors duration-500" />
               <div className="absolute top-0 right-0 w-32 h-32 bg-slate/5 rounded-bl-[100px] -z-10 group-hover:scale-150 group-hover:bg-accent/5 transition-all duration-700 ease-out" />
               
               <div className="relative z-10 h-full flex flex-col justify-between">
                 <div>
                   <div className="flex justify-between items-start mb-6">
-                    <div className="w-12 h-12 rounded-lg bg-paper flex items-center justify-center border border-slate/10 group-hover:border-accent/40 group-hover:bg-accent/10 transition-colors duration-500">
-                      <service.icon className="w-6 h-6 text-slate group-hover:text-accent transition-colors duration-300" />
+                    <div className="w-12 h-12 rounded-lg bg-accent/5 flex items-center justify-center border border-accent/20 group-hover:bg-accent/15 group-hover:border-accent/40 transition-colors duration-500">
+                      <service.icon className="w-6 h-6 text-accent/80 group-hover:text-accent font-bold transition-colors duration-300" />
                     </div>
                   </div>
                   

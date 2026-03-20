@@ -13,19 +13,29 @@ export function CTA() {
   return (
     <section ref={ref} className="py-24 md:py-32 px-6 md:px-12 lg:px-24 bg-ink text-paper relative overflow-hidden flex items-center justify-center min-h-[50vh] md:min-h-[70vh]">
       
-      {/* Immersive Background Image */}
-      <motion.div 
-        style={{ y }}
-        className="absolute inset-0 z-0 origin-center scale-110"
-      >
-        <div className="absolute inset-0 bg-gradient-to-t from-ink via-ink/80 to-ink/40 mix-blend-multiply z-10" />
-        <div className="absolute inset-0 bg-ink/60 z-10" />
-        <img 
-          src="/images/cta_atmospheric.png" 
-          alt="Corporate Boardroom Advisor Interaction" 
-          className="w-full h-full object-cover"
+      {/* Immersive Interactive Mesh Background (Mirrors Hero) */}
+      <div className="absolute inset-0 z-0 overflow-hidden pointer-events-none">
+        <div className="absolute inset-0 bg-ink z-0" />
+        
+        {/* Animated Gold Orb */}
+        <motion.div 
+          animate={{ x: ["-10%", "10%", "-10%"], y: ["0%", "10%", "0%"], scale: [1, 1.1, 1] }}
+          transition={{ duration: 15, repeat: Infinity, ease: "easeInOut" }}
+          style={{ filter: "blur(120px)" }}
+          className="absolute -bottom-[20%] -left-[10%] w-[50vw] h-[50vw] rounded-full bg-accent/20 mix-blend-screen"
         />
-      </motion.div>
+
+        {/* Animated Blue Orb */}
+        <motion.div 
+          animate={{ x: ["10%", "-10%", "10%"], y: ["10%", "-10%", "10%"], scale: [1, 1.2, 1] }}
+          transition={{ duration: 20, repeat: Infinity, ease: "easeInOut", delay: 2 }}
+          style={{ filter: "blur(130px)" }}
+          className="absolute top-[10%] -right-[10%] w-[40vw] h-[40vw] rounded-full bg-[#0052FF]/15 mix-blend-screen"
+        />
+
+        {/* Vignette Overlay */}
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,transparent_0%,#0A1D3D_100%)] z-10 opacity-80" />
+      </div>
 
       <div className="max-w-5xl mx-auto flex flex-col items-center text-center relative z-10">
         <motion.div

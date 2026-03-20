@@ -62,33 +62,39 @@ export function Testimonials() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, margin: "-50px" }}
             transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
-            className="lg:col-span-7 relative flex flex-col justify-between bg-stone p-8 md:p-12 lg:p-16 rounded-2xl border border-slate/10 shadow-institutional"
+            className="lg:col-span-7 relative flex flex-col justify-between bg-gradient-to-br from-stone to-slate/5 p-8 md:p-12 lg:p-16 rounded-2xl border border-slate/10 shadow-[0_20px_60px_-15px_rgba(0,0,0,0.3)]"
           >
-            <Quote className="absolute top-10 left-10 w-32 h-32 text-accent/10 -translate-x-4 -translate-y-6 z-0" />
-            <div className="relative z-10 flex-grow mb-16">
-              <p className="text-3xl md:text-4xl font-bold leading-tight tracking-tight text-ink">
-                "{testimonials[0].quote}"
+            <div className="absolute inset-0 bg-[url('https://www.transparenttextures.com/patterns/cubes.png')] opacity-5 mix-blend-overlay rounded-2xl pointer-events-none"></div>
+            <Quote className="absolute top-10 left-10 w-40 h-40 text-accent/10 -translate-x-6 -translate-y-8 z-0 rotate-180" />
+            <div className="relative z-10 flex-grow mb-16 pt-8">
+              <p className="text-3xl md:text-[2.5rem] font-bold leading-tight tracking-tight text-ink font-serif italic relative">
+                <span className="text-5xl text-accent absolute -left-8 md:-left-12 -top-4 font-sans">"</span>
+                {testimonials[0].quote}
+                <span className="text-5xl text-accent absolute -bottom-8 font-sans">"</span>
               </p>
             </div>
-            <div className="flex items-center gap-6 mt-auto">
+            <div className="flex items-center gap-6 md:gap-8 mt-auto relative z-10">
               <img 
                 src={testimonials[0].image} 
                 alt={testimonials[0].author}
-                className="w-16 h-16 md:w-20 md:h-20 rounded-full object-cover border-4 border-paper shadow-institutional"
+                className="w-24 h-24 md:w-32 md:h-32 rounded-full object-cover border-[6px] border-paper shadow-[0_10px_30px_rgba(0,0,0,0.2)]"
               />
-              <div className="flex flex-col">
-                <span className="font-bold text-xl text-ink uppercase tracking-wide">
+              <div className="flex flex-col border-l-2 border-accent pl-6">
+                <span className="font-bold text-xl md:text-2xl text-ink uppercase tracking-wide">
                   {testimonials[0].author}
                 </span>
-                <span className="font-semibold text-sm text-accent tracking-widest uppercase mt-1">
+                <span className="font-semibold text-sm md:text-base text-accent tracking-widest uppercase mt-1">
                   {testimonials[0].entity}
                 </span>
               </div>
             </div>
           </motion.div>
 
-          {/* Secondary Stack */}
-          <div className="lg:col-span-5 flex flex-col gap-8 justify-center h-full">
+          {/* Secondary Stack - Staggered */}
+          <div className="lg:col-span-5 flex flex-col gap-8 justify-center h-full relative">
+            {/* Ambient connecting line */}
+            <div className="hidden lg:block absolute left-[-3rem] top-1/4 bottom-1/4 w-[1px] bg-slate/10" />
+
             {[testimonials[1], testimonials[2]].map((testimonial, i) => (
               <motion.div
                 key={testimonial.id}
@@ -96,24 +102,24 @@ export function Testimonials() {
                 whileInView={{ opacity: 1, x: 0 }}
                 viewport={{ once: true, margin: "-50px" }}
                 transition={{ duration: 0.8, delay: 0.2 + (i * 0.15), ease: [0.16, 1, 0.3, 1] }}
-                className="relative flex flex-col justify-between p-8 bg-paper hover:bg-stone/50 rounded-xl border border-slate/10 transition-colors"
+                className={`relative flex flex-col justify-between p-8 md:p-10 bg-paper hover:bg-stone/30 rounded-xl border border-slate/10 transition-colors shadow-sm ${i === 1 ? 'lg:ml-12' : 'lg:-ml-6'} z-10`}
               >
                 <div className="relative z-10 flex-grow mb-8">
-                  <p className="text-lg font-medium leading-relaxed tracking-tight text-ink/80">
+                  <p className="text-lg md:text-xl font-medium leading-relaxed tracking-tight text-ink/80 font-serif italic">
                     "{testimonial.quote}"
                   </p>
                 </div>
-                <div className="flex items-center gap-4 mt-auto">
+                <div className="flex items-center gap-5 mt-auto">
                   <img 
                     src={testimonial.image} 
                     alt={testimonial.author}
-                    className="w-12 h-12 rounded-full object-cover border-2 border-slate/10"
+                    className="w-16 h-16 rounded-full object-cover border-[3px] border-slate/10 shadow-sm"
                   />
-                  <div className="flex flex-col">
-                    <span className="font-bold text-sm text-ink uppercase tracking-wide">
+                  <div className="flex flex-col border-l border-slate/20 pl-4">
+                    <span className="font-bold text-sm md:text-base text-ink uppercase tracking-wide">
                       {testimonial.author}
                     </span>
-                    <span className="font-semibold text-xs text-slate tracking-widest uppercase mt-1">
+                    <span className="font-semibold text-xs py-1 text-slate tracking-widest uppercase mt-0.5">
                       {testimonial.entity}
                     </span>
                   </div>
