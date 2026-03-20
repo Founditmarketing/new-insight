@@ -33,13 +33,17 @@ export function Navbar({ onOpenQuote }: { onOpenQuote?: () => void }) {
 
         {/* Desktop Menu */}
         <div className="hidden md:flex items-center gap-8">
-          {['Expertise', 'Industries', 'About', 'Insights'].map((item) => (
+          {[
+            { name: 'Services', href: '#services' },
+            { name: 'Our Story', href: '#story' },
+            { name: 'Reviews', href: '#reviews' },
+          ].map((item) => (
             <a 
-              key={item}
-              href={`#${item.toLowerCase()}`}
+              key={item.name}
+              href={item.href}
               className={`text-sm font-semibold transition-colors uppercase tracking-wide cursor-none relative group ${isScrolled ? 'text-ink/80 hover:text-accent' : 'text-paper/90 hover:text-accent'}`}
             >
-              {item}
+              {item.name}
               <span className="absolute -bottom-1 left-0 w-0 h-[2px] bg-accent transition-all duration-300 group-hover:w-full"></span>
             </a>
           ))}
@@ -68,14 +72,18 @@ export function Navbar({ onOpenQuote }: { onOpenQuote?: () => void }) {
         } md:hidden flex flex-col pt-24 px-8`}
       >
         <div className="flex flex-col gap-6 text-2xl font-bold tracking-tight text-ink">
-          {['Expertise', 'Industries', 'About', 'Insights'].map((item) => (
+          {[
+            { name: 'Services', href: '#services' },
+            { name: 'Our Story', href: '#story' },
+            { name: 'Reviews', href: '#reviews' },
+          ].map((item) => (
             <a 
-              key={item}
-              href={`#${item.toLowerCase()}`}
+              key={item.name}
+              href={item.href}
               className="hover:text-accent transition-colors border-b border-slate/10 pb-4"
               onClick={() => setIsMobileMenuOpen(false)}
             >
-              {item}
+              {item.name}
             </a>
           ))}
           <button className="mt-8 bg-ink text-stone px-8 py-4 rounded-sm font-semibold tracking-widest uppercase text-sm flex items-center justify-center hover:bg-accent transition-colors w-full">

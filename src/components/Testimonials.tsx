@@ -27,7 +27,7 @@ const testimonials = [
 
 export function Testimonials() {
   return (
-    <section className="py-24 px-6 md:px-12 lg:px-24 bg-paper text-ink relative overflow-hidden border-t border-slate/10">
+    <section id="reviews" className="py-24 px-6 md:px-12 lg:px-24 bg-paper text-ink relative overflow-hidden border-t border-slate/10">
       <div className="max-w-7xl mx-auto flex flex-col h-full justify-between">
         
         <div className="flex flex-col sm:flex-row justify-between items-start sm:items-end gap-6 mb-16 pb-8">

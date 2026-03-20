@@ -10,7 +10,7 @@ export function LouisianaStory() {
   const y = useTransform(scrollYProgress, [0, 1], ["-15%", "15%"]);
 
   return (
-    <section ref={containerRef} className="py-16 px-6 md:px-12 lg:px-24 bg-stone text-ink relative overflow-hidden border-t border-slate/10">
+    <section id="story" ref={containerRef} className="py-16 px-6 md:px-12 lg:px-24 bg-stone text-ink relative overflow-hidden border-t border-slate/10">
       
       <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-12 gap-16 items-center relative z-10">
         
