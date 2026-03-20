@@ -68,7 +68,7 @@ export function Hero() {
           </div>
         </motion.div>
         
-        <h1 className="text-[12vw] sm:text-[5rem] lg:text-[7.5rem] text-paper mb-8 flex flex-col font-bold tracking-tighter leading-[0.9]">
+        <h1 className="text-[10vw] sm:text-[4rem] lg:text-[5.5rem] text-paper mb-6 flex flex-col font-bold tracking-tighter leading-[1]">
           <motion.span 
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
@@ -91,9 +91,9 @@ export function Hero() {
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 1, delay: 0.4, ease: [0.16, 1, 0.3, 1] }}
-          className="text-lg sm:text-xl md:text-2xl text-paper/70 font-medium leading-relaxed max-w-3xl mb-14"
+          className="text-lg sm:text-xl text-paper/70 font-medium leading-relaxed max-w-2xl mb-12"
         >
-          We architect defensive structures around your life's work. Precision coverage for high-value homes, premium auto, and commercial enterprise.
+          Precision coverage and defensive architecture for your most significant assets.
         </motion.p>
 
         <motion.div
@@ -102,11 +102,11 @@ export function Hero() {
           transition={{ duration: 1, delay: 0.5, ease: [0.16, 1, 0.3, 1] }}
           className="flex flex-col sm:flex-row gap-6 w-full sm:w-auto px-4 sm:px-0"
         >
-          <button className="w-full sm:w-auto bg-accent text-ink px-10 py-5 rounded-sm font-bold tracking-widest uppercase text-sm hover:bg-stone transition-all duration-300 flex items-center justify-center gap-3 group shadow-[0_0_30px_rgba(191,161,95,0.2)] hover:shadow-[0_0_50px_rgba(191,161,95,0.5)] hover:-translate-y-1">
+          <button className="w-full sm:w-auto bg-accent text-ink px-8 py-4 rounded-sm font-bold tracking-widest uppercase text-sm hover:bg-stone transition-all duration-300 flex items-center justify-center gap-3 group shadow-[0_0_30px_rgba(191,161,95,0.2)] hover:shadow-[0_0_50px_rgba(191,161,95,0.5)] hover:-translate-y-1">
             Speak with an Advisor 
             <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
           </button>
-          <button className="w-full sm:w-auto bg-transparent text-paper px-10 py-5 rounded-sm font-bold tracking-widest uppercase text-sm border-2 border-paper/20 hover:border-paper hover:bg-paper/10 transition-all duration-300 flex items-center justify-center gap-3 hover:-translate-y-1">
+          <button className="w-full sm:w-auto bg-transparent text-paper px-8 py-4 rounded-sm font-bold tracking-widest uppercase text-sm border-2 border-paper/20 hover:border-paper hover:bg-paper/10 transition-all duration-300 flex items-center justify-center gap-3 hover:-translate-y-1">
             Explore Portfolios
           </button>
         </motion.div>
