@@ -12,19 +12,19 @@ export function CTA({ onOpenQuote }: { onOpenQuote?: () => void }) {
 
   // Cinematic Space Dust / Ember Particles (Mirrored from Hero)
   const particles = useMemo(() => 
-    Array.from({ length: 80 }).map((_, i) => {
+    Array.from({ length: 120 }).map((_, i) => {
       const isOrange = Math.random() > 0.4;
       return {
         id: i,
-        size: Math.random() * 4 + 1.5,
+        size: Math.random() * 5 + 3,
         xOrigin: Math.random() * 100,
         yOrigin: Math.random() * 100,
-        xOffset: Math.random() * 30 - 15,
-        duration: Math.random() * 20 + 15,
+        xOffset: Math.random() * 40 - 20,
+        duration: Math.random() * 15 + 10,
         delay: Math.random() * 5 * -1, 
-        opacity: Math.random() * 0.4 + 0.3,
+        opacity: Math.random() * 0.5 + 0.4,
         colorClass: isOrange ? 'bg-accent' : 'bg-paper',
-        shadow: isOrange ? 'rgba(227,38,54,0.8)' : 'rgba(255,255,255,0.8)',
+        shadow: isOrange ? 'rgba(227,38,54,1)' : 'rgba(255,255,255,1)',
       };
     }), []
   );

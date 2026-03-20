@@ -23,7 +23,7 @@ export function Hero({ onOpenQuote }: { onOpenQuote?: () => void }) {
   );
 
   return (
-    <section className="relative min-h-screen w-full flex flex-col justify-center items-center pt-32 pb-16 px-6 md:px-12 lg:px-24 overflow-hidden bg-ink">
+    <section className="relative min-h-[100svh] w-full flex flex-col justify-center items-center pt-20 md:pt-32 pb-16 px-6 md:px-12 lg:px-24 overflow-hidden bg-ink">
       
       {/* Immersive Interactive Mesh Background */}
       <div className="absolute inset-0 z-0 overflow-hidden pointer-events-none">
@@ -65,10 +65,10 @@ export function Hero({ onOpenQuote }: { onOpenQuote?: () => void }) {
         </div>
 
         {/* Dense Black Vignette Overlay to force contrast to the center */}
-        <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,transparent_0%,#050505_80%)] z-10 opacity-90" />
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,transparent_0%,#050505_80%)] z-10 opacity-90 md:opacity-100" />
         
         {/* Top Navbar Protection Layer */}
-        <div className="absolute inset-x-0 top-0 h-48 bg-gradient-to-b from-ink to-transparent z-20 opacity-90" />
+        <div className="absolute inset-x-0 top-0 h-32 md:h-48 bg-gradient-to-b from-ink/80 md:from-ink to-transparent z-20 opacity-90" />
       </div>
       
       {/* Foreground Content */}
