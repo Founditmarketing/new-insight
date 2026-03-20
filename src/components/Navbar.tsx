@@ -25,10 +25,10 @@ export function Navbar() {
         <a href="#" className="flex items-center gap-3 group cursor-none">
           <div className="flex gap-1.5 items-baseline">
             {['I', 'N', 'S', 'I', 'G', 'H', 'T'].map((letter, i) => (
-              <span key={i} className="font-serif text-2xl tracking-widest text-ink block group-hover:text-accent transition-colors duration-300 transform group-hover:-translate-y-0.5" style={{ transitionDelay: `${i * 30}ms` }}>{letter}</span>
+              <span key={i} className={`font-serif text-2xl tracking-widest block group-hover:text-accent transition-colors duration-300 transform group-hover:-translate-y-0.5 ${isScrolled ? 'text-ink' : 'text-paper'}`} style={{ transitionDelay: `${i * 30}ms` }}>{letter}</span>
             ))}
           </div>
-          <span className="text-[10px] uppercase tracking-widest font-semibold text-accent/80 ml-2">Insurance</span>
+          <span className={`text-[10px] uppercase tracking-widest font-semibold ml-2 transition-colors duration-300 ${isScrolled ? 'text-accent/80' : 'text-accent'}`}>Insurance</span>
         </a>
 
         {/* Desktop Menu */}
@@ -37,20 +37,24 @@ export function Navbar() {
             <a 
               key={item}
               href={`#${item.toLowerCase()}`}
-              className="text-sm font-semibold transition-colors uppercase tracking-wide cursor-none relative group text-ink/80 hover:text-accent"
+              className={`text-sm font-semibold transition-colors uppercase tracking-wide cursor-none relative group ${isScrolled ? 'text-ink/80 hover:text-accent' : 'text-paper/90 hover:text-accent'}`}
             >
               {item}
               <span className="absolute -bottom-1 left-0 w-0 h-[2px] bg-accent transition-all duration-300 group-hover:w-full"></span>
             </a>
           ))}
-          <button className="ml-4 px-8 py-4 rounded-sm font-semibold tracking-widest uppercase text-sm transition-all duration-300 cursor-none shadow-institutional flex items-center justify-center bg-ink text-paper hover:bg-accent hover:text-paper hover:shadow-[0_0_20px_rgba(234,88,12,0.3)]">
+          <button className={`ml-4 px-8 py-4 rounded-sm font-semibold tracking-widest uppercase text-sm transition-all duration-300 cursor-none shadow-institutional flex items-center justify-center ${
+            isScrolled 
+              ? 'bg-ink text-paper hover:bg-accent' 
+              : 'bg-paper text-ink hover:bg-accent hover:text-paper shadow-[0_0_20px_rgba(255,255,255,0.1)]'
+          }`}>
             Client Portal
           </button>
         </div>
 
         {/* Mobile Menu Toggle */}
         <button 
-          className="md:hidden p-2 transition-colors cursor-none text-ink hover:text-accent"
+          className={`md:hidden p-2 transition-colors cursor-none hover:text-accent ${isScrolled ? 'text-ink' : 'text-paper'}`}
           onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
         >
           {isMobileMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
