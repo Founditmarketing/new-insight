@@ -36,7 +36,7 @@ export function LouisianaStory() {
                 transition={{ duration: 1, delay: 0.1, ease: [0.16, 1, 0.3, 1] }}
                 className="block"
               >
-                Rooted in Alexandria.
+                Your neighbors in Alexandria.
               </motion.span>
             </span>
             <span className="overflow-hidden pb-4 pt-2 -mt-2 -mb-4">
@@ -47,7 +47,7 @@ export function LouisianaStory() {
                 transition={{ duration: 1, delay: 0.25, ease: [0.16, 1, 0.3, 1] }}
                 className="block text-accent"
               >
-                Guarding Ponchatoula.
+                Your partners in Ponchatoula.
               </motion.span>
             </span>
             <span className="overflow-hidden pb-4 pt-2 -mt-2 -mb-4">
@@ -58,7 +58,7 @@ export function LouisianaStory() {
                 transition={{ duration: 1, delay: 0.4, ease: [0.16, 1, 0.3, 1] }}
                 className="block"
               >
-                Securing Slidell.
+                Your advocates in Slidell.
               </motion.span>
             </span>
           </h3>
