@@ -45,11 +45,11 @@ export default function App() {
       {loading && <Preloader onComplete={() => setLoading(false)} />}
       <Navbar />
       <Hero />
+      <LouisianaStory />
       <Philosophy />
       <ServicesGrid />
       <Proof />
       <Testimonials />
-      <LouisianaStory />
       <CTA />
       <Footer />
     </main>

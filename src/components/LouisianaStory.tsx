@@ -22,9 +22,8 @@ export function LouisianaStory() {
             transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
             className="flex items-center gap-4 mb-8"
           >
-            <div className="w-8 h-[2px] bg-accent" />
-            <span className="text-sm font-bold tracking-wide uppercase text-accent">
-              The Louisiana Reality
+            <span className="text-sm font-bold tracking-widest uppercase text-accent font-mono">
+              01 // The Louisiana Reality
             </span>
           </motion.div>
           
@@ -93,8 +92,8 @@ export function LouisianaStory() {
           >
             <motion.img 
               style={{ y, scale: 1.1 }}
-              src="/images/bayou_prestige.png" 
-              alt="Louisiana landscape" 
+              src="/images/institutional_hero_modern.png" 
+              alt="Alexandria Corporate Operations" 
               className="w-full h-full object-cover opacity-90 mix-blend-multiply"
               referrerPolicy="no-referrer"
             />

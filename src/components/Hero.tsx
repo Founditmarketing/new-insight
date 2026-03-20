@@ -77,8 +77,8 @@ export function Hero() {
           >
             <div className="absolute inset-0 bg-ink/5 mix-blend-multiply z-10" />
             <img 
-              src="/images/institutional_hero.png" 
-              alt="High-value premium estate" 
+              src="/images/bayou_prestige.png" 
+              alt="Louisiana Bayou Corporate Identity" 
               className="w-full h-full object-cover"
             />
           </motion.div>

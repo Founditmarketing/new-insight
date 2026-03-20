@@ -1,6 +1,5 @@
-import { useState, useEffect } from 'react';
-import { motion, AnimatePresence } from 'motion/react';
-import { ChevronLeft, ChevronRight, Quote } from 'lucide-react';
+import { motion } from 'motion/react';
+import { Quote, ArrowRight } from 'lucide-react';
 
 const testimonials = [
   {
@@ -27,29 +26,11 @@ const testimonials = [
 ];
 
 export function Testimonials() {
-  const [currentIndex, setCurrentIndex] = useState(0);
-
-  // Auto-rotate effect
-  useEffect(() => {
-    const timer = setInterval(() => {
-      setCurrentIndex((prev) => (prev + 1) % testimonials.length);
-    }, 6000); // 6 seconds per slide
-    return () => clearInterval(timer);
-  }, []);
-
-  const nextSlide = () => {
-    setCurrentIndex((prev) => (prev + 1) % testimonials.length);
-  };
-
-  const prevSlide = () => {
-    setCurrentIndex((prev) => (prev - 1 + testimonials.length) % testimonials.length);
-  };
-
   return (
-    <section className="py-20 px-6 md:px-12 lg:px-24 bg-paper text-ink relative overflow-hidden border-t border-slate/10">
+    <section className="py-24 px-6 md:px-12 lg:px-24 bg-paper text-ink relative overflow-hidden border-t border-slate/10">
       <div className="max-w-7xl mx-auto flex flex-col h-full justify-between">
         
-        <div className="flex justify-between items-end mb-16 border-b border-slate/10 pb-8">
+        <div className="flex flex-col sm:flex-row justify-between items-start sm:items-end gap-6 mb-16 border-b border-slate/10 pb-8">
           <motion.div
             initial={{ opacity: 0, x: -20 }}
             whileInView={{ opacity: 1, x: 0 }}
@@ -57,61 +38,57 @@ export function Testimonials() {
             transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
             className="flex items-center gap-4"
           >
-            <div className="w-8 h-[2px] bg-accent" />
-            <span className="text-sm font-bold tracking-wide uppercase text-accent">
-              Client Relations
+            <span className="text-sm font-bold tracking-widest uppercase text-accent font-mono">
+              06 // Client Relations
             </span>
           </motion.div>
 
-          <div className="flex gap-4">
-            <button 
-              onClick={prevSlide}
-              className="w-12 h-12 rounded-full border border-slate/20 flex items-center justify-center text-ink hover:bg-ink hover:text-stone hover:border-ink transition-colors"
-            >
-              <ChevronLeft className="w-5 h-5" />
-            </button>
-            <button 
-              onClick={nextSlide}
-              className="w-12 h-12 rounded-full border border-slate/20 flex items-center justify-center text-ink hover:bg-ink hover:text-stone hover:border-ink transition-colors"
-            >
-              <ChevronRight className="w-5 h-5" />
-            </button>
-          </div>
+          <motion.div 
+            initial={{ opacity: 0, x: 20 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.8, delay: 0.2, ease: [0.16, 1, 0.3, 1] }}
+            className="text-sm font-bold tracking-widest uppercase text-ink/50 hover:text-accent cursor-pointer transition-colors flex items-center group"
+          >
+            View Private Case Studies <ArrowRight className="w-4 h-4 ml-2 group-hover:translate-x-1 transition-transform" />
+          </motion.div>
         </div>
 
-        <div className="relative min-h-[350px] md:min-h-[280px] w-full flex items-center mt-8">
-          <Quote className="absolute top-0 left-0 w-32 h-32 text-slate/5 -translate-x-8 -translate-y-12 z-0" />
-          
-          <AnimatePresence mode="wait">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-12 lg:gap-8 mt-8">
+          {testimonials.map((testimonial, i) => (
             <motion.div
-              key={currentIndex}
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              exit={{ opacity: 0, y: -20 }}
-              transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
-              className="relative z-10 w-full"
+              key={testimonial.id}
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, margin: "-50px" }}
+              transition={{ duration: 0.8, delay: i * 0.15, ease: [0.16, 1, 0.3, 1] }}
+              className="relative flex flex-col justify-between"
             >
-              <p className="text-2xl md:text-3xl lg:text-4xl font-bold leading-tight tracking-tight text-ink max-w-5xl mb-12">
-                "{testimonials[currentIndex].quote}"
-              </p>
+              <Quote className="absolute top-0 left-0 w-16 h-16 text-slate/5 -translate-x-4 -translate-y-6 z-0" />
               
-              <div className="flex items-center gap-6">
+              <div className="relative z-10 flex-grow">
+                <p className="text-xl md:text-2xl font-bold leading-relaxed tracking-tight text-ink mb-10">
+                  "{testimonial.quote}"
+                </p>
+              </div>
+              
+              <div className="flex items-center gap-5 mt-auto pt-8 border-t border-slate/10">
                 <img 
-                  src={testimonials[currentIndex].image} 
-                  alt={testimonials[currentIndex].author}
-                  className="w-16 h-16 rounded-full object-cover border-2 border-slate/10 grayscale"
+                  src={testimonial.image} 
+                  alt={testimonial.author}
+                  className="w-14 h-14 rounded-full object-cover border-2 border-slate/10 grayscale opacity-80"
                 />
                 <div className="flex flex-col">
-                  <span className="font-bold text-lg text-ink uppercase tracking-wide">
-                    {testimonials[currentIndex].author}
+                  <span className="font-bold text-base text-ink uppercase tracking-wide">
+                    {testimonial.author}
                   </span>
-                  <span className="font-semibold text-sm text-slate tracking-widest uppercase mt-1">
-                    {testimonials[currentIndex].entity}
+                  <span className="font-semibold text-xs text-slate tracking-widest uppercase mt-1">
+                    {testimonial.entity}
                   </span>
                 </div>
               </div>
             </motion.div>
-          </AnimatePresence>
+          ))}
         </div>
         
       </div>

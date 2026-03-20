@@ -14,9 +14,8 @@ export function Philosophy() {
             transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
             className="flex items-center gap-4 mb-8"
           >
-            <div className="w-8 h-[2px] bg-accent" />
-            <span className="text-sm font-bold tracking-wide uppercase text-accent">
-              Our Methodology
+            <span className="text-sm font-bold tracking-widest uppercase text-accent font-mono">
+              02 // The Insight Doctrine
             </span>
           </motion.div>
           
