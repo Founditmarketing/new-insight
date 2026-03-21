@@ -6,6 +6,8 @@ const reviewsRow1 = [
   { id: 2, author: "Sarah J.", entity: "Ponchatoula, LA", text: "Handled our claim immediately after the storm while everyone else was stuck on 1-800 numbers.", stars: 5 },
   { id: 3, author: "David M.", entity: "Slidell, LA", text: "Insight transformed our commercial liability architecture. True partners in Louisiana.", stars: 5 },
   { id: 4, author: "Robert C.", entity: "Pineville, LA", text: "Unmatched expertise in high-value home insurance. They caught critical gaps my old captive agent completely missed.", stars: 5 },
+  { id: 9, author: "William P.", entity: "Natchitoches, LA", text: "Insight engineered a massive umbrella policy for our portfolio. I finally sleep well during hurricane season.", stars: 5 },
+  { id: 10, author: "Jessica H.", entity: "Alexandria, LA", text: "The team locally here in Alex is world-class. They treat your assets like their own.", stars: 5 },
 ];
 
 const reviewsRow2 = [
@@ -13,11 +15,6 @@ const reviewsRow2 = [
   { id: 6, author: "James W.", entity: "Baton Rouge, LA", text: "We moved our entire corporate fleet over. The premium savings and executive service level are night and day.", stars: 5 },
   { id: 7, author: "Elena R.", entity: "Hammond, LA", text: "A breath of fresh air. They actually answer the phone and know exactly who you are. Best agency on the Northshore.", stars: 5 },
   { id: 8, author: "Thomas K.", entity: "Covington, LA", text: "Secured our historic estate perfectly. The onboarding process was seamless, transparent, and incredibly professional.", stars: 5 },
-];
-
-const reviewsRow3 = [
-  { id: 9, author: "William P.", entity: "Natchitoches, LA", text: "Insight engineered a massive umbrella policy for our portfolio. I finally sleep well during hurricane season.", stars: 5 },
-  { id: 10, author: "Jessica H.", entity: "Alexandria, LA", text: "The team locally here in Alex is world-class. They treat your assets like their own.", stars: 5 },
   { id: 11, author: "Brian D.", entity: "Slidell, LA", text: "Incredible marine portfolio structuring. Absolutely dialed in to the reality of operating heavily in the Gulf.", stars: 5 },
   { id: 12, author: "Karen S.", entity: "Ponchatoula, LA", text: "Switched all our policies over last year. Unbeatable value and true white-glove concierge service from day one.", stars: 5 },
 ];
@@ -122,7 +119,6 @@ export function Testimonials() {
         
         <MarqueeRow reviews={reviewsRow1} />
         <MarqueeRow reviews={reviewsRow2} reverse={true} />
-        <MarqueeRow reviews={reviewsRow3} />
       </div>
 
     </section>
