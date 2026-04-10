@@ -153,32 +153,19 @@ export function LouisianaStory() {
            
       <div className="absolute inset-0 z-[5] overflow-hidden pointer-events-none">
         {particles.map((p) => (
-          <motion.div
+          <div
             key={p.id}
-            initial={{ 
-              x: `${p.xOrigin}vw`, 
-              y: `${p.yOrigin + 20}vh`, 
-              opacity: 0,
-              scale: 0
-            }}
-            animate={{ 
-              x: [`${p.xOrigin}vw`, `${p.xOrigin + p.xOffset}vw`],
-              y: [`${p.yOrigin + 20}vh`, `${p.yOrigin - 50}vh`],
-              opacity: [0, p.opacity, 0],
-              scale: [0, 1, 0]
-            }}
-            transition={{ 
-              duration: p.duration,
-              repeat: Infinity,
-              ease: "linear",
-              delay: p.delay
-            }}
-            className={`absolute rounded-full shadow-[0_0_30px_rgba(255,255,255,0.4)] mix-blend-screen ${p.colorClass}`}
+            className={`gpu-particle ${p.colorClass}`}
             style={{
-              width: `${p.size}px`,
-              height: `${p.size}px`,
-              boxShadow: `0 0 ${p.size * 5}px ${p.shadow}`
-            }}
+              '--size': `${p.size}px`,
+              '--x-origin': `${p.xOrigin}vw`,
+              '--y-origin': `${p.yOrigin + 20}vh`,
+              '--offset-x': `${p.xOffset}vw`,
+              '--duration': `${p.duration}s`,
+              '--delay': `${p.delay}s`,
+              '--max-opacity': p.opacity,
+              '--shadow-color': p.shadow
+            } as React.CSSProperties}
           />
         ))}
       </div>
