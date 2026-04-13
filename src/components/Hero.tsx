@@ -93,7 +93,7 @@ export function Hero({ onOpenQuote }: { onOpenQuote?: () => void }) {
             transition={{ duration: 1.2, delay: 0.1, ease: [0.16, 1, 0.3, 1] }}
             className="block"
           >
-            We Work
+            Honest
           </motion.span>
           <motion.span 
             initial={{ opacity: 0, y: 30 }}
@@ -101,7 +101,7 @@ export function Hero({ onOpenQuote }: { onOpenQuote?: () => void }) {
             transition={{ duration: 1.2, delay: 0.2, ease: [0.16, 1, 0.3, 1] }}
             className="block text-accent drop-shadow-[0_0_40px_rgba(227,38,54,0.5)]"
           >
-            For You.
+            Protection.
           </motion.span>
         </h1>
 
