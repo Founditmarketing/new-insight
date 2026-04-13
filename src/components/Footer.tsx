@@ -71,9 +71,13 @@ export function Footer() {
         <div className="flex flex-col gap-6">
           <h4 className="text-sm font-bold tracking-wide uppercase text-accent">Compliance</h4>
           <ul className="flex flex-col gap-3 text-sm font-medium text-ink/70">
-            {['Privacy Policy', 'Terms of Service', 'Licensing Information', 'Accessibility'].map((link) => (
-              <li key={link}>
-                <a href="/" className="hover:text-accent transition-colors">{link}</a>
+            {[
+              { name: 'Privacy Policy', href: '/privacy' },
+              { name: 'Terms of Service', href: '/terms' },
+              { name: 'FAQ', href: '/faq' },
+            ].map((link) => (
+              <li key={link.name}>
+                <Link to={link.href} className="hover:text-accent transition-colors">{link.name}</Link>
               </li>
             ))}
           </ul>

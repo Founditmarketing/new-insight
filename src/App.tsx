@@ -19,6 +19,10 @@ import { Services } from './pages/Services';
 import { Locations } from './pages/Locations';
 import { Contact } from './pages/Contact';
 import { CityPage } from './pages/CityPage';
+import { FAQ } from './pages/FAQ';
+import { Privacy } from './pages/Privacy';
+import { Terms } from './pages/Terms';
+import { NotFound } from './pages/NotFound';
 import { ClientPortalModal } from './components/ClientPortalModal';
 import { ScrollToTop } from './components/ScrollToTop';
 import { MobileCTA } from './components/MobileCTA';
@@ -88,10 +92,16 @@ export default function App() {
               <CityPage onOpenQuote={() => setIsQuoteOpen(true)} />
             } />
             <Route path="/contact" element={<Contact />} />
+            <Route path="/faq" element={
+              <FAQ onOpenQuote={() => setIsQuoteOpen(true)} />
+            } />
+            <Route path="/privacy" element={<Privacy />} />
+            <Route path="/terms" element={<Terms />} />
             {/* Legacy city routes redirect */}
             <Route path="/:city" element={
               <CityPage onOpenQuote={() => setIsQuoteOpen(true)} />
             } />
+            <Route path="*" element={<NotFound />} />
           </Routes>
 
           <Footer />
