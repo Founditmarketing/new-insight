@@ -21,6 +21,7 @@ import { Contact } from './pages/Contact';
 import { CityPage } from './pages/CityPage';
 import { ClientPortalModal } from './components/ClientPortalModal';
 import { ScrollToTop } from './components/ScrollToTop';
+import { MobileCTA } from './components/MobileCTA';
 
 
 export default function App() {
@@ -46,6 +47,13 @@ export default function App() {
     requestAnimationFrame(raf);
 
     return () => lenis.destroy();
+  }, []);
+
+  // Listen for custom quote event from MobileCTA
+  useEffect(() => {
+    const handler = () => setIsQuoteOpen(true);
+    window.addEventListener('open-quote', handler);
+    return () => window.removeEventListener('open-quote', handler);
   }, []);
 
   return (
@@ -91,6 +99,7 @@ export default function App() {
           <QuoteModal isOpen={isQuoteOpen} onClose={() => setIsQuoteOpen(false)} />
           <ClientPortalModal isOpen={isPortalOpen} onClose={() => setIsPortalOpen(false)} />
           <Concierge />
+          <MobileCTA />
         </main>
       </BrowserRouter>
     </HelmetProvider>

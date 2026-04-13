@@ -130,3 +130,15 @@ p {
   opacity: 0; /* Base opacity; animation overrides it */
   pointer-events: none;
 }
+
+/* Safe area for notched phones */
+.safe-area-bottom {
+  padding-bottom: env(safe-area-inset-bottom, 0px);
+}
+
+/* Add bottom spacing on mobile for sticky CTA bar */
+@media (max-width: 767px) {
+  footer {
+    padding-bottom: 80px !important;
+  }
+}

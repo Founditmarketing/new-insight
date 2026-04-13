@@ -21,6 +21,25 @@ export function Navbar({ onOpenQuote, onOpenPortal }: { onOpenQuote?: () => void
     setIsMobileMenuOpen(false);
   }, [location]);
 
+  // Body scroll lock when menu is open
+  useEffect(() => {
+    if (isMobileMenuOpen) {
+      document.body.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = '';
+    }
+    return () => { document.body.style.overflow = ''; };
+  }, [isMobileMenuOpen]);
+
+  // Escape key closes menu
+  useEffect(() => {
+    const handleEsc = (e: KeyboardEvent) => {
+      if (e.key === 'Escape') setIsMobileMenuOpen(false);
+    };
+    window.addEventListener('keydown', handleEsc);
+    return () => window.removeEventListener('keydown', handleEsc);
+  }, []);
+
   const navLinks = [
     { name: 'About', href: '/about' },
     { name: 'Services', href: '/services' },
@@ -90,8 +109,22 @@ export function Navbar({ onOpenQuote, onOpenPortal }: { onOpenQuote?: () => void
       <div 
         className={`fixed inset-0 bg-stone z-40 transition-transform duration-500 ease-in-out ${
           isMobileMenuOpen ? 'translate-x-0' : 'translate-x-full'
-        } md:hidden flex flex-col pt-24 px-8`}
+        } md:hidden flex flex-col px-8`}
+        role="dialog"
+        aria-modal="true"
+        aria-label="Navigation menu"
       >
+        {/* Close button */}
+        <div className="flex items-center justify-between pt-6 pb-8">
+          <span className="text-sm font-bold text-ink/40 uppercase tracking-widest">Menu</span>
+          <button 
+            onClick={() => setIsMobileMenuOpen(false)}
+            className="w-10 h-10 rounded-full bg-ink/5 flex items-center justify-center text-ink hover:bg-accent hover:text-paper transition-colors"
+            aria-label="Close menu"
+          >
+            <X className="w-5 h-5" />
+          </button>
+        </div>
         <div className="flex flex-col gap-6 text-2xl font-bold tracking-tight text-ink">
           {navLinks.map((item) => (
             <Link 
