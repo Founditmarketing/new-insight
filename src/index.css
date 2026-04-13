@@ -143,10 +143,13 @@ p {
   }
 }
 
-/* Move chat widget above sticky CTA on mobile */
+/* Move chat widget above sticky CTA on mobile and make it smaller */
 @media (max-width: 767px) {
   .concierge-wrapper {
-    bottom: 80px !important;
+    bottom: 90px !important;
+    right: 16px !important;
+    width: 48px !important;
+    height: 48px !important;
   }
 }
 

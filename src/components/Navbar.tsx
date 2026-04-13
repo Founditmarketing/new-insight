@@ -60,12 +60,12 @@ export function Navbar({ onOpenQuote, onOpenPortal }: { onOpenQuote?: () => void
     >
       <div className="max-w-7xl mx-auto px-6 md:px-12 lg:px-24 flex items-center justify-between">
         <Link to="/" className="flex items-center gap-3 group">
-          <div className="flex gap-1.5 items-baseline">
+          <div className="flex gap-0.5 items-baseline">
             {['I', 'N', 'S', 'I', 'G', 'H', 'T'].map((letter, i) => (
-              <span key={i} className={`font-serif text-2xl tracking-widest block group-hover:text-accent transition-colors duration-300 transform group-hover:-translate-y-0.5 ${showSolid ? 'text-ink' : 'text-paper'}`} style={{ transitionDelay: `${i * 30}ms` }}>{letter}</span>
+              <span key={i} className={`font-serif text-2xl tracking-[0.15em] block group-hover:text-accent transition-colors duration-300 transform group-hover:-translate-y-0.5 ${showSolid ? 'text-ink' : 'text-paper'}`} style={{ transitionDelay: `${i * 30}ms` }}>{letter}</span>
             ))}
           </div>
-          <span className={`text-[10px] uppercase tracking-widest font-semibold ml-2 transition-colors duration-300 ${showSolid ? 'text-accent/80' : 'text-accent'}`}>Insurance</span>
+          <span className={`text-[11px] uppercase tracking-[0.2em] font-bold ml-2 transition-colors duration-300 ${showSolid ? 'text-accent/80' : 'text-accent'}`}>Insurance</span>
         </Link>
 
         {/* Desktop Menu */}
