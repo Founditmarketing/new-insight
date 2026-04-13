@@ -1,8 +1,7 @@
-import { useState } from 'react';
+import { useState, useEffect, useCallback } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
-import { MapPin, Droplets, Wind, Flame, CloudLightning, AlertTriangle, ShieldCheck } from 'lucide-react';
+import { MapPin, Droplets, Wind, Flame, CloudLightning, ShieldCheck, AlertTriangle } from 'lucide-react';
 
-// Risk profiles by ZIP prefix — higher = more risk (1-10 scale)
 const riskProfiles: Record<string, { flood: number; wind: number; fire: number; storm: number; overall: string; zone: string }> = {
   '700': { flood: 9, wind: 8, fire: 3, storm: 9, overall: 'HIGH', zone: 'Greater New Orleans' },
   '701': { flood: 9, wind: 9, fire: 2, storm: 9, overall: 'HIGH', zone: 'New Orleans Metro' },
@@ -18,20 +17,20 @@ const riskProfiles: Record<string, { flood: number; wind: number; fire: number; 
 
 const defaultProfile = { flood: 6, wind: 5, fire: 4, storm: 6, overall: 'MODERATE', zone: 'Louisiana' };
 
-const risks = [
-  { key: 'flood', label: 'Flood', icon: Droplets, color: '#3B82F6', tip: 'Louisiana has the highest flood risk in the nation. Even outside FEMA zones, 25% of claims come from "low-risk" areas.' },
-  { key: 'wind', label: 'Wind / Hurricane', icon: Wind, color: '#8B5CF6', tip: 'Category 3+ hurricanes have hit Louisiana\'s coast every 7 years on average since 2000.' },
-  { key: 'storm', label: 'Severe Storm', icon: CloudLightning, color: '#F59E0B', tip: 'Louisiana averages 60+ thunderstorm days per year — more than almost any other state.' },
-  { key: 'fire', label: 'Wildfire', icon: Flame, color: '#EF4444', tip: 'Central and north Louisiana see increasing wildfire risk, especially in dry summers.' },
+const riskTypes = [
+  { key: 'flood', label: 'Flood', icon: Droplets, color: '#3B82F6', gradient: 'from-blue-500 to-blue-400', tip: '25% of flood claims are from outside FEMA high-risk areas.' },
+  { key: 'wind', label: 'Hurricane / Wind', icon: Wind, color: '#8B5CF6', gradient: 'from-violet-500 to-violet-400', tip: 'Cat 3+ hurricanes hit LA\'s coast every 7 years on average.' },
+  { key: 'storm', label: 'Severe Storm', icon: CloudLightning, color: '#F59E0B', gradient: 'from-amber-500 to-amber-400', tip: 'Louisiana averages 60+ thunderstorm days per year.' },
+  { key: 'fire', label: 'Wildfire', icon: Flame, color: '#EF4444', gradient: 'from-red-500 to-red-400', tip: 'North LA sees increasing wildfire risk in dry seasons.' },
 ];
 
 function RiskBar({ value, color, delay }: { value: number; color: string; delay: number }) {
   return (
-    <div className="w-full bg-white/5 rounded-full h-3 overflow-hidden">
+    <div className="flex-1 bg-white/5 rounded-full h-2.5 overflow-hidden">
       <motion.div
         initial={{ width: 0 }}
         animate={{ width: `${value * 10}%` }}
-        transition={{ duration: 1.2, delay, ease: [0.16, 1, 0.3, 1] }}
+        transition={{ duration: 1, delay, ease: [0.16, 1, 0.3, 1] }}
         className="h-full rounded-full"
         style={{ backgroundColor: color }}
       />
@@ -42,44 +41,48 @@ function RiskBar({ value, color, delay }: { value: number; color: string; delay:
 export function RiskScore() {
   const [zip, setZip] = useState('');
   const [profile, setProfile] = useState<typeof defaultProfile | null>(null);
-  const [isScanning, setIsScanning] = useState(false);
+  const [phase, setPhase] = useState<'idle' | 'scanning' | 'done'>('idle');
 
-  const handleScan = () => {
+  const handleScan = useCallback(() => {
     if (zip.length < 3) return;
-    setIsScanning(true);
+    setPhase('scanning');
     setProfile(null);
-
     setTimeout(() => {
       const prefix = zip.substring(0, 3);
       setProfile(riskProfiles[prefix] || defaultProfile);
-      setIsScanning(false);
-    }, 1800);
-  };
+      setPhase('done');
+    }, 1500);
+  }, [zip]);
 
-  const overallColor = profile?.overall === 'HIGH' ? 'text-red-400' 
-    : profile?.overall === 'MODERATE' ? 'text-amber-400' 
-    : 'text-emerald-400';
+  useEffect(() => {
+    setProfile(null);
+    setPhase('idle');
+  }, [zip]);
+
+  const overallColor = profile?.overall === 'HIGH' ? 'text-red-400 border-red-400/20 bg-red-400/5' 
+    : profile?.overall === 'MODERATE' ? 'text-amber-400 border-amber-400/20 bg-amber-400/5' 
+    : 'text-emerald-400 border-emerald-400/20 bg-emerald-400/5';
 
   return (
-    <section className="py-24 px-6 md:px-12 lg:px-24 bg-paper border-t border-slate/10">
+    <section className="py-20 md:py-28 px-6 md:px-12 lg:px-24 bg-paper border-t border-slate/[0.06]">
       <div className="max-w-5xl mx-auto">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.8 }}
-          className="mb-16"
+          className="mb-14"
         >
           <span className="text-sm font-bold tracking-widest uppercase text-accent font-mono mb-4 block">
             Louisiana Risk Intelligence
           </span>
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 items-end">
-            <h2 className="text-4xl md:text-5xl font-bold text-ink tracking-tight">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 lg:gap-12">
+            <h2 className="text-3xl md:text-5xl font-bold text-ink tracking-tight leading-[1.1]">
               Know your <span className="text-accent italic font-serif">risk</span> before the storm hits.
             </h2>
-            <p className="text-lg text-ink/60 font-medium leading-relaxed">
-              Every ZIP code in Louisiana has a unique risk profile. See how your area scores for flood, 
-              wind, storm, and fire — and whether you're properly covered.
+            <p className="text-base md:text-lg text-ink/50 font-medium leading-relaxed">
+              Every ZIP code in Louisiana has a unique risk profile. See how your area scores — and 
+              whether you're properly covered.
             </p>
           </div>
         </motion.div>
@@ -88,51 +91,51 @@ export function RiskScore() {
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          transition={{ duration: 0.8, delay: 0.2 }}
-          className="bg-ink rounded-2xl p-8 md:p-12 border border-white/5"
+          transition={{ duration: 0.8, delay: 0.15 }}
+          className="bg-ink rounded-2xl p-6 md:p-10 border border-white/[0.04]"
         >
-          {/* Input */}
-          <div className="flex flex-col sm:flex-row gap-4 max-w-md mx-auto mb-8">
+          {/* Input Row */}
+          <div className="flex gap-3 max-w-sm mx-auto mb-6">
             <div className="relative flex-1">
-              <MapPin className="absolute left-4 top-1/2 -translate-y-1/2 w-4 h-4 text-paper/30" />
+              <MapPin className="absolute left-4 top-1/2 -translate-y-1/2 w-4 h-4 text-paper/20" />
               <input
                 type="text"
+                inputMode="numeric"
                 value={zip}
-                onChange={(e) => { setZip(e.target.value.replace(/\D/g, '').slice(0, 5)); setProfile(null); }}
-                placeholder="Enter ZIP code"
-                className="w-full bg-white/5 border border-white/10 focus:border-accent focus:ring-1 focus:ring-accent rounded-lg pl-11 pr-5 py-4 text-paper font-bold tracking-widest placeholder:text-paper/25 outline-none transition-all"
+                onChange={(e) => setZip(e.target.value.replace(/\D/g, '').slice(0, 5))}
+                placeholder="ZIP code"
+                className="w-full bg-white/5 border border-white/10 focus:border-accent focus:ring-1 focus:ring-accent/50 rounded-xl pl-11 pr-5 py-4 text-paper font-bold tracking-widest placeholder:text-paper/15 placeholder:tracking-widest outline-none transition-all"
                 maxLength={5}
+                onKeyDown={(e) => e.key === 'Enter' && handleScan()}
               />
             </div>
             <button
               onClick={handleScan}
-              disabled={zip.length < 3 || isScanning}
-              className={`px-8 py-4 rounded-lg font-bold tracking-widest uppercase text-sm transition-all ${
-                zip.length < 3 || isScanning
-                  ? 'bg-white/5 text-paper/30 cursor-not-allowed'
-                  : 'bg-accent text-white hover:bg-white hover:text-ink shadow-[0_0_20px_rgba(227,38,54,0.3)]'
+              disabled={zip.length < 3 || phase === 'scanning'}
+              className={`px-6 py-4 rounded-xl font-bold tracking-widest uppercase text-xs transition-all duration-300 whitespace-nowrap ${
+                zip.length < 3 || phase === 'scanning'
+                  ? 'bg-white/5 text-paper/20 cursor-not-allowed'
+                  : 'bg-accent text-white hover:shadow-[0_0_30px_rgba(227,38,54,0.4)] active:scale-95'
               }`}
             >
-              {isScanning ? (
-                <div className="w-5 h-5 border-2 border-paper/30 border-t-paper rounded-full animate-spin mx-auto" />
-              ) : (
-                'Scan My Area'
-              )}
+              {phase === 'scanning' ? (
+                <div className="w-4 h-4 border-2 border-paper/30 border-t-paper rounded-full animate-spin" />
+              ) : 'Scan'}
             </button>
           </div>
 
-          {/* Scanning Animation */}
+          {/* Scanning */}
           <AnimatePresence>
-            {isScanning && (
+            {phase === 'scanning' && (
               <motion.div
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
                 exit={{ opacity: 0 }}
-                className="text-center py-8"
+                className="text-center py-10"
               >
-                <AlertTriangle className="w-8 h-8 text-accent animate-pulse mx-auto mb-4" />
-                <p className="text-accent text-xs font-bold tracking-widest uppercase animate-pulse">
-                  Analyzing FEMA, NOAA & state data...
+                <AlertTriangle className="w-6 h-6 text-accent animate-pulse mx-auto mb-3" />
+                <p className="text-[10px] font-bold tracking-[0.3em] uppercase text-accent/50 animate-pulse">
+                  Analyzing FEMA · NOAA · State data
                 </p>
               </motion.div>
             )}
@@ -140,76 +143,79 @@ export function RiskScore() {
 
           {/* Results */}
           <AnimatePresence>
-            {profile && (
+            {phase === 'done' && profile && (
               <motion.div
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.6 }}
+                transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
+                className="pt-4"
               >
-                {/* Overall Score Header */}
-                <div className="text-center mb-10 pt-4">
-                  <p className="text-paper/40 text-xs font-bold tracking-widest uppercase mb-2">
-                    {profile.zone} • ZIP {zip}
+                {/* Overall Score */}
+                <div className="text-center mb-10">
+                  <p className="text-paper/25 text-[10px] font-bold tracking-[0.3em] uppercase mb-3">
+                    {profile.zone} · ZIP {zip}
                   </p>
-                  <div className="flex items-center justify-center gap-3">
-                    <span className={`text-4xl md:text-5xl font-bold tracking-tighter ${overallColor}`}>
+                  <div className={`inline-flex items-center gap-3 border rounded-full px-6 py-2 ${overallColor}`}>
+                    <span className="text-2xl md:text-3xl font-bold tracking-tight">
                       {profile.overall}
                     </span>
-                    <span className="text-paper/40 text-lg font-bold">RISK</span>
+                    <span className="text-xs font-bold tracking-widest uppercase opacity-60">RISK</span>
                   </div>
                 </div>
 
                 {/* Risk Bars */}
-                <div className="grid grid-cols-1 gap-6 max-w-lg mx-auto">
-                  {risks.map((risk, i) => {
+                <div className="space-y-5 max-w-md mx-auto">
+                  {riskTypes.map((risk, i) => {
                     const value = profile[risk.key as keyof typeof profile] as number;
                     return (
                       <motion.div
                         key={risk.key}
-                        initial={{ opacity: 0, x: -20 }}
+                        initial={{ opacity: 0, x: -10 }}
                         animate={{ opacity: 1, x: 0 }}
-                        transition={{ delay: i * 0.15 }}
+                        transition={{ delay: 0.15 + i * 0.1 }}
                       >
-                        <div className="flex items-center justify-between mb-2">
-                          <div className="flex items-center gap-2">
-                            <risk.icon className="w-4 h-4" style={{ color: risk.color }} />
-                            <span className="text-sm font-bold text-paper tracking-wider uppercase">{risk.label}</span>
-                          </div>
+                        <div className="flex items-center gap-3 mb-1.5">
+                          <risk.icon className="w-4 h-4 flex-shrink-0" style={{ color: risk.color }} />
+                          <span className="text-xs font-bold text-paper/60 tracking-widest uppercase flex-1">{risk.label}</span>
                           <span className="text-sm font-bold tabular-nums" style={{ color: risk.color }}>
-                            {value}/10
+                            {value}<span className="text-paper/20">/10</span>
                           </span>
                         </div>
-                        <RiskBar value={value} color={risk.color} delay={i * 0.15} />
-                        <p className="text-paper/30 text-xs mt-1.5 font-medium">{risk.tip}</p>
+                        <RiskBar value={value} color={risk.color} delay={0.3 + i * 0.1} />
+                        <p className="text-paper/20 text-[10px] mt-1 font-medium leading-relaxed">{risk.tip}</p>
                       </motion.div>
                     );
                   })}
                 </div>
 
                 {/* CTA */}
-                <div className="mt-12 text-center">
+                <motion.div 
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  transition={{ delay: 1 }}
+                  className="mt-10 text-center"
+                >
                   <button
                     onClick={() => window.dispatchEvent(new CustomEvent('open-quote'))}
-                    className="bg-accent text-white px-10 py-4 rounded-sm font-bold tracking-widest uppercase text-sm hover:bg-white hover:text-ink transition-all shadow-[0_0_30px_rgba(227,38,54,0.3)] inline-flex items-center gap-3"
+                    className="group bg-accent text-white px-10 py-4 rounded-sm font-bold tracking-widest uppercase text-sm hover:bg-white hover:text-ink transition-all duration-300 shadow-[0_0_30px_rgba(227,38,54,0.2)] inline-flex items-center gap-3"
                   >
                     <ShieldCheck className="w-4 h-4" />
                     Get Protected
                   </button>
-                  <p className="text-paper/30 text-xs mt-3 font-medium">
+                  <p className="text-paper/15 text-[10px] font-bold tracking-widest uppercase mt-4">
                     We'll match your risk profile to the right carrier
                   </p>
-                </div>
+                </motion.div>
               </motion.div>
             )}
           </AnimatePresence>
 
           {/* Empty state */}
-          {!profile && !isScanning && (
+          {phase === 'idle' && (
             <div className="text-center py-8">
-              <div className="inline-flex items-center gap-2 text-paper/20 text-sm font-bold tracking-widest uppercase">
-                <MapPin className="w-4 h-4" />
+              <p className="text-paper/15 text-xs font-bold tracking-widest uppercase">
                 Enter your ZIP to see your risk profile
-              </div>
+              </p>
             </div>
           )}
         </motion.div>
