@@ -1,5 +1,6 @@
 import { ArrowUpRight } from 'lucide-react';
 import { MapPin, Phone, Mail, Clock, ShieldCheck } from 'lucide-react';
+import { Link } from 'react-router-dom';
 
 export function Footer() {
   return (
@@ -32,11 +33,11 @@ export function Footer() {
             </li>
             <li className="flex items-center gap-3 hover:text-ink transition-colors">
               <Phone className="w-5 h-5 text-accent shrink-0" />
-              <span>(318) 555-0123</span>
+              <a href="tel:3185618000"><span>(318) 561-8000</span></a>
             </li>
             <li className="flex items-center gap-3 hover:text-ink transition-colors">
               <Mail className="w-5 h-5 text-accent shrink-0" />
-              <span>secure@insighthelps.com</span>
+              <a href="mailto:support@insighthelps.com"><span>support@insighthelps.com</span></a>
             </li>
             <li className="flex items-center gap-3 hover:text-ink transition-colors">
               <Clock className="w-5 h-5 text-accent shrink-0" />
@@ -49,12 +50,18 @@ export function Footer() {
         <div className="flex flex-col gap-6">
           <h4 className="text-sm font-bold tracking-wide uppercase text-accent">Quick Links</h4>
           <ul className="flex flex-col gap-3 text-sm font-medium text-ink/70">
-            {['Personal Insurance', 'Business Insurance', 'File a Claim', 'About Us', 'Our Carriers'].map((link) => (
-              <li key={link}>
-                <a href="/" className="hover:text-accent transition-colors relative inline-block group">
-                  {link}
+            {[
+              { name: 'About Us', href: '/about' },
+              { name: 'Services', href: '/services' },
+              { name: 'Locations', href: '/locations' },
+              { name: 'Contact', href: '/contact' },
+              { name: 'Get a Quote', href: '/contact' },
+            ].map((link) => (
+              <li key={link.name}>
+                <Link to={link.href} className="hover:text-accent transition-colors relative inline-block group">
+                  {link.name}
                   <span className="absolute -bottom-1 left-0 w-0 h-[1px] bg-accent transition-all duration-300 group-hover:w-full"></span>
-                </a>
+                </Link>
               </li>
             ))}
           </ul>
