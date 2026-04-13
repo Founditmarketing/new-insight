@@ -90,16 +90,6 @@ const services = [
     iconBg: 'bg-slate/10',
     iconColor: 'text-slate'
   },
-  // ROW 5 (Full Width Cap)
-  { 
-    id: 'portal', 
-    title: '24/7 Bill Pay', 
-    icon: Laptop, 
-    statement: 'Access policies, manage documents, and process premium payments instantly from anywhere.',
-    spanClass: 'col-span-1 row-span-1',
-    iconBg: 'bg-slate/10',
-    iconColor: 'text-slate'
-  }
 ];
 
 function BentoCard({ service, index, onClick }: { service: typeof services[0]; index: number; onClick?: () => void; key?: string | number }) {

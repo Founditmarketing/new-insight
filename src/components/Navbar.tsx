@@ -85,8 +85,17 @@ export function Navbar({ onOpenQuote, onOpenPortal }: { onOpenQuote?: () => void
             </Link>
           ))}
           <button 
+            onClick={onOpenPortal}
+            className={`ml-2 px-5 py-3 rounded-sm font-bold tracking-widest uppercase text-xs transition-all duration-300 border flex items-center justify-center gap-2 ${
+            showSolid 
+              ? 'border-ink/20 text-ink/70 hover:text-accent hover:border-accent' 
+              : 'border-paper/20 text-paper/70 hover:text-accent hover:border-accent'
+          }`}>
+            Client Login
+          </button>
+          <button 
             onClick={onOpenQuote}
-            className={`ml-4 px-8 py-4 rounded-sm font-semibold tracking-widest uppercase text-sm transition-all duration-300 shadow-institutional flex items-center justify-center ${
+            className={`ml-2 px-8 py-4 rounded-sm font-semibold tracking-widest uppercase text-sm transition-all duration-300 shadow-institutional flex items-center justify-center ${
             showSolid 
               ? 'bg-accent text-paper hover:bg-ink' 
               : 'bg-paper text-ink hover:bg-accent hover:text-paper shadow-[0_0_20px_rgba(255,255,255,0.1)]'
@@ -169,15 +178,26 @@ export function Navbar({ onOpenQuote, onOpenPortal }: { onOpenQuote?: () => void
               (318) 561-8000
             </a>
 
+            {/* Client Login */}
+            <button 
+              onClick={() => {
+                setIsMobileMenuOpen(false);
+                onOpenPortal?.();
+              }}
+              className="mt-8 border border-white/20 text-white/70 px-8 py-4 rounded-sm font-bold tracking-widest uppercase text-xs flex items-center justify-center hover:border-accent hover:text-accent transition-colors w-full"
+            >
+              Client Login / Pay Bill
+            </button>
+
             {/* CTA Button */}
             <button 
               onClick={() => {
                 setIsMobileMenuOpen(false);
                 onOpenQuote?.();
               }}
-              className="mt-8 bg-accent text-white px-8 py-5 rounded-sm font-bold tracking-widest uppercase text-sm flex items-center justify-center hover:bg-white hover:text-ink transition-colors w-full shadow-[0_0_30px_rgba(227,38,54,0.3)]"
+              className="mt-3 bg-accent text-white px-8 py-5 rounded-sm font-bold tracking-widest uppercase text-sm flex items-center justify-center hover:bg-white hover:text-ink transition-colors w-full shadow-[0_0_30px_rgba(227,38,54,0.3)]"
             >
-              Get a Quote
+              Compare Rates
             </button>
           </div>
 
