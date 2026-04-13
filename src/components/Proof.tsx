@@ -1,6 +1,5 @@
 import { motion, animate, useInView } from 'motion/react';
 import { useEffect, useRef, useState } from 'react';
-import { Umbrella } from 'lucide-react';
 
 function AnimatedStat({ value, prefix = "", suffix = "" }: { value: number, prefix?: string, suffix?: string }) {
   const [displayValue, setDisplayValue] = useState(0);
@@ -27,81 +26,9 @@ function AnimatedStat({ value, prefix = "", suffix = "" }: { value: number, pref
 
 export function Proof() {
   return (
-    <div className="flex flex-col border-t border-slate/10">
+    <div className="flex flex-col">
       
-      {/* SECTION 1: The Independent Advantage (Carriers) */}
-      <section className="py-24 px-6 md:px-12 lg:px-24 bg-paper">
-        <div className="max-w-7xl mx-auto">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
-            className="flex items-center gap-4 mb-8"
-          >
-            <span className="text-sm font-bold tracking-widest uppercase text-accent font-mono">
-              03 // Why Independent
-            </span>
-          </motion.div>
-          
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 mb-16">
-            <h3 className="text-fluid-h3 font-sans font-bold text-ink tracking-tight">
-              We shop 50+ carriers so you don’t have to.
-            </h3>
-            <p className="text-lg text-ink/70 font-medium leading-relaxed">
-              A captive agent can only sell you their company's policy — even if it's not the best fit. 
-              Because we're independent, we work with over 50 carriers to compare rates, coverage options, 
-              and terms. That means better choices for you — not a one-size-fits-all product.
-            </p>
-          </div>
-          
-          <motion.div 
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 1.5, delay: 0.2 }}
-            className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-12 items-center justify-items-center pt-12 border-t border-slate/10"
-          >
-            {/* Chubb */}
-            <div className="w-full flex justify-center items-center opacity-60 hover:opacity-100 transition-opacity duration-500 cursor-default grayscale hover:grayscale-0">
-              <span className="font-sans font-black text-3xl tracking-tighter text-[#000000]">CHUBB</span>
-            </div>
-            
-            {/* PURE */}
-            <div className="w-full flex justify-center items-center opacity-60 hover:opacity-100 transition-opacity duration-500 cursor-default grayscale hover:grayscale-0 mt-1">
-              <span className="font-serif font-light text-3xl tracking-[0.25em] text-[#000000]">PURE</span>
-            </div>
-
-            {/* Cincinnati */}
-            <div className="w-full flex justify-center items-center opacity-70 hover:opacity-100 transition-opacity duration-500 cursor-default grayscale hover:grayscale-0">
-              <div className="flex flex-col items-center leading-none">
-                <span className="font-serif italic font-bold text-2xl text-[#003B71]">Cincinnati</span>
-                <span className="font-sans font-bold text-[0.45rem] tracking-[0.2em] text-[#000000] mt-1">INSURANCE COMPANIES</span>
-              </div>
-            </div>
-
-            {/* Travelers */}
-            <div className="w-full flex justify-center items-center opacity-60 hover:opacity-100 transition-opacity duration-500 cursor-default grayscale hover:grayscale-0 gap-2">
-              <Umbrella className="w-8 h-8 text-[#E2231A] fill-current" />
-              <span className="font-sans font-black text-xl tracking-wide text-[#000000] mt-1 pt-0.5">TRAVELERS</span>
-            </div>
-
-            {/* AIG */}
-            <div className="w-full flex justify-center items-center opacity-60 hover:opacity-100 transition-opacity duration-500 cursor-default grayscale hover:grayscale-0">
-              <div className="bg-[#00A4E4] px-2 py-1 flex items-center justify-center">
-                <span className="font-sans font-bold text-2xl text-white">AIG</span>
-              </div>
-            </div>
-
-            {/* Progressive */}
-            <div className="w-full flex justify-center items-center opacity-60 hover:opacity-100 transition-opacity duration-500 cursor-default grayscale hover:grayscale-0 mt-1">
-              <span className="font-sans font-bold italic text-2xl tracking-tighter text-[#008CC1]">PROGRESSIVE</span>
-            </div>
-          </motion.div>
-        </div>
-      </section>
-
-      {/* SECTION 2: Our Impact (Stats) */}
+      {/* Stats Section */}
       <section className="py-24 px-6 md:px-12 lg:px-24 bg-ink text-paper relative overflow-hidden">
         {/* Subtle background abstract element */}
         <div className="absolute inset-0 bg-accent/5 skew-y-12 scale-150 transform-gpu opacity-50" />

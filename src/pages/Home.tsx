@@ -4,7 +4,9 @@ import { ServicesGrid } from '../components/ServicesGrid';
 import { Philosophy } from '../components/Philosophy';
 import { Proof } from '../components/Proof';
 import { Testimonials } from '../components/Testimonials';
-import { RiskAnatomy } from '../components/RiskAnatomy';
+import { PremiumEstimator } from '../components/PremiumEstimator';
+import { RiskScore } from '../components/RiskScore';
+import { CarrierShowcase } from '../components/CarrierShowcase';
 import { CTA } from '../components/CTA';
 import { SEO } from '../components/SEO';
 import { getOrganizationSchema } from '../seo/structured-data';
@@ -25,10 +27,12 @@ export function Home({ onOpenQuote, onOpenPortal }: HomeProps) {
       />
       <Hero onOpenQuote={onOpenQuote} />
       <LouisianaStory />
+      <PremiumEstimator />
       <Philosophy />
+      <CarrierShowcase />
       <ServicesGrid />
+      <RiskScore />
       <Proof />
-      <RiskAnatomy />
       <Testimonials />
       <CTA onOpenQuote={onOpenQuote} />
     </>
