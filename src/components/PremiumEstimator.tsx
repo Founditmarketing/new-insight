@@ -4,20 +4,20 @@ import { Home, Car, Building2, ArrowRight, ShieldCheck, TrendingDown, Sparkles }
 
 // Realistic Louisiana premium ranges by ZIP prefix and type
 const premiumData: Record<string, Record<string, [number, number]>> = {
-  '700': { home: [2200, 4100], auto: [1400, 2600], business: [3000, 7200] },
-  '701': { home: [2200, 4100], auto: [1400, 2600], business: [3000, 7200] },
-  '704': { home: [1800, 3200], auto: [1200, 2100], business: [2400, 5600] },
-  '705': { home: [1400, 2600], auto: [1000, 1800], business: [2000, 4200] },
-  '706': { home: [2000, 3800], auto: [1200, 2200], business: [2600, 5400] },
-  '707': { home: [1500, 2700], auto: [1000, 1700], business: [2100, 4400] },
-  '708': { home: [1600, 2800], auto: [1100, 1900], business: [2200, 4800] },
-  '711': { home: [1300, 2400], auto: [950, 1700], business: [1900, 3800] },
-  '712': { home: [1100, 2000], auto: [850, 1500], business: [1600, 3200] },
-  '713': { home: [1200, 2200], auto: [900, 1600], business: [1800, 3600] },
+  '700': { home: [1400, 2800], auto: [900, 1600], business: [1800, 4200] },
+  '701': { home: [1400, 2800], auto: [900, 1600], business: [1800, 4200] },
+  '704': { home: [1100, 2200], auto: [750, 1400], business: [1500, 3400] },
+  '705': { home: [900, 1800], auto: [650, 1200], business: [1200, 2600] },
+  '706': { home: [1200, 2600], auto: [800, 1500], business: [1600, 3600] },
+  '707': { home: [950, 1900], auto: [650, 1150], business: [1300, 2800] },
+  '708': { home: [1000, 2000], auto: [700, 1300], business: [1400, 3000] },
+  '711': { home: [800, 1600], auto: [600, 1100], business: [1100, 2400] },
+  '712': { home: [700, 1400], auto: [550, 1000], business: [1000, 2000] },
+  '713': { home: [750, 1500], auto: [580, 1050], business: [1100, 2200] },
 };
 
 const defaultRange: Record<string, [number, number]> = {
-  home: [1400, 2800], auto: [1000, 1900], business: [2200, 4800],
+  home: [900, 1900], auto: [650, 1250], business: [1400, 3000],
 };
 
 const coverageTypes = [
