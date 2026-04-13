@@ -100,11 +100,12 @@ export function Concierge() {
         animate={{ scale: 1, opacity: 1 }}
         transition={{ delay: 2, type: 'spring', bounce: 0.5 }}
         onClick={() => setIsOpen(true)}
-        className={`fixed bottom-6 right-6 z-50 w-16 h-16 rounded-full bg-accent text-white shadow-institutional flex items-center justify-center hover:scale-110 transition-transform ${isOpen ? 'hidden' : 'flex'}`}
+        aria-label="Open chat assistant"
+        className={`concierge-wrapper fixed bottom-6 right-6 z-50 w-16 h-16 rounded-full bg-accent text-white shadow-institutional flex items-center justify-center hover:scale-110 transition-transform ${isOpen ? 'hidden' : 'flex'}`}
       >
-        <MessageSquare className="w-7 h-7" />
+        <MessageSquare className="w-7 h-7" aria-hidden="true" />
         {/* Notification Dot */}
-        <span className="absolute top-0 right-0 w-4 h-4 bg-ink rounded-full border-2 border-paper animate-pulse" />
+        <span className="absolute top-0 right-0 w-4 h-4 bg-ink rounded-full border-2 border-paper animate-pulse" aria-hidden="true" />
       </motion.button>
 
       {/* Chat Window Overlay */}

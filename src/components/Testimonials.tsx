@@ -19,19 +19,19 @@ const reviewsRow2 = [
   { id: 12, author: "Karen S.", entity: "Ponchatoula, LA", text: "Switched all our policies over last year. Better coverage, better price, and they actually pick up the phone.", stars: 5 },
 ];
 
-function ReviewCard({ review }: { review: any; key?: string | number }) {
+function ReviewCard({ review }: { review: typeof reviewsRow1[0] }) {
   return (
     <div className="flex-shrink-0 w-[300px] md:w-[420px] whitespace-normal bg-white rounded-2xl p-6 md:p-8 border border-slate/10 shadow-[0_10px_20px_-10px_rgba(0,0,0,0.05)] mx-3 group hover:shadow-[0_30px_60px_-15px_rgba(227,38,54,0.15)] hover:-translate-y-2 transition-all duration-500 cursor-pointer relative z-10 hover:z-50 bg-opacity-90 backdrop-blur-xl flex flex-col justify-between min-h-[260px]">
-      <div className="flex items-center gap-1 mb-4">
+      <div className="flex items-center gap-1 mb-4" aria-label={`${review.stars} out of 5 stars`}>
         {[...Array(review.stars)].map((_, i) => (
-          <Star key={i} className="w-4 h-4 text-amber-400 fill-amber-400" />
+          <Star key={i} className="w-4 h-4 text-amber-400 fill-amber-400" aria-hidden="true" />
         ))}
       </div>
       <p className="font-serif italic text-ink/80 text-lg md:text-xl leading-relaxed mb-6">
         "{review.text}"
       </p>
       <div className="mt-auto flex items-center gap-4 border-t border-slate/10 pt-4">
-        <div className="w-10 h-10 rounded-full bg-slate/10 flex flex-shrink-0 items-center justify-center font-bold text-ink">
+        <div className="w-10 h-10 rounded-full bg-slate/10 flex flex-shrink-0 items-center justify-center font-bold text-ink" aria-hidden="true">
           {review.author.charAt(0)}
         </div>
         <div className="flex flex-col">
@@ -47,15 +47,14 @@ function ReviewCard({ review }: { review: any; key?: string | number }) {
   );
 }
 
-// A single marquee row that duplicates its children for infinite scrolling
-function MarqueeRow({ reviews, reverse = false }: { reviews: any[], reverse?: boolean }) {
-  // Duplicate the array to ensure we have enough content to scroll infinitely (creates the illusion of an endless loop)
-  const duplicatedReviews = [...reviews, ...reviews, ...reviews, ...reviews];
-  
+// CSS-only marquee — only 2x duplication (minimum for seamless loop)
+function MarqueeRow({ reviews, reverse = false }: { reviews: typeof reviewsRow1, reverse?: boolean }) {
+  const duplicated = [...reviews, ...reviews]; // Only 2x, not 4x
+
   return (
-    <div className="relative flex overflow-hidden group">
+    <div className="relative flex overflow-hidden group" aria-hidden="true">
       <div className={`flex whitespace-nowrap ${reverse ? 'animate-marquee-reverse' : 'animate-marquee'} group-hover:[animation-play-state:paused] py-4`}>
-        {duplicatedReviews.map((review, i) => (
+        {duplicated.map((review, i) => (
           <ReviewCard key={`${review.id}-${i}`} review={review} />
         ))}
       </div>
@@ -65,10 +64,10 @@ function MarqueeRow({ reviews, reverse = false }: { reviews: any[], reverse?: bo
 
 export function Testimonials() {
   return (
-    <section id="reviews" className="py-24 md:py-32 bg-[#F8F9FA] text-ink relative overflow-hidden">
+    <section id="reviews" className="py-24 md:py-32 bg-[#F8F9FA] text-ink relative overflow-hidden" aria-labelledby="testimonials-heading">
       
       {/* Background Architectural Mesh */}
-      <div className="absolute inset-0 opacity-[0.03] pointer-events-none z-0" 
+      <div className="absolute inset-0 opacity-[0.03] pointer-events-none z-0" aria-hidden="true"
            style={{ backgroundImage: 'radial-gradient(#000 1px, transparent 1px)', backgroundSize: '24px 24px' }} />
 
       <div className="max-w-7xl mx-auto px-6 md:px-12 lg:px-24 mb-16 relative z-20">
@@ -88,6 +87,7 @@ export function Testimonials() {
             </motion.div>
             
             <motion.h2
+              id="testimonials-heading"
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
@@ -99,7 +99,9 @@ export function Testimonials() {
           </div>
 
           <motion.a 
-            href="#"
+            href="https://www.google.com/maps/search/Insight+Insurance+Louisiana"
+            target="_blank"
+            rel="noopener noreferrer"
             initial={{ opacity: 0, x: 20 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
@@ -111,14 +113,24 @@ export function Testimonials() {
         </div>
       </div>
 
-      {/* The Draggable Marquee Matrix! */}
+      {/* The Marquee */}
       <div className="relative w-full overflow-hidden flex flex-col gap-2 z-10 py-4 pb-12">
-        {/* Soft edge masks to fade out the scrolling cards at screen edges */}
-        <div className="absolute inset-y-0 left-0 w-12 md:w-32 bg-gradient-to-r from-[#F8F9FA] to-transparent z-20 pointer-events-none" />
-        <div className="absolute inset-y-0 right-0 w-12 md:w-32 bg-gradient-to-l from-[#F8F9FA] to-transparent z-20 pointer-events-none" />
+        {/* Soft edge masks */}
+        <div className="absolute inset-y-0 left-0 w-12 md:w-32 bg-gradient-to-r from-[#F8F9FA] to-transparent z-20 pointer-events-none" aria-hidden="true" />
+        <div className="absolute inset-y-0 right-0 w-12 md:w-32 bg-gradient-to-l from-[#F8F9FA] to-transparent z-20 pointer-events-none" aria-hidden="true" />
         
         <MarqueeRow reviews={reviewsRow1} />
         <MarqueeRow reviews={reviewsRow2} reverse={true} />
+      </div>
+
+      {/* Screen-reader accessible reviews list */}
+      <div className="sr-only">
+        <h3>Client Reviews</h3>
+        <ul>
+          {[...reviewsRow1, ...reviewsRow2].map(r => (
+            <li key={r.id}>{r.author} from {r.entity}: "{r.text}" — {r.stars} stars</li>
+          ))}
+        </ul>
       </div>
 
     </section>

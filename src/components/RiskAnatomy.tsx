@@ -65,6 +65,7 @@ export function RiskAnatomy() {
             className="text-lg text-paper/70 font-medium"
           >
             Hover over the hotspots below to see the kinds of things we look for when reviewing a home policy.
+            <span className="block md:hidden text-sm mt-2 text-paper/50">(Tap a hotspot to learn more)</span>
           </motion.p>
         </div>
 
