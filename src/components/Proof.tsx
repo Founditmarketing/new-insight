@@ -1,23 +1,26 @@
-import { motion, useMotionValue, useTransform, animate, useInView } from 'motion/react';
-import { useEffect, useRef } from 'react';
+import { motion, animate, useInView } from 'motion/react';
+import { useEffect, useRef, useState } from 'react';
 import { Umbrella } from 'lucide-react';
 
 function AnimatedStat({ value, prefix = "", suffix = "" }: { value: number, prefix?: string, suffix?: string }) {
-  const count = useMotionValue(0);
-  const rounded = useTransform(count, Math.round);
+  const [displayValue, setDisplayValue] = useState(0);
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, margin: "-50px" });
 
   useEffect(() => {
     if (isInView) {
-      const controls = animate(count, value, { duration: 2.5, ease: [0.16, 1, 0.3, 1] });
+      const controls = animate(0, value, { 
+        duration: 2.5, 
+        ease: [0.16, 1, 0.3, 1],
+        onUpdate: (v) => setDisplayValue(Math.round(v)),
+      });
       return controls.stop;
     }
-  }, [isInView, count, value]);
+  }, [isInView, value]);
 
   return (
     <span ref={ref} className="inline-flex">
-      {prefix}<motion.span>{rounded}</motion.span>{suffix}
+      {prefix}{displayValue}{suffix}
     </span>
   );
 }
