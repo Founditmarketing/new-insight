@@ -8,21 +8,21 @@ const locations = [
     city: 'Alexandria',
     tagline: 'Rooted in Alexandria.',
     image: '/images/alexandria.png',
-    description: 'Home base for our team. We help families and businesses across Central Louisiana find coverage that actually works for them.'
+    description: 'Where it all started. Central Louisiana families, farms, and small businesses — we\'ve been here long enough to know what keeps people up at night.'
   },
   {
     id: 'ponchatoula',
     city: 'Ponchatoula',
     tagline: 'Home in Ponchatoula.',
     image: '/images/ponchatoula.png',
-    description: 'We live here too. From historic homes to local shops, we know what it takes to protect what matters in this community.'
+    description: 'Small town, big storms. We protect the historic homes, the strawberry farms, and the neighbors we see at the grocery store.'
   },
   {
     id: 'slidell',
     city: 'Slidell',
     tagline: 'Serving Slidell.',
     image: '/images/slidell.png',
-    description: 'Coastal living comes with real risks. We help Slidell homeowners and businesses find the right coverage for waterfront life.'
+    description: 'Lake Pontchartrain on one side, the Gulf on the other. We know coastal risk because we live in it — and we build policies around it.'
   }
 ];
 
@@ -145,7 +145,7 @@ export function LouisianaStory() {
   const titleY = useTransform(scrollYProgress, [0, 1], ["-20%", "20%"]);
 
   return (
-    <section id="story" ref={containerRef} className="py-24 md:py-32 bg-[#0A0A0A] text-paper relative overflow-hidden">
+    <section id="story" ref={containerRef} className="py-24 md:py-32 bg-ink text-paper relative overflow-hidden">
       
       {/* Background Architectural Texture & Particles */}
       <div className="absolute inset-0 opacity-[0.02] pointer-events-none z-0" 
