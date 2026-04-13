@@ -7,18 +7,18 @@ const services = [
   // ROW 1 & 2
   { 
     id: 'home', 
-    title: 'High-Value Home', 
+    title: 'Home', 
     icon: Home, 
-    statement: 'Safeguarding your most significant sanctuary with absolute precision. Designed specifically for properties exceeding $2M in replacement cost, guaranteeing unlimited restoration capabilities against catastrophic Gulf Coast loss.',
+    statement: 'Your home is probably your biggest investment. We\'ll make sure it\'s covered the right way — not just the cheapest way. We look at replacement cost, storm exposure, and what actually matters to your family.',
     spanClass: 'col-span-1 md:col-span-2 row-span-1 md:row-span-2',
     iconBg: 'bg-ink/5',
     iconColor: 'text-ink group-hover:text-accent transition-colors'
   },
   { 
     id: 'commercial', 
-    title: 'Commercial Entity', 
+    title: 'Business', 
     icon: Briefcase, 
-    statement: 'Protecting the legacy of local business builders. From physical storefronts in Ponchatoula to multi-state maritime operations, we engineer comprehensive operational continuity architectures.',
+    statement: 'Whether you run a shop in Ponchatoula or manage operations across the Gulf, we\'ll find the right liability and property coverage so you can focus on your work.',
     spanClass: 'col-span-1 md:col-span-2 row-span-1 md:row-span-2',
     iconBg: 'bg-ink/5',
     iconColor: 'text-ink group-hover:text-accent transition-colors'
@@ -26,18 +26,18 @@ const services = [
   // ROW 3
   { 
     id: 'auto', 
-    title: 'Premium Auto', 
+    title: 'Auto', 
     icon: Car, 
-    statement: 'Coverage that respects the engineering of your vehicles.',
+    statement: 'We\'ll find you solid auto coverage and walk you through what you\'re actually paying for.',
     spanClass: 'col-span-1 row-span-1',
     iconBg: 'bg-slate/10',
     iconColor: 'text-slate'
   },
   { 
     id: 'marine', 
-    title: 'Marine Portfolio', 
+    title: 'Boats & Marine', 
     icon: Anchor, 
-    statement: 'Specialized coverage for hull, cargo, and open water liabilities.',
+    statement: 'Pontoon, bass boat, or something bigger — we can write a policy for it.',
     spanClass: 'col-span-1 row-span-1',
     iconBg: 'bg-slate/10',
     iconColor: 'text-slate'
@@ -46,7 +46,7 @@ const services = [
     id: 'flood', 
     title: 'Flood & Water', 
     icon: Droplets, 
-    statement: 'Essential defense against Louisiana\'s rising tides and storm surges.',
+    statement: 'In Louisiana, flood insurance isn\'t optional. We\'ll help you sort through NFIP and private options.',
     spanClass: 'col-span-1 row-span-1',
     iconBg: 'bg-slate/10',
     iconColor: 'text-slate'
@@ -55,7 +55,7 @@ const services = [
     id: 'hurricane', 
     title: 'Named Storm', 
     icon: Wind, 
-    statement: 'Resilience specifically engineered for the Gulf Coast reality.',
+    statement: 'Hurricane season is part of life here. We make sure your policy is ready for it.',
     spanClass: 'col-span-1 row-span-1',
     iconBg: 'bg-slate/10',
     iconColor: 'text-slate'
@@ -65,7 +65,7 @@ const services = [
     id: 'life', 
     title: 'Life & Legacy', 
     icon: Heart, 
-    statement: 'Securing the generational transfer of wealth safely into the future.',
+    statement: 'Nobody likes thinking about this stuff, but the people you love will be glad you did.',
     spanClass: 'col-span-1 row-span-1',
     iconBg: 'bg-slate/10',
     iconColor: 'text-slate'
@@ -76,7 +76,7 @@ const services = [
     id: 'surety', 
     title: 'Surety Bonds', 
     icon: ShieldAlert, 
-    statement: 'Guaranteeing performance, compliance, and trust in all contracts.',
+    statement: 'Need a Performance or Bid Bond? We work with contractors every day to get these done right.',
     spanClass: 'col-span-1 row-span-1',
     iconBg: 'bg-slate/10',
     iconColor: 'text-slate'
@@ -85,7 +85,7 @@ const services = [
     id: 'umbrella', 
     title: 'Excess Liability', 
     icon: Umbrella, 
-    statement: 'The ultimate overarching net for complex physical and digital portfolios.',
+    statement: 'Extra protection that kicks in when your other policies max out. Worth a conversation.',
     spanClass: 'col-span-1 row-span-1',
     iconBg: 'bg-slate/10',
     iconColor: 'text-slate'
@@ -170,7 +170,7 @@ export function ServicesGrid() {
               className="flex items-center gap-4 mb-6"
             >
               <span className="text-sm font-bold tracking-widest uppercase text-accent font-mono">
-                02 // Specialized Portfolios
+                02 // What We Cover
               </span>
             </motion.div>
             
@@ -181,7 +181,7 @@ export function ServicesGrid() {
               transition={{ duration: 0.8, delay: 0.1, ease: [0.16, 1, 0.3, 1] }}
               className="text-fluid-h2 font-sans font-bold text-ink tracking-tight leading-[1.1]"
             >
-              Uncompromising protection for your <span className="text-accent italic font-serif opacity-90">greatest assets.</span>
+              Coverage that fits <span className="text-accent italic font-serif opacity-90">your life.</span>
             </motion.h2>
           </div>
           
@@ -193,7 +193,7 @@ export function ServicesGrid() {
             className="flex-shrink-0"
           >
             <button className="bg-white border border-slate/10 text-ink px-8 py-4 rounded-full font-bold tracking-widest uppercase text-xs flex items-center gap-3 hover:border-accent hover:text-accent transition-colors shadow-sm cursor-pointer group">
-              Audit Your Risk
+              Get a Quote
               <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
             </button>
           </motion.div>

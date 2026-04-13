@@ -28,19 +28,19 @@ export function Concierge() {
   // The predefined conversation flow
   const flow = [
     {
-      text: "Hello. I'm the Insight Digital Advisor. Would you like a rapid, 3-question coverage audit?",
+      text: "Hey there! I can help you get a quick idea of what kind of coverage might make sense for you. Just 3 quick questions — want to try it?",
       options: ["Yes, let's start", "Maybe later"]
     },
     {
-      text: "Excellent. First, do you currently own your primary residence?",
+      text: "Great! First — do you own your home or rent?",
       options: ["Yes, I own", "No, I rent"]
     },
     {
-      text: "Understood. Are there any drivers under the age of 25 in your household?",
+      text: "Got it. Are there any drivers under 25 in your household?",
       options: ["Yes, young drivers", "No young drivers"]
     },
     {
-      text: "Finally, do you own any secondary assets like boats, RVs, ATVs, or motorcycles?",
+      text: "Last one — do you own any boats, RVs, ATVs, or anything like that?",
       options: ["Yes, I have toys", "No secondary assets"]
     }
   ];
@@ -73,7 +73,7 @@ export function Concierge() {
 
     // Determine next step
     if (step === 0 && option === "Maybe later") {
-      simulateBotTyping("No problem. I'll be here when you're ready.");
+      simulateBotTyping("No worries! We're here whenever you need us.");
       return;
     }
 
@@ -124,7 +124,7 @@ export function Concierge() {
                   <Bot className="w-5 h-5 text-white" />
                 </div>
                 <div>
-                  <h3 className="text-sm font-bold font-sans text-paper tracking-tight leading-tight">Insight AI</h3>
+                  <h3 className="text-sm font-bold font-sans text-paper tracking-tight leading-tight">Insight Helper</h3>
                   <div className="text-[10px] font-bold tracking-widest uppercase text-accent flex items-center gap-1">
                     <span className="w-1.5 h-1.5 rounded-full bg-accent animate-pulse" /> Online
                   </div>
@@ -191,13 +191,13 @@ export function Concierge() {
                 >
                   <div className="flex items-center gap-2 mb-3">
                     <ShieldAlert className="w-5 h-5 text-accent" />
-                    <h4 className="text-sm font-bold text-accent tracking-widest uppercase">Coverage Gap Report</h4>
+                    <h4 className="text-sm font-bold text-accent tracking-widest uppercase">Quick Coverage Check</h4>
                   </div>
                   <p className="text-xs text-paper/80 leading-relaxed mb-4">
-                    Based on your rapid profile, you have complex liability exposure. Louisiana homeowners with teenage drivers and secondary leisure assets require specialized overarching protection, typically a $1M+ Umbrella policy, which is missing from 80% of standard policies.
+                    Based on what you told us, you might want to look into an Umbrella policy. Louisiana homeowners with young drivers and recreational vehicles often have more liability exposure than a standard policy covers. It's worth a quick conversation.
                   </p>
                   <button className="w-full bg-accent text-white py-3 rounded-md text-xs font-bold tracking-widest uppercase hover:bg-white hover:text-ink transition-colors shadow-[0_0_15px_rgba(227,38,54,0.4)]">
-                    Schedule Detailed Audit
+                    Let's Talk About It
                   </button>
                 </motion.div>
               )}

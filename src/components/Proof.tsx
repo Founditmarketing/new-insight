@@ -37,19 +37,18 @@ export function Proof() {
             className="flex items-center gap-4 mb-8"
           >
             <span className="text-sm font-bold tracking-widest uppercase text-accent font-mono">
-              03 // The Independent Advantage
+              03 // Why Independent
             </span>
           </motion.div>
           
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 mb-16">
             <h3 className="text-fluid-h3 font-sans font-bold text-ink tracking-tight">
-              The math of 50+ elite underwriting carriers.
+              We shop 50+ carriers so you don’t have to.
             </h3>
             <p className="text-lg text-ink/70 font-medium leading-relaxed">
-              Captive agents are bound to a single provider, forcing your unique life into their rigid boxes. 
-              As an independent firm, Insight Insurance leverages relationships with over 50 elite carriers. 
-              We don't work for them; we work for you. We analyze the market, negotiate terms, and construct 
-              a portfolio that offers maximum coverage with absolute efficiency.
+              A captive agent can only sell you their company's policy — even if it's not the best fit. 
+              Because we're independent, we work with over 50 carriers to compare rates, coverage options, 
+              and terms. That means better choices for you — not a one-size-fits-all product.
             </p>
           </div>
           
@@ -113,28 +112,27 @@ export function Proof() {
             className="flex items-center gap-4 mb-8"
           >
             <span className="text-sm font-bold tracking-widest uppercase text-accent font-mono">
-              04 // Institutional Impact
+              04 // Our Track Record
             </span>
           </motion.div>
           
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 mb-24">
             <h3 className="text-fluid-h3 font-sans font-bold tracking-tight text-paper">
-              Human-Centric Claims Mitigation.
+              When Things Go Wrong, We’re Here.
             </h3>
             <p className="text-lg text-paper/70 font-medium leading-relaxed">
-              When the unthinkable happens, you don't need a 1-800 number; you need a partner. 
-              Our 'friend in the business' promise means we stand between you and the bureaucracy. 
-              We advocate, we expedite, and we ensure that the protection you purchased performs 
-              exactly as engineered.
+              When you file a claim, you shouldn’t have to deal with a 1-800 number and endless hold music. 
+              We pick up the phone, walk you through it, and advocate on your behalf. 
+              That’s the whole point of having a local agent.
             </p>
           </div>
 
           <div className="grid grid-cols-2 lg:grid-cols-4 gap-12 lg:gap-8 pt-12 border-t border-paper/10">
             {[
-              { num: 25, prefix: "", suffix: "+", label: "Years of Excellence" },
-              { num: 140, prefix: "$", suffix: "M", label: "Assets Protected" },
-              { num: 10, prefix: "", suffix: "k+", label: "Claims Managed" },
-              { num: 98, prefix: "", suffix: "%", label: "Client Retention" }
+              { num: 25, prefix: "", suffix: "+", label: "Years Serving Louisiana" },
+              { num: 140, prefix: "$", suffix: "M", label: "In Coverage Written" },
+              { num: 10, prefix: "", suffix: "k+", label: "Claims Handled" },
+              { num: 98, prefix: "", suffix: "%", label: "Clients Who Stay" }
             ].map((stat, i) => (
               <motion.div 
                 key={i}

@@ -93,7 +93,7 @@ export function CTA({ onOpenQuote }: { onOpenQuote?: () => void }) {
           transition={{ duration: 0.8, delay: 0.1, ease: [0.16, 1, 0.3, 1] }}
           className="text-fluid-h2 font-sans font-bold text-paper mb-8 tracking-tight drop-shadow-[0_0_30px_rgba(255,255,255,0.3)] mix-blend-plus-lighter relative z-20"
         >
-          Ready to Find Your Protection?
+          Ready to Talk?
         </motion.h2>
 
         <motion.p 
@@ -103,7 +103,7 @@ export function CTA({ onOpenQuote }: { onOpenQuote?: () => void }) {
           transition={{ duration: 0.8, delay: 0.2, ease: [0.16, 1, 0.3, 1] }}
           className="text-xl md:text-2xl text-paper/80 font-medium leading-relaxed max-w-3xl mb-12 drop-shadow-md"
         >
-          Speak with a senior advisor today. We'll comprehensively audit your current liabilities and construct a resilient, high-performance portfolio.
+          Give us a call or fill out a quick form. We'll take a look at what you have, see if there's a better fit, and give you an honest answer — no pressure.
         </motion.p>
 
         <motion.div 

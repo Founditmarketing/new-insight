@@ -5,18 +5,18 @@ const reviewsRow1 = [
   { id: 1, author: "Michael T.", entity: "Alexandria, LA", text: "Saved us over $2,000 a year with significantly better coverage. The team is hyper-responsive.", stars: 5 },
   { id: 2, author: "Sarah J.", entity: "Ponchatoula, LA", text: "Handled our claim immediately after the storm while everyone else was stuck on 1-800 numbers.", stars: 5 },
   { id: 3, author: "David M.", entity: "Slidell, LA", text: "Insight transformed our commercial liability architecture. True partners in Louisiana.", stars: 5 },
-  { id: 4, author: "Robert C.", entity: "Pineville, LA", text: "Unmatched expertise in high-value home insurance. They caught critical gaps my old captive agent completely missed.", stars: 5 },
-  { id: 9, author: "William P.", entity: "Natchitoches, LA", text: "Insight engineered a massive umbrella policy for our portfolio. I finally sleep well during hurricane season.", stars: 5 },
-  { id: 10, author: "Jessica H.", entity: "Alexandria, LA", text: "The team locally here in Alex is world-class. They treat your assets like their own.", stars: 5 },
+  { id: 4, author: "Robert C.", entity: "Pineville, LA", text: "They caught gaps in my old policy I didn't even know were there. Really glad I made the switch.", stars: 5 },
+  { id: 9, author: "William P.", entity: "Natchitoches, LA", text: "Insight helped us put together an umbrella policy that just makes sense. I finally feel good about hurricane season.", stars: 5 },
+  { id: 10, author: "Jessica H.", entity: "Alexandria, LA", text: "The team in Alex is fantastic. They treat you like a neighbor, not a policy number.", stars: 5 },
 ];
 
 const reviewsRow2 = [
-  { id: 5, author: "Amanda L.", entity: "Mandeville, LA", text: "Their preventative risk audits for our coastal property were eye-opening. Exceptional, world-class service.", stars: 5 },
+  { id: 5, author: "Amanda L.", entity: "Mandeville, LA", text: "They did a walkthrough of our coastal property and explained exactly where we were underinsured. Really helpful.", stars: 5 },
   { id: 6, author: "James W.", entity: "Baton Rouge, LA", text: "We moved our entire corporate fleet over. The premium savings and executive service level are night and day.", stars: 5 },
-  { id: 7, author: "Elena R.", entity: "Hammond, LA", text: "A breath of fresh air. They actually answer the phone and know exactly who you are. Best agency on the Northshore.", stars: 5 },
+  { id: 7, author: "Elena R.", entity: "Hammond, LA", text: "A breath of fresh air. They actually answer the phone and know exactly who you are. Can't say enough good things.", stars: 5 },
   { id: 8, author: "Thomas K.", entity: "Covington, LA", text: "Secured our historic estate perfectly. The onboarding process was seamless, transparent, and incredibly professional.", stars: 5 },
-  { id: 11, author: "Brian D.", entity: "Slidell, LA", text: "Incredible marine portfolio structuring. Absolutely dialed in to the reality of operating heavily in the Gulf.", stars: 5 },
-  { id: 12, author: "Karen S.", entity: "Ponchatoula, LA", text: "Switched all our policies over last year. Unbeatable value and true white-glove concierge service from day one.", stars: 5 },
+  { id: 11, author: "Brian D.", entity: "Slidell, LA", text: "They really understand marine coverage. Know the Gulf, know the risks. Made the whole process easy.", stars: 5 },
+  { id: 12, author: "Karen S.", entity: "Ponchatoula, LA", text: "Switched all our policies over last year. Better coverage, better price, and they actually pick up the phone.", stars: 5 },
 ];
 
 function ReviewCard({ review }: { review: any; key?: string | number }) {
@@ -83,7 +83,7 @@ export function Testimonials() {
               className="flex items-center gap-4 mb-6"
             >
               <span className="text-sm font-bold tracking-widest uppercase text-accent font-mono bg-accent/5 px-3 py-1 rounded-full border border-accent/20">
-                05 // Proof of Architecture
+                05 // What Our Clients Say
               </span>
             </motion.div>
             
@@ -94,7 +94,7 @@ export function Testimonials() {
               transition={{ duration: 0.8, delay: 0.1, ease: [0.16, 1, 0.3, 1] }}
               className="text-fluid-h2 font-sans font-bold text-ink tracking-tight leading-[1.1]"
             >
-              Over 100 <span className="text-accent italic font-serif">5-Star</span> Verifications.
+              Over 100 <span className="text-accent italic font-serif">5-Star</span> Reviews.
             </motion.h2>
           </div>
 

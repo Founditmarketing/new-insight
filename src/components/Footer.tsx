@@ -18,7 +18,7 @@ export function Footer() {
             <span className="text-[10px] uppercase tracking-widest font-semibold text-accent/80 ml-2">Insurance</span>
           </div>
           <p className="text-ink/70 text-sm font-medium leading-relaxed max-w-sm">
-            Finding the right protection for Louisiana's most significant private assets and commercial enterprises.
+            Honest insurance advice for Louisiana families and businesses. We'd love the chance to earn your trust.
           </p>
         </div>
 
@@ -47,9 +47,9 @@ export function Footer() {
 
         {/* Quick Links */}
         <div className="flex flex-col gap-6">
-          <h4 className="text-sm font-bold tracking-wide uppercase text-accent">Excellence</h4>
+          <h4 className="text-sm font-bold tracking-wide uppercase text-accent">Quick Links</h4>
           <ul className="flex flex-col gap-3 text-sm font-medium text-ink/70">
-            {['Private Client Group', 'Commercial Risk', 'Claims Concierge', 'About Our Firm', 'Strategic Partners'].map((link) => (
+            {['Personal Insurance', 'Business Insurance', 'File a Claim', 'About Us', 'Our Carriers'].map((link) => (
               <li key={link}>
                 <a href="/" className="hover:text-accent transition-colors relative inline-block group">
                   {link}

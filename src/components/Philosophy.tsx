@@ -31,12 +31,12 @@ export function Philosophy() {
             className="relative z-10 flex items-center gap-4 mb-8"
           >
             <span className="text-sm font-bold tracking-widest uppercase text-accent font-mono">
-              02 // The Insight Doctrine
+              02 // Who We Are
             </span>
           </motion.div>
           
           <h2 className="relative z-10 text-fluid-h2 font-sans font-bold text-ink mb-6 tracking-tight leading-tight">
-            The Insight<br/>Doctrine.
+            Real People.<br/>Right Here.
           </h2>
         </div>
 
@@ -49,8 +49,8 @@ export function Philosophy() {
             transition={{ duration: 0.8, delay: 0.2, ease: [0.16, 1, 0.3, 1] }}
             className="text-2xl md:text-3xl text-ink/80 font-medium leading-relaxed mb-10 tracking-tight"
           >
-            We operate on a singular premise: significant wealth demands engineered defense. 
-            A standard policy is a reactive document. At Insight, we build proactive, trusted structures designed to secure your legacy against unforeseen risk.
+            We're Justin Morgan and Cory Chandler, and we run Insight Insurance out of Alexandria and Ponchatoula. 
+            We live here, we raise our families here, and we've been through the same storms you have — literally. When you call, you get us.
           </motion.p>
           
           <div className="relative grid grid-cols-1 md:grid-cols-2 gap-12 md:gap-16 border-t border-ink/10 pt-16">
@@ -64,9 +64,9 @@ export function Philosophy() {
               <div className="w-12 h-12 rounded-lg bg-ink/5 flex items-center justify-center mb-6 border border-ink/10">
                 <Scale className="w-6 h-6 text-accent" />
               </div>
-              <h4 className="text-lg font-bold text-ink mb-3 uppercase tracking-wide">Fiduciary Precision</h4>
+              <h4 className="text-lg font-bold text-ink mb-3 uppercase tracking-wide">Independent by Choice</h4>
               <p className="text-ink/70 leading-relaxed font-medium">
-                Our independence is our greatest asset. Representing over 50 elite carriers allows us to bypass legacy constraints and construct a portfolio matrix that exactly matches your unique exposure footprint.
+                We work with over 50 carriers, which means we're not locked into selling you one company's product. We shop around, compare options, and find what actually fits your situation.
               </p>
             </motion.div>
 
@@ -83,9 +83,9 @@ export function Philosophy() {
               <div className="w-12 h-12 rounded-lg bg-ink/5 flex items-center justify-center mb-6 border border-ink/10">
                 <ShieldCheck className="w-6 h-6 text-accent" />
               </div>
-              <h4 className="text-lg font-bold text-ink mb-3 uppercase tracking-wide">Claims Concierge</h4>
+              <h4 className="text-lg font-bold text-ink mb-3 uppercase tracking-wide">Here When It Counts</h4>
               <p className="text-ink/70 leading-relaxed font-medium">
-                When unexpected events interrupt your life or business, our entire infrastructure pivots to provide immediate, trusted support. We handle the friction of claims so you retain absolute peace of mind.
+                When something goes wrong, you shouldn't have to fight your insurance company. We step in, handle the back-and-forth, and make sure your claim gets the attention it deserves.
               </p>
             </motion.div>
           </div>

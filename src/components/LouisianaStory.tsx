@@ -6,23 +6,23 @@ const locations = [
   {
     id: 'alexandria',
     city: 'Alexandria',
-    tagline: 'Anchoring Alexandria.',
+    tagline: 'Rooted in Alexandria.',
     image: '/images/alexandria.png',
-    description: 'Providing generational wealth structuring and robust commercial continuity in the heart of Louisiana.'
+    description: 'Home base for our team. We help families and businesses across Central Louisiana find coverage that actually works for them.'
   },
   {
     id: 'ponchatoula',
     city: 'Ponchatoula',
-    tagline: 'Guarding Ponchatoula.',
+    tagline: 'Home in Ponchatoula.',
     image: '/images/ponchatoula.png',
-    description: 'Safeguarding historic properties and local enterprise with tailored, high-value asset protection.'
+    description: 'We live here too. From historic homes to local shops, we know what it takes to protect what matters in this community.'
   },
   {
     id: 'slidell',
     city: 'Slidell',
-    tagline: 'Securing Slidell.',
+    tagline: 'Serving Slidell.',
     image: '/images/slidell.png',
-    description: 'Engineering resilient coastal defense protocols for waterfront estates, marine portfolios, and Gulf industry.'
+    description: 'Coastal living comes with real risks. We help Slidell homeowners and businesses find the right coverage for waterfront life.'
   }
 ];
 
@@ -91,7 +91,7 @@ function LocationCard({ loc, index }: { loc: typeof locations[0]; index: number;
           {loc.description}
         </p>
         <div className="mt-auto flex items-center justify-between">
-          <span className="text-accent text-[10px] md:text-xs uppercase tracking-widest font-bold">Explore Jurisdiction</span>
+          <span className="text-accent text-[10px] md:text-xs uppercase tracking-widest font-bold">Learn More</span>
           <div className="w-8 h-8 md:w-10 md:h-10 rounded-full border border-white/20 flex items-center justify-center bg-white/5 text-paper md:group-hover:-rotate-45 transition-transform duration-500">
             <ArrowRight className="w-3 h-3 md:w-4 md:h-4" />
           </div>
@@ -178,16 +178,16 @@ export function LouisianaStory() {
            className="flex items-center gap-4 mb-6"
         >
           <span className="text-sm font-bold tracking-widest uppercase text-accent font-mono">
-            01 // Local Jurisdiction
+            01 // Where We Are
           </span>
         </motion.div>
         
         <div className="flex flex-col md:flex-row md:items-end justify-between gap-8">
           <motion.h2 style={{ y: titleY }} className="text-fluid-h2 font-sans font-bold tracking-tight max-w-2xl leading-[1.1] text-paper">
-            A Tri-City <span className="text-accent italic font-serif">Fortress.</span>
+            Three Communities.<br/><span className="text-accent italic font-serif">One Team.</span>
           </motion.h2>
           <p className="text-paper/50 max-w-sm text-sm uppercase tracking-widest font-semibold pb-2 leading-relaxed">
-            World-class absolute risk management, engineered specifically for the Gulf Coast reality.
+            We live and work in these towns. We know the risks because we share them.
           </p>
         </div>
       </div>

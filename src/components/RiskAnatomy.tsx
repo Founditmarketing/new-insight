@@ -9,7 +9,7 @@ export function RiskAnatomy() {
       y: '25%',
       icon: Wind,
       title: 'Wind & Hail Deductibles',
-      desc: 'Louisiana roofs bear the brunt of tropical weather. We properly calibrate your separate named-storm deductibles to ensure replacing your roof doesn\'t bankrupt you.'
+      desc: 'Louisiana roofs take a beating during storm season. We make sure your wind and hail deductibles don\'t leave you stuck paying out of pocket for a new roof.'
     },
     {
       id: 'garage',
@@ -17,7 +17,7 @@ export function RiskAnatomy() {
       y: '65%',
       icon: Shield,
       title: 'Auto & Toys',
-      desc: 'Detached structures and the vehicles inside them face unique liabilities. We audit to ensure your assets are protected both on the road and in storage.'
+      desc: 'Your garage, workshop, or detached buildings need their own coverage. We check to make sure everything\'s protected — on the road and at home.'
     },
     {
       id: 'perimeter',
@@ -25,7 +25,7 @@ export function RiskAnatomy() {
       y: '70%',
       icon: AlertTriangle,
       title: 'Premises Liability',
-      desc: 'Slip and falls, swimming pools, or pet incidents on your property. Standard limits are rarely enough; we secure your overarching wealth from lawsuits.'
+      desc: 'Swimming pools, trampolines, pets — regular life stuff can become real liability issues. We help make sure your coverage is enough if something happens.'
     }
   ];
 
@@ -45,7 +45,7 @@ export function RiskAnatomy() {
             className="flex items-center justify-center gap-3 mb-6"
           >
             <div className="h-px w-8 bg-accent" />
-            <span className="text-sm font-bold tracking-widest uppercase text-accent">Interactive Risk Anatomy</span>
+            <span className="text-sm font-bold tracking-widest uppercase text-accent">How We Look at Your Home</span>
             <div className="h-px w-8 bg-accent" />
           </motion.div>
           <motion.h2 
@@ -55,7 +55,7 @@ export function RiskAnatomy() {
             transition={{ delay: 0.1 }}
             className="text-4xl md:text-6xl font-sans font-bold text-paper tracking-tight mb-6"
           >
-            Anatomy of <span className="text-transparent bg-clip-text bg-gradient-to-r from-accent to-[#FF6B35]">Protection</span>.
+            Understanding Your <span className="text-transparent bg-clip-text bg-gradient-to-r from-accent to-[#FF6B35]">Coverage.</span>
           </motion.h2>
           <motion.p 
             initial={{ opacity: 0, y: 20 }}
@@ -64,7 +64,7 @@ export function RiskAnatomy() {
             transition={{ delay: 0.2 }}
             className="text-lg text-paper/70 font-medium"
           >
-            Hover over the hotspots below to understand exactly how we engineer custom defenses for your local Louisiana assets. 
+            Hover over the hotspots below to see the kinds of things we look for when reviewing a home policy.
           </motion.p>
         </div>
 
@@ -113,7 +113,7 @@ export function RiskAnatomy() {
         {/* Sub-Legend */}
         <div className="mt-8 flex items-center justify-center gap-2 text-paper/50">
           <Info className="w-4 h-4" />
-          <span className="text-xs font-bold tracking-widest uppercase">Tap hotspots to view structural coverage details</span>
+          <span className="text-xs font-bold tracking-widest uppercase">Tap a hotspot to learn more</span>
         </div>
 
       </div>

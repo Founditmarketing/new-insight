@@ -93,7 +93,7 @@ export function Hero({ onOpenQuote }: { onOpenQuote?: () => void }) {
             transition={{ duration: 1.2, delay: 0.1, ease: [0.16, 1, 0.3, 1] }}
             className="block"
           >
-            Uncompromising
+            We Work
           </motion.span>
           <motion.span 
             initial={{ opacity: 0, y: 30 }}
@@ -101,7 +101,7 @@ export function Hero({ onOpenQuote }: { onOpenQuote?: () => void }) {
             transition={{ duration: 1.2, delay: 0.2, ease: [0.16, 1, 0.3, 1] }}
             className="block text-accent drop-shadow-[0_0_40px_rgba(227,38,54,0.5)]"
           >
-            Protection.
+            For You.
           </motion.span>
         </h1>
 
@@ -111,7 +111,7 @@ export function Hero({ onOpenQuote }: { onOpenQuote?: () => void }) {
           transition={{ duration: 1, delay: 0.4, ease: [0.16, 1, 0.3, 1] }}
           className="text-lg sm:text-xl text-paper/80 font-medium leading-relaxed max-w-2xl mb-12"
         >
-          Precision coverage and defensive architecture for your most significant assets.
+          We shop dozens of carriers to find coverage that fits your life — at a price that makes sense. No sales pitch, just honest help.
         </motion.p>
 
         <motion.div
@@ -127,7 +127,7 @@ export function Hero({ onOpenQuote }: { onOpenQuote?: () => void }) {
             </span>
           </button>
           <button className="w-full sm:w-auto bg-transparent text-paper px-8 py-4 rounded-sm font-bold tracking-widest uppercase text-sm border-2 border-paper/20 hover:border-paper hover:bg-paper/10 transition-all duration-300 flex items-center justify-center gap-3 hover:-translate-y-1">
-            Explore Portfolios
+            See What We Cover
           </button>
         </motion.div>
         
