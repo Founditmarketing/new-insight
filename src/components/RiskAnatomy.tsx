@@ -72,7 +72,11 @@ export function RiskAnatomy() {
         <div className="relative w-full max-w-5xl mx-auto rounded-3xl overflow-hidden shadow-[0_0_60px_rgba(0,0,0,0.8)] border border-white/10 group">
           <img 
             src="/images/acadian_home.png" 
-            alt="Beautiful Louisiana Acadian Home" 
+            alt="Louisiana Acadian home showing coverage areas — roof, windows, foundation" 
+            loading="lazy"
+            decoding="async"
+            width="1200"
+            height="800"
             className="w-full h-auto object-cover transition-transform duration-1000 group-hover:scale-105"
           />
           <div className="absolute inset-0 bg-ink/30 transition-opacity duration-500 group-hover:bg-ink/50" />

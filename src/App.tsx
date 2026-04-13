@@ -3,7 +3,7 @@
  * SPDX-License-Identifier: Apache-2.0
  */
 
-import { useEffect, useState } from 'react';
+import { useEffect, useState, lazy, Suspense } from 'react';
 import Lenis from 'lenis';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import { HelmetProvider } from 'react-helmet-async';
@@ -13,20 +13,32 @@ import { Preloader } from './components/Preloader';
 import { QuoteModal } from './components/QuoteModal';
 import { Concierge } from './components/Concierge';
 import { WeatherBadge } from './components/WeatherBadge';
-import { Home } from './pages/Home';
-import { About } from './pages/About';
-import { Services } from './pages/Services';
-import { Locations } from './pages/Locations';
-import { Contact } from './pages/Contact';
-import { CityPage } from './pages/CityPage';
-import { FAQ } from './pages/FAQ';
-import { Privacy } from './pages/Privacy';
-import { Terms } from './pages/Terms';
-import { NotFound } from './pages/NotFound';
 import { ClientPortalModal } from './components/ClientPortalModal';
 import { ScrollToTop } from './components/ScrollToTop';
 import { MobileCTA } from './components/MobileCTA';
 
+// Home loaded eagerly (critical path)
+import { Home } from './pages/Home';
+
+// All other pages lazy-loaded for faster initial bundle
+const About = lazy(() => import('./pages/About').then(m => ({ default: m.About })));
+const Services = lazy(() => import('./pages/Services').then(m => ({ default: m.Services })));
+const Locations = lazy(() => import('./pages/Locations').then(m => ({ default: m.Locations })));
+const Contact = lazy(() => import('./pages/Contact').then(m => ({ default: m.Contact })));
+const CityPage = lazy(() => import('./pages/CityPage').then(m => ({ default: m.CityPage })));
+const FAQ = lazy(() => import('./pages/FAQ').then(m => ({ default: m.FAQ })));
+const Privacy = lazy(() => import('./pages/Privacy').then(m => ({ default: m.Privacy })));
+const Terms = lazy(() => import('./pages/Terms').then(m => ({ default: m.Terms })));
+const NotFound = lazy(() => import('./pages/NotFound').then(m => ({ default: m.NotFound })));
+
+// Minimal loading fallback
+function PageLoader() {
+  return (
+    <div className="min-h-screen flex items-center justify-center bg-paper">
+      <div className="w-8 h-8 border-2 border-accent border-t-transparent rounded-full animate-spin" />
+    </div>
+  );
+}
 
 export default function App() {
   const [loading, setLoading] = useState(true);
@@ -72,37 +84,37 @@ export default function App() {
             onOpenPortal={() => setIsPortalOpen(true)}
           />
           
-          <Routes>
-            <Route path="/" element={
-              <Home 
-                onOpenQuote={() => setIsQuoteOpen(true)} 
-                onOpenPortal={() => setIsPortalOpen(true)} 
-              />
-            } />
-            <Route path="/about" element={<About />} />
-            <Route path="/services" element={
-              <Services 
-                onOpenQuote={() => setIsQuoteOpen(true)} 
-              />
-            } />
-            <Route path="/locations" element={
-              <Locations onOpenQuote={() => setIsQuoteOpen(true)} />
-            } />
-            <Route path="/locations/:city" element={
-              <CityPage onOpenQuote={() => setIsQuoteOpen(true)} />
-            } />
-            <Route path="/contact" element={<Contact />} />
-            <Route path="/faq" element={
-              <FAQ onOpenQuote={() => setIsQuoteOpen(true)} />
-            } />
-            <Route path="/privacy" element={<Privacy />} />
-            <Route path="/terms" element={<Terms />} />
-            {/* Legacy city routes redirect */}
-            <Route path="/:city" element={
-              <CityPage onOpenQuote={() => setIsQuoteOpen(true)} />
-            } />
-            <Route path="*" element={<NotFound />} />
-          </Routes>
+          <Suspense fallback={<PageLoader />}>
+            <Routes>
+              <Route path="/" element={
+                <Home 
+                  onOpenQuote={() => setIsQuoteOpen(true)} 
+                  onOpenPortal={() => setIsPortalOpen(true)} 
+                />
+              } />
+              <Route path="/about" element={<About />} />
+              <Route path="/services" element={
+                <Services onOpenQuote={() => setIsQuoteOpen(true)} />
+              } />
+              <Route path="/locations" element={
+                <Locations onOpenQuote={() => setIsQuoteOpen(true)} />
+              } />
+              <Route path="/locations/:city" element={
+                <CityPage onOpenQuote={() => setIsQuoteOpen(true)} />
+              } />
+              <Route path="/contact" element={<Contact />} />
+              <Route path="/faq" element={
+                <FAQ onOpenQuote={() => setIsQuoteOpen(true)} />
+              } />
+              <Route path="/privacy" element={<Privacy />} />
+              <Route path="/terms" element={<Terms />} />
+              {/* Legacy city routes */}
+              <Route path="/:city" element={
+                <CityPage onOpenQuote={() => setIsQuoteOpen(true)} />
+              } />
+              <Route path="*" element={<NotFound />} />
+            </Routes>
+          </Suspense>
 
           <Footer />
           <WeatherBadge />

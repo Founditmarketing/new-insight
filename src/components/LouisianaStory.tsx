@@ -64,7 +64,11 @@ function LocationCard({ loc, index }: { loc: typeof locations[0]; index: number;
       <div className="absolute inset-0 bg-ink z-0">
         <img 
           src={loc.image} 
-          alt={`${loc.city} Landmark`}
+          alt={`${loc.city}, Louisiana — Insight Insurance service area`}
+          loading="lazy"
+          decoding="async"
+          width="600"
+          height="800"
           className="w-full h-full object-cover opacity-80 transition-transform duration-[2s] ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:scale-110"
         />
         {/* Permanent vignette for text legibility */}

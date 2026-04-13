@@ -133,6 +133,10 @@ export function CityPage({ onOpenQuote }: { onOpenQuote: () => void }) {
               <img 
                 src={data.image} 
                 alt={`${data.name}, Louisiana — Insight Insurance office location`}
+                loading="lazy"
+                decoding="async"
+                width="800"
+                height="1000"
                 className="w-full h-full object-cover"
               />
               
