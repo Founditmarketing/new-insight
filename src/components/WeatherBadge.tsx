@@ -42,7 +42,7 @@ export function WeatherBadge() {
 
   return (
     <div 
-      className="fixed bottom-6 right-6 md:right-auto md:left-6 z-50 cursor-pointer"
+      className="fixed bottom-6 left-6 z-50 cursor-pointer"
       onClick={() => setIsExpanded(prev => !prev)}
       onMouseEnter={() => setIsExpanded(true)}
       onMouseLeave={() => setIsExpanded(false)}

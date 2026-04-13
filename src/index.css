@@ -136,23 +136,6 @@ p {
   padding-bottom: env(safe-area-inset-bottom, 0px);
 }
 
-/* Add bottom spacing on mobile for sticky CTA bar */
-@media (max-width: 767px) {
-  footer {
-    padding-bottom: 80px !important;
-  }
-}
-
-/* Move chat widget above sticky CTA on mobile and make it smaller */
-@media (max-width: 767px) {
-  .concierge-wrapper {
-    bottom: 90px !important;
-    right: 16px !important;
-    width: 48px !important;
-    height: 48px !important;
-  }
-}
-
 /* Skip to content link */
 .skip-to-content {
   position: absolute;

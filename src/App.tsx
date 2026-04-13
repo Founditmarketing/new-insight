@@ -133,7 +133,6 @@ export default function App() {
           <QuoteModal isOpen={isQuoteOpen} onClose={() => setIsQuoteOpen(false)} />
           <ClientPortalModal isOpen={isPortalOpen} onClose={() => setIsPortalOpen(false)} />
           <Concierge />
-          <MobileCTA />
         </div>
       </BrowserRouter>
     </HelmetProvider>
