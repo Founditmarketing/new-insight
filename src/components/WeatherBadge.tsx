@@ -1,11 +1,12 @@
 import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
-import { AlertTriangle, CloudSun } from 'lucide-react';
+import { AlertTriangle } from 'lucide-react';
 
 export function WeatherBadge() {
   const [alerts, setAlerts] = useState<string[]>([]);
   const [loading, setLoading] = useState(true);
-  const [isHovered, setIsHovered] = useState(false);
+  const [isExpanded, setIsExpanded] = useState(false);
+  const [hasAutoExpanded, setHasAutoExpanded] = useState(false);
 
   useEffect(() => {
     async function fetchThreats() {
@@ -15,10 +16,6 @@ export function WeatherBadge() {
         const data = await response.json();
         
         const uniqueEvents = Array.from(new Set(data.features.map((f: any) => f.properties.event)));
-        
-        // Uncomment below to simulate a massive storm for UI testing
-        // return setAlerts(["Hurricane Warning"]);
-        
         setAlerts(uniqueEvents as string[]);
         setLoading(false);
       } catch (err) {
@@ -28,19 +25,42 @@ export function WeatherBadge() {
     fetchThreats();
   }, []);
 
+  // Auto-expand after load, then collapse after 4 seconds
+  useEffect(() => {
+    if (!loading && !hasAutoExpanded) {
+      const expandTimer = setTimeout(() => {
+        setIsExpanded(true);
+        setHasAutoExpanded(true);
+      }, 2000); // Wait 2s after load to expand
+
+      return () => clearTimeout(expandTimer);
+    }
+  }, [loading, hasAutoExpanded]);
+
+  useEffect(() => {
+    if (isExpanded && hasAutoExpanded) {
+      const collapseTimer = setTimeout(() => {
+        setIsExpanded(false);
+      }, 4000); // Stay expanded for 4 seconds
+
+      return () => clearTimeout(collapseTimer);
+    }
+  }, [isExpanded, hasAutoExpanded]);
+
   if (loading) return null;
 
   const hasThreat = alerts.length > 0;
 
   return (
     <div 
-      className="fixed bottom-6 right-6 md:right-auto md:left-6 z-50 flex items-center cursor-help group"
-      onMouseEnter={() => setIsHovered(true)}
-      onMouseLeave={() => setIsHovered(false)}
+      className="fixed bottom-6 right-6 md:right-auto md:left-6 z-50 flex items-center cursor-pointer"
+      onClick={() => setIsExpanded(!isExpanded)}
+      onMouseEnter={() => setIsExpanded(true)}
+      onMouseLeave={() => { if (hasAutoExpanded) setIsExpanded(false); }}
     >
       <motion.div 
         layout
-        className={`flex items-center gap-3 backdrop-blur-xl border rounded-full px-4 py-3 shadow-[0_10px_40px_rgba(0,0,0,0.15)] transition-all duration-300 ${
+        className={`flex items-center gap-3 backdrop-blur-xl border rounded-full px-4 py-3 shadow-[0_10px_40px_rgba(0,0,0,0.15)] transition-colors duration-300 ${
           hasThreat 
           ? 'bg-accent/95 hover:bg-accent border-accent/50 text-white' 
           : 'bg-ink/90 hover:bg-ink border-white/10 text-white'
@@ -58,11 +78,12 @@ export function WeatherBadge() {
         </div>
         
         <AnimatePresence>
-          {isHovered && (
+          {isExpanded && (
             <motion.div
               initial={{ width: 0, opacity: 0 }}
               animate={{ width: "auto", opacity: 1 }}
               exit={{ width: 0, opacity: 0 }}
+              transition={{ duration: 0.3, ease: [0.16, 1, 0.3, 1] }}
               className="overflow-hidden whitespace-nowrap"
             >
               <span className="text-[10px] sm:text-xs font-bold tracking-widest uppercase ml-1 block pr-2">

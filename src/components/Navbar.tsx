@@ -114,23 +114,19 @@ export function Navbar({ onOpenQuote, onOpenPortal }: { onOpenQuote?: () => void
         </button>
       </div>
 
-      {/* Mobile Menu — bulletproof two-layer approach */}
-      {/* Layer 1: Full-screen backdrop scrim */}
-      <div 
-        className={`fixed inset-0 z-[9998] bg-black transition-opacity duration-300 md:hidden ${
-          isMobileMenuOpen ? 'opacity-100 pointer-events-auto' : 'opacity-0 pointer-events-none'
-        }`}
-        onClick={() => setIsMobileMenuOpen(false)}
-        aria-hidden="true"
-      />
-      
-      {/* Layer 2: Menu panel */}
-      <div 
-        className={`fixed inset-0 z-[9999] md:hidden transition-all duration-500 ease-in-out ${
-          isMobileMenuOpen 
-            ? 'opacity-100 pointer-events-auto' 
-            : 'opacity-0 pointer-events-none'
-        }`}
+      {/* Mobile Menu — conditional render for touch reliability */}
+      {isMobileMenuOpen && (
+        <>
+          {/* Layer 1: Full-screen backdrop scrim */}
+          <div 
+            className="fixed inset-0 z-[9998] bg-black/90 md:hidden"
+            onClick={() => setIsMobileMenuOpen(false)}
+            aria-hidden="true"
+          />
+          
+          {/* Layer 2: Menu panel */}
+          <div 
+            className="fixed inset-0 z-[9999] md:hidden"
         style={{ 
           backgroundColor: '#050505',
           /* Triple-redundant background for GPU compositing edge cases */
@@ -207,6 +203,8 @@ export function Navbar({ onOpenQuote, onOpenPortal }: { onOpenQuote?: () => void
           </div>
         </div>
       </div>
+        </>
+      )}
     </nav>
   );
 }
