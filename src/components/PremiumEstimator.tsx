@@ -1,4 +1,4 @@
-import { useState, useEffect, useCallback } from 'react';
+import { useState, useEffect, useCallback, useMemo } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
 import { Home, Car, Building2, ArrowRight, ShieldCheck, TrendingDown, Sparkles } from 'lucide-react';
 
@@ -62,6 +62,27 @@ export function PremiumEstimator() {
   const [scanIndex, setScanIndex] = useState(0);
   const [savings, setSavings] = useState(0);
 
+  // Floating particles (same system as Hero)
+  const particles = useMemo(() => {
+    const isMobile = typeof window !== 'undefined' && window.innerWidth < 768;
+    const count = isMobile ? 25 : 60;
+    return Array.from({ length: count }).map((_, i) => {
+      const isOrange = Math.random() > 0.4;
+      return {
+        id: i,
+        size: Math.random() * 6 + 3,
+        xOrigin: Math.random() * 100,
+        yOrigin: Math.random() * 100,
+        xOffset: Math.random() * 30 - 15,
+        duration: Math.random() * 18 + 12,
+        delay: Math.random() * -8,
+        opacity: Math.random() * 0.3 + 0.4,
+        colorClass: isOrange ? 'bg-accent' : 'bg-paper',
+        shadow: isOrange ? 'rgba(227,38,54,0.8)' : 'rgba(255,255,255,0.6)',
+      };
+    });
+  }, []);
+
   const handleEstimate = useCallback(() => {
     if (zip.length < 3) return;
     setPhase('scanning');
@@ -95,6 +116,29 @@ export function PremiumEstimator() {
     <section className="py-20 md:py-28 px-6 md:px-12 lg:px-24 bg-ink relative overflow-hidden">
       {/* Ambient glow */}
       <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-accent/5 rounded-full blur-[150px] pointer-events-none" />
+
+      {/* Floating Particles */}
+      <div className="absolute inset-0 z-0 overflow-hidden pointer-events-none">
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,transparent_0%,#050505_85%)] z-10 opacity-70" />
+        <div className="absolute inset-0 z-[5]">
+          {particles.map((p) => (
+            <div
+              key={p.id}
+              className={`gpu-particle ${p.colorClass}`}
+              style={{
+                '--size': `${p.size}px`,
+                '--x-origin': `${p.xOrigin}%`,
+                '--y-origin': `${p.yOrigin}%`,
+                '--offset-x': `${p.xOffset}vw`,
+                '--duration': `${p.duration}s`,
+                '--delay': `${p.delay}s`,
+                '--max-opacity': p.opacity,
+                '--shadow-color': p.shadow,
+              } as React.CSSProperties}
+            />
+          ))}
+        </div>
+      </div>
 
       <div className="max-w-4xl mx-auto relative z-10">
         <motion.div
