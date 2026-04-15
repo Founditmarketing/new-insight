@@ -5,87 +5,157 @@ import { SEO } from '../components/SEO';
 const carriers = [
   {
     name: 'Progressive',
-    description: 'Auto, Motorcycle & Home',
-    url: 'https://www.progressive.com/',
+    description: 'Auto & Home',
+    url: 'http://progressiveagent.com/',
     color: '#008CC1',
     initial: 'P',
   },
   {
     name: 'Safeco',
     description: 'Home, Auto & Specialty',
-    url: 'https://www.safeco.com/',
+    url: 'https://customer.safeco.com/accountmanager/Login/login.aspx',
     color: '#1B365D',
     initial: 'S',
   },
   {
     name: 'The Hartford',
     description: 'Business & Personal Lines',
-    url: 'https://www.thehartford.com/',
+    url: 'https://business.thehartford.com/agent-expresspay',
     color: '#8B0000',
     initial: 'H',
   },
   {
     name: 'Liberty Mutual',
     description: 'Auto, Home & Business',
-    url: 'https://www.libertymutual.com/',
+    url: 'https://business.libertymutual.com/services/billing/',
     color: '#003366',
     initial: 'L',
   },
   {
-    name: 'Kemper',
-    description: 'Auto & Home',
-    url: 'https://www.kemper.com/',
-    color: '#CC0000',
-    initial: 'K',
-  },
-  {
     name: 'Foremost',
     description: 'Home, Specialty & Auto',
-    url: 'https://www.foremost.com/',
+    url: 'https://www.foremost.com/payonline/',
     color: '#006699',
     initial: 'F',
   },
   {
+    name: 'Bluefire / Kemper',
+    description: 'Auto Insurance',
+    url: 'https://www.bluefireinsurance.com/make-a-payment/',
+    color: '#CC0000',
+    initial: 'K',
+  },
+  {
     name: 'SageSure',
     description: 'Home & Coastal Property',
-    url: 'https://www.sagesure.com/',
+    url: 'https://my.sagesure.com/payment',
     color: '#2D6A4F',
     initial: 'SS',
   },
   {
-    name: 'AmTrust',
-    description: 'Business & Commercial',
-    url: 'https://amtrustfinancial.com/',
-    color: '#003B6F',
-    initial: 'AT',
-  },
-  {
-    name: 'Bristol West',
-    description: 'Auto Insurance',
-    url: 'https://www.bristolwest.com/',
-    color: '#2C5F8A',
-    initial: 'BW',
-  },
-  {
-    name: 'Lighthouse / LCI',
+    name: 'Gulf States / Lighthouse',
     description: 'Coastal Homeowners',
-    url: 'https://www.lhins.com/',
+    url: 'https://my.gulfstatesinsure.com/Account/Quickpay',
     color: '#E8830A',
-    initial: 'LH',
+    initial: 'GS',
   },
   {
-    name: 'Citizens',
+    name: 'Louisiana Citizens',
     description: 'Louisiana Home',
-    url: 'https://www.citizensinsurance.com/',
+    url: 'https://www.lacitizens.com/policy-holder/make-a-payment',
     color: '#00609C',
-    initial: 'CI',
+    initial: 'LC',
   },
   {
-    name: 'NFIP / Flood Smart',
+    name: 'National General',
+    description: 'Auto & Home',
+    url: 'http://www.nationalgeneral.com/',
+    color: '#2C5F8A',
+    initial: 'NG',
+  },
+  {
+    name: 'Safeway',
+    description: 'Auto Insurance',
+    url: 'https://www.safewayinsurance.com/',
+    color: '#1A6B3C',
+    initial: 'SW',
+  },
+  {
+    name: 'Cajun Underwriters',
+    description: 'Louisiana Property',
+    url: 'https://cajunuw.com/payments/',
+    color: '#8B4513',
+    initial: 'CU',
+  },
+  {
+    name: 'Tower Hill',
+    description: 'Home & Property',
+    url: 'https://www.thig.com/',
+    color: '#4A4A8A',
+    initial: 'TH',
+  },
+  {
+    name: 'American Modern',
+    description: 'Specialty & Recreational',
+    url: 'https://policyholders.amig.com/content/munichre/amiggrp/policy-holder/storefront/en/landing-page/make-a-payment.html',
+    color: '#8B0000',
+    initial: 'AM',
+  },
+  {
+    name: 'Centauri',
+    description: 'Home & Property',
+    url: 'https://centauriinsurance.com/make-a-payment/',
+    color: '#1565C0',
+    initial: 'CE',
+  },
+  {
+    name: 'Wright Flood / NFIP',
     description: 'National Flood Insurance',
-    url: 'https://www.floodsmart.gov/',
+    url: 'https://www.wrightflood.net/guest?target=payment',
     color: '#1565C0',
     initial: 'NF',
+  },
+  {
+    name: 'LWCC',
+    description: "Workers' Compensation",
+    url: 'https://www.lwcc.com/online-payment-processing',
+    color: '#003B6F',
+    initial: 'LW',
+  },
+  {
+    name: 'Swyfft',
+    description: 'Home Insurance',
+    url: 'https://www.swyfft.com/make-a-payment',
+    color: '#0D47A1',
+    initial: 'SW',
+  },
+  {
+    name: 'Louisiana Comp (LCI)',
+    description: "Workers' Compensation",
+    url: 'https://louisianacomp.com/make-a-payment/',
+    color: '#5D4037',
+    initial: 'LCI',
+  },
+  {
+    name: 'Accident Fund',
+    description: "Workers' Compensation",
+    url: 'https://www.accidentfund.com/ph/pay-bill/',
+    color: '#37474F',
+    initial: 'AF',
+  },
+  {
+    name: 'US Assure',
+    description: 'Builders Risk & Property',
+    url: 'https://usassure.com/customer-support/pay-a-bill',
+    color: '#1B5E20',
+    initial: 'USA',
+  },
+  {
+    name: 'TPI',
+    description: 'Specialty Auto & Property',
+    url: 'https://tpi.insuredsite.com/Account/quickpay',
+    color: '#4A148C',
+    initial: 'TPI',
   },
 ];
 
@@ -115,7 +185,7 @@ export function MakePayment() {
               Make a <span className="text-accent italic font-serif">Payment.</span>
             </h1>
             <p className="text-lg text-ink/70 font-medium leading-relaxed">
-              Click on your insurance carrier below to be taken directly to their payment portal. 
+              Click on your insurance carrier below to be taken directly to their payment portal.
               If you're unsure which company your policy is with, give us a call — we're happy to help.
             </p>
           </motion.div>
@@ -130,11 +200,10 @@ export function MakePayment() {
                 rel="noopener noreferrer"
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.5, delay: i * 0.05 }}
+                transition={{ duration: 0.5, delay: i * 0.04 }}
                 className="group bg-white border border-slate/10 rounded-2xl p-6 hover:border-slate/30 hover:shadow-[0_20px_60px_-15px_rgba(0,0,0,0.08)] hover:-translate-y-1 transition-all duration-300 flex flex-col gap-4 cursor-pointer"
               >
-                {/* Logo placeholder with initial */}
-                <div 
+                <div
                   className="w-12 h-12 rounded-xl flex items-center justify-center text-white font-bold text-sm tracking-wide shadow-sm"
                   style={{ backgroundColor: carrier.color }}
                 >
