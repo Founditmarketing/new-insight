@@ -28,11 +28,11 @@ export function Home({ onOpenQuote, onOpenPortal }: HomeProps) {
       <Hero onOpenQuote={onOpenQuote} />
       <LouisianaStory />
       <PremiumEstimator />
+      {/* Google Reviews appear before the "Real People. Right Here." Philosophy section */}
+      <Testimonials />
       <Philosophy />
       <CarrierShowcase />
       <ServicesGrid onOpenQuote={onOpenQuote} />
-      {/* Testimonials moved up — before stats/proof — for stronger social proof positioning */}
-      <Testimonials />
       <RiskScore />
       <Proof />
       <CTA onOpenQuote={onOpenQuote} />
