@@ -1,6 +1,6 @@
-import { useState } from 'react';
+import { useState, useRef } from 'react';
 import { motion } from 'motion/react';
-import { Briefcase, Users, Heart, CheckCircle2, Send } from 'lucide-react';
+import { Briefcase, Users, Heart, CheckCircle2, Send, Upload, X, FileText } from 'lucide-react';
 import { SEO } from '../components/SEO';
 
 const values = [
@@ -33,27 +33,59 @@ const positions = [
 export function Careers() {
   const [submitted, setSubmitted] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const [resumeFile, setResumeFile] = useState<File | null>(null);
+  const [dragOver, setDragOver] = useState(false);
+  const fileInputRef = useRef<HTMLInputElement>(null);
   const [formData, setFormData] = useState({
     name: '',
     email: '',
     phone: '',
     position: '',
     message: '',
-    resumeLink: '',
   });
+
+  const handleFileSelect = (file: File | null) => {
+    if (!file) return;
+    // Accept PDF, DOC, DOCX up to 5MB
+    const allowed = ['application/pdf', 'application/msword', 'application/vnd.openxmlformats-officedocument.wordprocessingml.document'];
+    if (!allowed.includes(file.type)) {
+      alert('Please upload a PDF, DOC, or DOCX file.');
+      return;
+    }
+    if (file.size > 5 * 1024 * 1024) {
+      alert('File must be under 5MB.');
+      return;
+    }
+    setResumeFile(file);
+  };
+
+  const handleDrop = (e: React.DragEvent) => {
+    e.preventDefault();
+    setDragOver(false);
+    const file = e.dataTransfer.files[0];
+    handleFileSelect(file);
+  };
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setIsSubmitting(true);
     try {
+      // Use FormData to support file attachment
+      const data = new FormData();
+      data.append('access_key', 'YOUR_WEB3FORMS_ACCESS_KEY_HERE');
+      data.append('subject', `Career Application — ${formData.position}`);
+      data.append('name', formData.name);
+      data.append('email', formData.email);
+      data.append('phone', formData.phone);
+      data.append('position', formData.position);
+      data.append('message', formData.message);
+      if (resumeFile) {
+        data.append('attachment', resumeFile, resumeFile.name);
+      }
+
       await fetch('https://api.web3forms.com/submit', {
         method: 'POST',
-        headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
-        body: JSON.stringify({
-          access_key: 'YOUR_WEB3FORMS_ACCESS_KEY_HERE',
-          subject: `Career Application — ${formData.position}`,
-          ...formData,
-        }),
+        body: data,
       });
     } catch (err) {
       console.error('Submission failed', err);
@@ -188,14 +220,63 @@ export function Careers() {
                   </div>
                 </div>
 
+                {/* Resume Upload */}
                 <div className="mb-6">
-                  <label className="block text-sm font-bold text-ink/60 uppercase tracking-widest mb-2">Resume / LinkedIn / Portfolio Link</label>
+                  <label className="block text-sm font-bold text-ink/60 uppercase tracking-widest mb-2">
+                    Resume <span className="text-ink/30 normal-case font-medium tracking-normal">(PDF, DOC, or DOCX · max 5MB)</span>
+                  </label>
+
+                  {resumeFile ? (
+                    /* File selected — show preview card */
+                    <div className="flex items-center gap-4 bg-white border border-emerald-200 rounded-lg px-4 py-3">
+                      <div className="w-10 h-10 rounded-lg bg-emerald-50 flex items-center justify-center flex-shrink-0">
+                        <FileText className="w-5 h-5 text-emerald-600" />
+                      </div>
+                      <div className="flex-grow min-w-0">
+                        <p className="font-semibold text-ink text-sm truncate">{resumeFile.name}</p>
+                        <p className="text-ink/40 text-xs">{(resumeFile.size / 1024).toFixed(0)} KB</p>
+                      </div>
+                      <button
+                        type="button"
+                        onClick={() => { setResumeFile(null); if (fileInputRef.current) fileInputRef.current.value = ''; }}
+                        className="w-8 h-8 rounded-full bg-ink/5 flex items-center justify-center text-ink/40 hover:text-accent hover:bg-accent/10 transition-colors flex-shrink-0"
+                        aria-label="Remove file"
+                      >
+                        <X className="w-4 h-4" />
+                      </button>
+                    </div>
+                  ) : (
+                    /* Drop zone */
+                    <div
+                      onClick={() => fileInputRef.current?.click()}
+                      onDragOver={(e) => { e.preventDefault(); setDragOver(true); }}
+                      onDragLeave={() => setDragOver(false)}
+                      onDrop={handleDrop}
+                      className={`flex flex-col items-center justify-center gap-3 w-full py-8 px-4 rounded-lg border-2 border-dashed cursor-pointer transition-all duration-200 ${
+                        dragOver
+                          ? 'border-accent bg-accent/5 scale-[1.01]'
+                          : 'border-slate/25 bg-white hover:border-accent/50 hover:bg-accent/3'
+                      }`}
+                    >
+                      <div className={`w-12 h-12 rounded-xl flex items-center justify-center transition-colors ${dragOver ? 'bg-accent/15' : 'bg-ink/5'}`}>
+                        <Upload className={`w-5 h-5 transition-colors ${dragOver ? 'text-accent' : 'text-ink/40'}`} />
+                      </div>
+                      <div className="text-center">
+                        <p className="font-bold text-sm text-ink">
+                          {dragOver ? 'Drop it here!' : 'Click to upload or drag & drop'}
+                        </p>
+                        <p className="text-xs text-ink/40 font-medium mt-0.5">PDF, DOC, DOCX up to 5MB</p>
+                      </div>
+                    </div>
+                  )}
+
+                  {/* Hidden file input */}
                   <input
-                    type="url"
-                    value={formData.resumeLink}
-                    onChange={(e) => setFormData({ ...formData, resumeLink: e.target.value })}
-                    className="w-full bg-white border border-slate/20 rounded-lg py-3 px-4 text-ink font-medium outline-none focus:border-accent focus:ring-1 focus:ring-accent transition-colors"
-                    placeholder="https://linkedin.com/in/yourname"
+                    ref={fileInputRef}
+                    type="file"
+                    accept=".pdf,.doc,.docx,application/pdf,application/msword,application/vnd.openxmlformats-officedocument.wordprocessingml.document"
+                    className="hidden"
+                    onChange={(e) => handleFileSelect(e.target.files?.[0] ?? null)}
                   />
                 </div>
 
