@@ -18,7 +18,7 @@ const services = [
     id: 'commercial', 
     title: 'Business', 
     icon: Briefcase, 
-    statement: 'Whether you run a small business across Louisiana or manage operations along the Gulf Coast, we\'ll find the right liability and property coverage so you can focus on your work.',
+    statement: 'From small Main Street shops to multi-location operations across Louisiana, we build the right commercial coverage so you can focus on running your business — not worrying about what could go wrong.',
     spanClass: 'col-span-1 md:col-span-2 row-span-1 md:row-span-2',
     iconBg: 'bg-ink/5',
     iconColor: 'text-ink group-hover:text-accent transition-colors'
