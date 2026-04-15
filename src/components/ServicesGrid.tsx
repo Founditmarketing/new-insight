@@ -18,7 +18,7 @@ const services = [
     id: 'commercial', 
     title: 'Business', 
     icon: Briefcase, 
-    statement: 'Whether you run a shop in Ponchatoula or manage operations across the Gulf, we\'ll find the right liability and property coverage so you can focus on your work.',
+    statement: 'Whether you run a small business across Louisiana or manage operations along the Gulf Coast, we\'ll find the right liability and property coverage so you can focus on your work.',
     spanClass: 'col-span-1 md:col-span-2 row-span-1 md:row-span-2',
     iconBg: 'bg-ink/5',
     iconColor: 'text-ink group-hover:text-accent transition-colors'
@@ -129,7 +129,7 @@ function BentoCard({ service, index, onClick }: { service: typeof services[0]; i
   );
 }
 
-export function ServicesGrid() {
+export function ServicesGrid({ onOpenQuote }: { onOpenQuote?: () => void }) {
   const [isPortalOpen, setIsPortalOpen] = useState(false);
 
   return (
@@ -182,7 +182,7 @@ export function ServicesGrid() {
             transition={{ duration: 0.8, delay: 0.2 }}
             className="flex-shrink-0"
           >
-            <button className="bg-white border border-slate/10 text-ink px-8 py-4 rounded-full font-bold tracking-widest uppercase text-xs flex items-center gap-3 hover:border-accent hover:text-accent transition-colors shadow-sm cursor-pointer group">
+            <button onClick={onOpenQuote} className="bg-white border border-slate/10 text-ink px-8 py-4 rounded-full font-bold tracking-widest uppercase text-xs flex items-center gap-3 hover:border-accent hover:text-accent transition-colors shadow-sm cursor-pointer group">
               Get a Quote
               <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
             </button>

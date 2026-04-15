@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
-import { X, ArrowRight, ArrowLeft, CheckCircle2, Home, Car, Building2, Anchor, Heart, Bike, Truck, Compass, ShieldAlert } from 'lucide-react';
+import { X, ArrowRight, ArrowLeft, CheckCircle2, Home, Car, Building2, Anchor, Heart, Bike, Truck, Compass, MapPin } from 'lucide-react';
 
 interface QuoteModalProps {
   isOpen: boolean;
@@ -18,6 +18,12 @@ const coverageOptions = [
   { id: 'other', title: 'Something Else', icon: Compass, emoji: '🧭' },
 ];
 
+const officeOptions = [
+  { id: 'alexandria', name: 'Alexandria', address: '5215 B Jackson St, Alexandria, LA 71303', phone: '(318) 561-8000' },
+  { id: 'ponchatoula', name: 'Ponchatoula', address: '1133 Hwy 51, Suite 105, Ponchatoula, LA 70454', phone: '(985) 242-4300' },
+  { id: 'slidell', name: 'Slidell', address: '1352 7th St, Slidell, LA 70458', phone: '(985) 643-3304' },
+];
+
 export function QuoteModal({ isOpen, onClose }: QuoteModalProps) {
   const [step, setStep] = useState(1);
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -27,14 +33,27 @@ export function QuoteModal({ isOpen, onClose }: QuoteModalProps) {
     email: '',
     phone: '',
     zip: '',
-    coverage: ''
+    coverage: '',
+    office: '',
+    // Auto-specific
+    vehicleYear: '',
+    vehicleMake: '',
+    vehicleModel: '',
+    // Business-specific
+    businessStartYear: '',
+    serviceType: '',
   });
 
   // Reset when opened
   useEffect(() => {
     if (isOpen) {
       setStep(1);
-      setFormData({ firstName: '', lastName: '', email: '', phone: '', zip: '', coverage: '' });
+      setFormData({
+        firstName: '', lastName: '', email: '', phone: '', zip: '',
+        coverage: '', office: '',
+        vehicleYear: '', vehicleMake: '', vehicleModel: '',
+        businessStartYear: '', serviceType: '',
+      });
     }
   }, [isOpen]);
 
@@ -42,6 +61,11 @@ export function QuoteModal({ isOpen, onClose }: QuoteModalProps) {
     setFormData({ ...formData, coverage: id });
     // Auto-advance after a brief pause for visual feedback
     setTimeout(() => setStep(2), 300);
+  };
+
+  const handleOfficeSelect = (id: string) => {
+    setFormData({ ...formData, office: id });
+    setTimeout(() => setStep(3), 300);
   };
 
   const handleSubmit = async () => {
@@ -52,7 +76,7 @@ export function QuoteModal({ isOpen, onClose }: QuoteModalProps) {
         headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
         body: JSON.stringify({
           access_key: 'YOUR_WEB3FORMS_ACCESS_KEY_HERE',
-          subject: `New Quote Request — ${formData.coverage}`,
+          subject: `New Quote Request — ${formData.coverage} — ${formData.office}`,
           ...formData
         })
       });
@@ -60,11 +84,14 @@ export function QuoteModal({ isOpen, onClose }: QuoteModalProps) {
       console.error('Submission failed', error);
     }
     setIsSubmitting(false);
-    setStep(3);
+    setStep(4);
   };
 
-  const totalSteps = 3;
   const selectedOption = coverageOptions.find(o => o.id === formData.coverage);
+  const selectedOffice = officeOptions.find(o => o.id === formData.office);
+  const isAuto = formData.coverage === 'auto' || formData.coverage === 'motorcycle' || formData.coverage === 'rv';
+  const isBusiness = formData.coverage === 'commercial';
+  const totalSteps = 3;
 
   return (
     <AnimatePresence>
@@ -93,12 +120,13 @@ export function QuoteModal({ isOpen, onClose }: QuoteModalProps) {
                 <div>
                   <h3 className="text-lg font-bold text-paper tracking-tight">
                     {step === 1 && "Let's get started."}
-                    {step === 2 && "Almost there."}
-                    {step === 3 && "You're all set!"}
+                    {step === 2 && "Choose your office."}
+                    {step === 3 && "Almost there."}
+                    {step === 4 && "You're all set!"}
                   </h3>
-                  {step < 3 && (
+                  {step < 4 && (
                     <div className="text-xs font-bold tracking-widest uppercase text-accent mt-1">
-                      Step {step} of 2
+                      Step {step} of {totalSteps}
                     </div>
                   )}
                 </div>
@@ -112,11 +140,11 @@ export function QuoteModal({ isOpen, onClose }: QuoteModalProps) {
               </div>
 
               {/* Progress Bar */}
-              {step < 3 && (
+              {step < 4 && (
                 <div className="h-1 w-full bg-white/5">
                   <motion.div 
                     className="h-full bg-accent"
-                    animate={{ width: `${(step / 2) * 100}%` }}
+                    animate={{ width: `${(step / totalSteps) * 100}%` }}
                     transition={{ duration: 0.3 }}
                   />
                 </div>
@@ -157,7 +185,7 @@ export function QuoteModal({ isOpen, onClose }: QuoteModalProps) {
                                   : 'border-white/10 bg-white/5 hover:bg-white/10 hover:border-white/20'
                               }`}
                             >
-                              <div className={`w-12 h-12 rounded-xl flex items-center justify-center mb-3 text-2xl transition-all ${
+                              <div className={`w-12 h-12 rounded-xl flex items-center justify-center mb-3 transition-all ${
                                 isSelected ? 'bg-accent/20 scale-110' : 'bg-white/10'
                               }`}>
                                 <opt.icon className={`w-6 h-6 ${isSelected ? 'text-accent' : 'text-paper/80'}`} />
@@ -172,7 +200,7 @@ export function QuoteModal({ isOpen, onClose }: QuoteModalProps) {
                     </motion.div>
                   )}
 
-                  {/* Step 2: Contact info */}
+                  {/* Step 2: Office Selection */}
                   {step === 2 && (
                     <motion.div
                       key="step2"
@@ -180,14 +208,80 @@ export function QuoteModal({ isOpen, onClose }: QuoteModalProps) {
                       animate={{ opacity: 1, x: 0 }}
                       exit={{ opacity: 0, x: -20 }}
                       transition={{ duration: 0.3 }}
-                      className="space-y-5"
                     >
-                      <div className="mb-6 text-center">
+                      <div className="mb-8 text-center">
                         <div className="inline-flex items-center gap-2 bg-accent/10 border border-accent/20 rounded-full px-4 py-1.5 mb-4">
                           {selectedOption && <selectedOption.icon className="w-4 h-4 text-accent" />}
                           <span className="text-xs font-bold text-accent uppercase tracking-widest">
                             {selectedOption?.title}
                           </span>
+                        </div>
+                        <h4 className="text-xl font-bold text-paper mb-1">
+                          Which office is closest to you?
+                        </h4>
+                        <p className="text-paper/50 text-sm font-medium">
+                          We'll connect you with that team.
+                        </p>
+                      </div>
+
+                      <div className="flex flex-col gap-3">
+                        {officeOptions.map((office) => {
+                          const isSelected = formData.office === office.id;
+                          return (
+                            <button
+                              key={office.id}
+                              onClick={() => handleOfficeSelect(office.id)}
+                              className={`flex items-center gap-4 p-5 rounded-xl border text-left transition-all duration-300 hover:-translate-y-0.5 ${
+                                isSelected
+                                  ? 'border-accent bg-accent/15 shadow-[0_0_25px_rgba(227,38,54,0.2)]'
+                                  : 'border-white/10 bg-white/5 hover:bg-white/10 hover:border-white/20'
+                              }`}
+                            >
+                              <div className={`w-10 h-10 rounded-lg flex items-center justify-center flex-shrink-0 transition-all ${
+                                isSelected ? 'bg-accent/20' : 'bg-white/10'
+                              }`}>
+                                <MapPin className={`w-5 h-5 ${isSelected ? 'text-accent' : 'text-paper/60'}`} />
+                              </div>
+                              <div>
+                                <div className={`font-bold text-sm mb-0.5 ${isSelected ? 'text-accent' : 'text-paper'}`}>
+                                  {office.name}
+                                </div>
+                                <div className="text-paper/40 text-xs font-medium">{office.address}</div>
+                                <div className="text-paper/40 text-xs font-medium">{office.phone}</div>
+                              </div>
+                            </button>
+                          );
+                        })}
+                      </div>
+                    </motion.div>
+                  )}
+
+                  {/* Step 3: Contact info + conditional fields */}
+                  {step === 3 && (
+                    <motion.div
+                      key="step3"
+                      initial={{ opacity: 0, x: 20 }}
+                      animate={{ opacity: 1, x: 0 }}
+                      exit={{ opacity: 0, x: -20 }}
+                      transition={{ duration: 0.3 }}
+                      className="space-y-5"
+                    >
+                      <div className="mb-6 text-center">
+                        <div className="flex items-center justify-center gap-2 mb-4">
+                          <div className="inline-flex items-center gap-2 bg-accent/10 border border-accent/20 rounded-full px-4 py-1.5">
+                            {selectedOption && <selectedOption.icon className="w-4 h-4 text-accent" />}
+                            <span className="text-xs font-bold text-accent uppercase tracking-widest">
+                              {selectedOption?.title}
+                            </span>
+                          </div>
+                          {selectedOffice && (
+                            <div className="inline-flex items-center gap-1.5 bg-white/5 border border-white/10 rounded-full px-4 py-1.5">
+                              <MapPin className="w-3.5 h-3.5 text-paper/50" />
+                              <span className="text-xs font-bold text-paper/60 uppercase tracking-widest">
+                                {selectedOffice.name}
+                              </span>
+                            </div>
+                          )}
                         </div>
                         <h4 className="text-xl font-bold text-paper mb-1">
                           Great choice. How do we reach you?
@@ -253,13 +347,87 @@ export function QuoteModal({ isOpen, onClose }: QuoteModalProps) {
                           onChange={(e) => setFormData({...formData, zip: e.target.value})}
                         />
                       </div>
+
+                      {/* Auto-specific fields */}
+                      {isAuto && (
+                        <motion.div
+                          initial={{ opacity: 0, height: 0 }}
+                          animate={{ opacity: 1, height: 'auto' }}
+                          className="space-y-4 border-t border-white/10 pt-4"
+                        >
+                          <p className="text-xs font-bold uppercase tracking-widest text-accent">Vehicle Details</p>
+                          <div className="grid grid-cols-3 gap-3">
+                            <div className="space-y-1.5">
+                              <label className="text-xs font-bold uppercase tracking-widest text-paper/50">Year</label>
+                              <input 
+                                type="text"
+                                className="w-full bg-white/5 border border-white/10 focus:border-accent focus:ring-1 focus:ring-accent rounded-lg p-3 outline-none font-medium text-paper placeholder:text-paper/25 transition-all text-sm"
+                                placeholder="2022"
+                                value={formData.vehicleYear}
+                                onChange={(e) => setFormData({...formData, vehicleYear: e.target.value})}
+                              />
+                            </div>
+                            <div className="space-y-1.5">
+                              <label className="text-xs font-bold uppercase tracking-widest text-paper/50">Make</label>
+                              <input 
+                                type="text"
+                                className="w-full bg-white/5 border border-white/10 focus:border-accent focus:ring-1 focus:ring-accent rounded-lg p-3 outline-none font-medium text-paper placeholder:text-paper/25 transition-all text-sm"
+                                placeholder="Toyota"
+                                value={formData.vehicleMake}
+                                onChange={(e) => setFormData({...formData, vehicleMake: e.target.value})}
+                              />
+                            </div>
+                            <div className="space-y-1.5">
+                              <label className="text-xs font-bold uppercase tracking-widest text-paper/50">Model</label>
+                              <input 
+                                type="text"
+                                className="w-full bg-white/5 border border-white/10 focus:border-accent focus:ring-1 focus:ring-accent rounded-lg p-3 outline-none font-medium text-paper placeholder:text-paper/25 transition-all text-sm"
+                                placeholder="Camry"
+                                value={formData.vehicleModel}
+                                onChange={(e) => setFormData({...formData, vehicleModel: e.target.value})}
+                              />
+                            </div>
+                          </div>
+                        </motion.div>
+                      )}
+
+                      {/* Business-specific fields */}
+                      {isBusiness && (
+                        <motion.div
+                          initial={{ opacity: 0, height: 0 }}
+                          animate={{ opacity: 1, height: 'auto' }}
+                          className="space-y-4 border-t border-white/10 pt-4"
+                        >
+                          <p className="text-xs font-bold uppercase tracking-widest text-accent">Business Details</p>
+                          <div className="space-y-1.5">
+                            <label className="text-xs font-bold uppercase tracking-widest text-paper/50">Year Business Started</label>
+                            <input 
+                              type="text"
+                              className="w-full bg-white/5 border border-white/10 focus:border-accent focus:ring-1 focus:ring-accent rounded-lg p-3.5 outline-none font-medium text-paper placeholder:text-paper/25 transition-all text-sm"
+                              placeholder="e.g. 2015"
+                              value={formData.businessStartYear}
+                              onChange={(e) => setFormData({...formData, businessStartYear: e.target.value})}
+                            />
+                          </div>
+                          <div className="space-y-1.5">
+                            <label className="text-xs font-bold uppercase tracking-widest text-paper/50">Type of Services Provided</label>
+                            <input 
+                              type="text"
+                              className="w-full bg-white/5 border border-white/10 focus:border-accent focus:ring-1 focus:ring-accent rounded-lg p-3.5 outline-none font-medium text-paper placeholder:text-paper/25 transition-all text-sm"
+                              placeholder="e.g. Retail, Contracting, Professional Services..."
+                              value={formData.serviceType}
+                              onChange={(e) => setFormData({...formData, serviceType: e.target.value})}
+                            />
+                          </div>
+                        </motion.div>
+                      )}
                     </motion.div>
                   )}
 
-                  {/* Step 3: Success */}
-                  {step === 3 && (
+                  {/* Step 4: Success */}
+                  {step === 4 && (
                     <motion.div
-                      key="step3"
+                      key="step4"
                       initial={{ opacity: 0, scale: 0.95 }}
                       animate={{ opacity: 1, scale: 1 }}
                       transition={{ duration: 0.4 }}
@@ -274,6 +442,12 @@ export function QuoteModal({ isOpen, onClose }: QuoteModalProps) {
                         <CheckCircle2 className="w-10 h-10 text-accent" />
                       </motion.div>
                       <h4 className="text-2xl font-bold text-paper mb-3">We're on it!</h4>
+                      {selectedOffice && (
+                        <div className="inline-flex items-center gap-2 bg-white/5 border border-white/10 rounded-full px-4 py-1.5 mb-4">
+                          <MapPin className="w-3.5 h-3.5 text-accent" />
+                          <span className="text-xs text-paper/60 font-bold uppercase tracking-widest">{selectedOffice.name} office will reach out</span>
+                        </div>
+                      )}
                       <p className="text-paper/60 font-medium max-w-sm mb-8 leading-relaxed text-sm">
                         One of our advisors will reach out within one business day 
                         to walk through your options. No pressure, no sales pitch — just 
@@ -291,11 +465,11 @@ export function QuoteModal({ isOpen, onClose }: QuoteModalProps) {
                 </AnimatePresence>
               </div>
 
-              {/* Footer Controls — only on Step 2 */}
-              {step === 2 && (
+              {/* Footer Controls — only on Step 3 */}
+              {step === 3 && (
                 <div className="p-6 border-t border-white/10 bg-white/5 flex justify-between items-center">
                   <button
-                    onClick={() => setStep(1)}
+                    onClick={() => setStep(2)}
                     className="flex items-center gap-2 text-sm font-bold tracking-widest uppercase text-paper/60 hover:text-paper transition-colors"
                   >
                     <ArrowLeft className="w-4 h-4" /> Back
@@ -315,6 +489,18 @@ export function QuoteModal({ isOpen, onClose }: QuoteModalProps) {
                     ) : (
                       <>Send It <ArrowRight className="w-4 h-4" /></>
                     )}
+                  </button>
+                </div>
+              )}
+
+              {/* Back button on Step 2 */}
+              {step === 2 && (
+                <div className="p-6 border-t border-white/10 bg-white/5">
+                  <button
+                    onClick={() => setStep(1)}
+                    className="flex items-center gap-2 text-sm font-bold tracking-widest uppercase text-paper/60 hover:text-paper transition-colors"
+                  >
+                    <ArrowLeft className="w-4 h-4" /> Back
                   </button>
                 </div>
               )}

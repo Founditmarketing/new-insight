@@ -2,8 +2,8 @@ import { Hero } from '../components/Hero';
 import { LouisianaStory } from '../components/LouisianaStory';
 import { ServicesGrid } from '../components/ServicesGrid';
 import { Philosophy } from '../components/Philosophy';
-import { Proof } from '../components/Proof';
 import { Testimonials } from '../components/Testimonials';
+import { Proof } from '../components/Proof';
 import { PremiumEstimator } from '../components/PremiumEstimator';
 import { RiskScore } from '../components/RiskScore';
 import { CarrierShowcase } from '../components/CarrierShowcase';
@@ -30,10 +30,11 @@ export function Home({ onOpenQuote, onOpenPortal }: HomeProps) {
       <PremiumEstimator />
       <Philosophy />
       <CarrierShowcase />
-      <ServicesGrid />
+      <ServicesGrid onOpenQuote={onOpenQuote} />
+      {/* Testimonials moved up — before stats/proof — for stronger social proof positioning */}
+      <Testimonials />
       <RiskScore />
       <Proof />
-      <Testimonials />
       <CTA onOpenQuote={onOpenQuote} />
     </>
   );

@@ -2,14 +2,13 @@ import { motion } from 'motion/react';
 import { Scale, ShieldCheck, Users, Heart, MapPin, Phone, Mail } from 'lucide-react';
 import { SEO } from '../components/SEO';
 import { getOrganizationSchema } from '../seo/structured-data';
-import { Proof } from '../components/Proof';
 
 export function About() {
   return (
     <>
       <SEO
-        title="About Us — Meet Justin & Cory"
-        description="Insight Insurance is run by Justin Morgan and Cory Chandler out of Alexandria and Ponchatoula, LA. Independent, local, and always here when you need us."
+        title="About Us — Insight Insurance Louisiana"
+        description="Insight Insurance is an independent insurance agency serving Alexandria, Ponchatoula, and Slidell, LA since 2016. A professional team working for you, not for an insurance company."
         canonical="/about"
         structuredData={getOrganizationSchema()}
       />
@@ -32,9 +31,10 @@ export function About() {
               <span className="text-accent italic font-serif">Right Here.</span>
             </h1>
             <p className="text-xl text-ink/70 font-medium leading-relaxed mb-10">
-              We're Justin Morgan and Cory Chandler, and we run Insight Insurance out of 
-              Alexandria and Ponchatoula. We live here, we raise our families here, and we've 
-              been through the same storms you have — literally. When you call, you get us.
+              We're a team of local insurance professionals serving Louisiana families and businesses 
+              since 2016. With offices in Alexandria, Ponchatoula, and Slidell, we're deeply rooted 
+              in the communities we protect. We've been through the same storms you have — literally. 
+              Our professional team is here to handle your needs with care and expertise, every step of the way.
             </p>
           </motion.div>
         </section>
@@ -87,10 +87,10 @@ export function About() {
               <div className="w-12 h-12 rounded-lg bg-ink/5 flex items-center justify-center mb-6 border border-ink/10">
                 <Users className="w-6 h-6 text-accent" />
               </div>
-              <h2 className="text-xl font-bold text-ink mb-4 uppercase tracking-wide">Family-Owned, Locally Run</h2>
+              <h2 className="text-xl font-bold text-ink mb-4 uppercase tracking-wide">A Professional Local Team</h2>
               <p className="text-ink/70 leading-relaxed font-medium">
-                We're not a franchise or a call center. We're a small team that knows the communities 
-                we serve because we live in them. Your policy matters to us because you're our neighbor.
+                We're not a franchise or a call center. We're a dedicated team of professionals who know the communities 
+                we serve because we live in them. When you reach out, you're speaking with someone who understands Louisiana — and genuinely cares.
               </p>
             </motion.div>
 
@@ -104,10 +104,10 @@ export function About() {
               <div className="w-12 h-12 rounded-lg bg-ink/5 flex items-center justify-center mb-6 border border-ink/10">
                 <Heart className="w-6 h-6 text-accent" />
               </div>
-              <h2 className="text-xl font-bold text-ink mb-4 uppercase tracking-wide">25+ Years in Louisiana</h2>
+              <h2 className="text-xl font-bold text-ink mb-4 uppercase tracking-wide">Locally Rooted Since 2016</h2>
               <p className="text-ink/70 leading-relaxed font-medium">
-                Through hurricanes, floods, and everything in between — we've been here. 
-                That kind of experience means we know exactly what Louisiana families need covered.
+                Through hurricanes, floods, and everything in between — we've been here since 2016. 
+                That kind of experience means we know exactly what Louisiana families need covered, and how to get it done right.
               </p>
             </motion.div>
           </div>
@@ -148,8 +148,6 @@ export function About() {
           </div>
         </section>
 
-        {/* Stats */}
-        <Proof />
       </div>
     </>
   );

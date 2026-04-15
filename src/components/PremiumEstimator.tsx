@@ -283,19 +283,19 @@ export function PremiumEstimator() {
                 </div>
 
                 {/* Savings Badge */}
-                <motion.div 
-                  initial={{ opacity: 0, scale: 0.9 }}
-                  animate={{ opacity: 1, scale: 1 }}
-                  transition={{ delay: 0.5 }}
-                  className="flex justify-center mb-8"
-                >
-                  <div className="inline-flex items-center gap-2 bg-emerald-500/10 border border-emerald-500/15 rounded-full px-5 py-2">
-                    <TrendingDown className="w-3.5 h-3.5 text-emerald-400" />
-                    <span className="text-xs font-bold text-emerald-400 tracking-wide">
-                      Clients save up to ${savings}/yr by switching
-                    </span>
+                <div className="flex justify-center mb-6">
+                  <div className="flex flex-col items-center gap-2">
+                    <div className="inline-flex items-center gap-2 bg-emerald-500/10 border border-emerald-500/15 rounded-full px-5 py-2">
+                      <TrendingDown className="w-3.5 h-3.5 text-emerald-400" />
+                      <span className="text-xs font-bold text-emerald-400 tracking-wide">
+                        Clients save up to ${savings}/yr by switching*
+                      </span>
+                    </div>
+                    <p className="text-paper/20 text-[10px] font-medium tracking-wide text-center max-w-xs">
+                      *Based on average savings reported by clients who switched from a single-carrier agent. Individual results vary.
+                    </p>
                   </div>
-                </motion.div>
+                </div>
 
                 {/* CTA */}
                 <motion.div 

@@ -197,7 +197,13 @@ export function Concierge() {
                   <p className="text-xs text-paper/80 leading-relaxed mb-4">
                     Based on what you told us, you might want to look into an Umbrella policy. Louisiana homeowners with young drivers and recreational vehicles often have more liability exposure than a standard policy covers. It's worth a quick conversation.
                   </p>
-                  <button className="w-full bg-accent text-white py-3 rounded-md text-xs font-bold tracking-widest uppercase hover:bg-white hover:text-ink transition-colors shadow-[0_0_15px_rgba(227,38,54,0.4)]">
+                  <button
+                    onClick={() => {
+                      setIsOpen(false);
+                      window.dispatchEvent(new CustomEvent('open-quote'));
+                    }}
+                    className="w-full bg-accent text-white py-3 rounded-md text-xs font-bold tracking-widest uppercase hover:bg-white hover:text-ink transition-colors shadow-[0_0_15px_rgba(227,38,54,0.4)]"
+                  >
                     Let's Talk About It
                   </button>
                 </motion.div>

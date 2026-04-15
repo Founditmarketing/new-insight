@@ -1,10 +1,11 @@
 import { useState, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
-import { Menu, X } from 'lucide-react';
+import { Menu, X, ChevronDown } from 'lucide-react';
 
 export function Navbar({ onOpenQuote, onOpenPortal }: { onOpenQuote?: () => void, onOpenPortal?: () => void }) {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const [isMoreOpen, setIsMoreOpen] = useState(false);
   const location = useLocation();
   const isHome = location.pathname === '/';
 
@@ -19,6 +20,7 @@ export function Navbar({ onOpenQuote, onOpenPortal }: { onOpenQuote?: () => void
   // Close mobile menu on route change
   useEffect(() => {
     setIsMobileMenuOpen(false);
+    setIsMoreOpen(false);
   }, [location]);
 
   // Body scroll lock when menu is open
@@ -34,18 +36,27 @@ export function Navbar({ onOpenQuote, onOpenPortal }: { onOpenQuote?: () => void
   // Escape key closes menu
   useEffect(() => {
     const handleEsc = (e: KeyboardEvent) => {
-      if (e.key === 'Escape') setIsMobileMenuOpen(false);
+      if (e.key === 'Escape') { setIsMobileMenuOpen(false); setIsMoreOpen(false); }
     };
     window.addEventListener('keydown', handleEsc);
     return () => window.removeEventListener('keydown', handleEsc);
   }, []);
 
-  const navLinks = [
+  const mainNavLinks = [
     { name: 'About', href: '/about' },
     { name: 'Services', href: '/services' },
     { name: 'Locations', href: '/locations' },
     { name: 'Contact', href: '/contact' },
   ];
+
+  const moreLinks = [
+    { name: 'Make a Payment', href: '/payments' },
+    { name: 'File a Claim', href: '/file-a-claim' },
+    { name: 'Careers', href: '/careers' },
+    { name: 'FAQ', href: '/faq' },
+  ];
+
+  const allMobileLinks = [...mainNavLinks, ...moreLinks];
 
   // On non-home pages, always show scrolled (solid) style
   const showSolid = isScrolled || !isHome;
@@ -69,8 +80,8 @@ export function Navbar({ onOpenQuote, onOpenPortal }: { onOpenQuote?: () => void
         </Link>
 
         {/* Desktop Menu */}
-        <div className="hidden md:flex items-center gap-8">
-          {navLinks.map((item) => (
+        <div className="hidden md:flex items-center gap-6">
+          {mainNavLinks.map((item) => (
             <Link 
               key={item.name}
               to={item.href}
@@ -84,6 +95,36 @@ export function Navbar({ onOpenQuote, onOpenPortal }: { onOpenQuote?: () => void
               }`}></span>
             </Link>
           ))}
+
+          {/* More Dropdown */}
+          <div className="relative">
+            <button
+              onClick={() => setIsMoreOpen(!isMoreOpen)}
+              onBlur={() => setTimeout(() => setIsMoreOpen(false), 150)}
+              className={`text-sm font-semibold transition-colors uppercase tracking-wide relative flex items-center gap-1 ${
+                showSolid ? 'text-ink/80 hover:text-accent' : 'text-paper/90 hover:text-accent'
+              }`}
+            >
+              More
+              <ChevronDown className={`w-3.5 h-3.5 transition-transform duration-300 ${isMoreOpen ? 'rotate-180' : ''}`} />
+            </button>
+            {isMoreOpen && (
+              <div className="absolute top-full right-0 mt-3 bg-stone/98 backdrop-blur-xl border border-slate/15 rounded-xl shadow-xl py-2 min-w-[180px] z-50">
+                {moreLinks.map((link) => (
+                  <Link
+                    key={link.name}
+                    to={link.href}
+                    className={`block px-5 py-3 text-sm font-semibold hover:text-accent hover:bg-slate/5 transition-colors ${
+                      location.pathname === link.href ? 'text-accent' : 'text-ink/70'
+                    }`}
+                  >
+                    {link.name}
+                  </Link>
+                ))}
+              </div>
+            )}
+          </div>
+
           <button 
             onClick={onOpenPortal}
             className={`ml-2 px-5 py-3 rounded-sm font-bold tracking-widest uppercase text-xs transition-all duration-300 border flex items-center justify-center gap-2 ${
@@ -129,7 +170,6 @@ export function Navbar({ onOpenQuote, onOpenPortal }: { onOpenQuote?: () => void
             className="fixed inset-0 z-[9999] md:hidden"
         style={{ 
           backgroundColor: '#050505',
-          /* Triple-redundant background for GPU compositing edge cases */
           background: '#050505',
           WebkitBackfaceVisibility: 'hidden',
           backfaceVisibility: 'hidden',
@@ -138,9 +178,9 @@ export function Navbar({ onOpenQuote, onOpenPortal }: { onOpenQuote?: () => void
         aria-modal="true"
         aria-label="Navigation menu"
       >
-        <div className="flex flex-col h-full" style={{ backgroundColor: '#050505' }}>
+        <div className="flex flex-col h-full overflow-y-auto" style={{ backgroundColor: '#050505' }}>
           {/* Close button header */}
-          <div className="flex items-center justify-between px-8 pt-6 pb-8">
+          <div className="flex items-center justify-between px-8 pt-6 pb-8 flex-shrink-0">
             <span className="text-sm font-bold text-white/30 uppercase tracking-widest">Menu</span>
             <button 
               onClick={() => setIsMobileMenuOpen(false)}
@@ -153,11 +193,11 @@ export function Navbar({ onOpenQuote, onOpenPortal }: { onOpenQuote?: () => void
 
           {/* Nav links */}
           <div className="flex flex-col gap-1 px-8 flex-grow">
-            {navLinks.map((item) => (
+            {allMobileLinks.map((item) => (
               <Link 
                 key={item.name}
                 to={item.href}
-                className={`text-3xl font-bold tracking-tight py-4 border-b border-white/10 transition-colors ${
+                className={`text-2xl font-bold tracking-tight py-3 border-b border-white/10 transition-colors ${
                   location.pathname === item.href ? 'text-accent' : 'text-white hover:text-accent'
                 }`}
               >
@@ -193,13 +233,13 @@ export function Navbar({ onOpenQuote, onOpenPortal }: { onOpenQuote?: () => void
               }}
               className="mt-3 bg-accent text-white px-8 py-5 rounded-sm font-bold tracking-widest uppercase text-sm flex items-center justify-center hover:bg-white hover:text-ink transition-colors w-full shadow-[0_0_30px_rgba(227,38,54,0.3)]"
             >
-              Compare Rates
+              Get a Quote
             </button>
           </div>
 
           {/* Bottom branding */}
-          <div className="px-8 py-6 text-center">
-            <p className="text-white/20 text-xs font-bold tracking-widest uppercase">Insight Insurance · Louisiana</p>
+          <div className="px-8 py-6 text-center flex-shrink-0">
+            <p className="text-white/20 text-xs font-bold tracking-widest uppercase">Insight Insurance · Louisiana · Est. 2016</p>
           </div>
         </div>
       </div>

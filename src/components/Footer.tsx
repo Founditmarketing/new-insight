@@ -1,4 +1,3 @@
-import { ArrowUpRight } from 'lucide-react';
 import { MapPin, Phone, Mail, Clock, ShieldCheck } from 'lucide-react';
 import { Link } from 'react-router-dom';
 
@@ -19,8 +18,12 @@ export function Footer() {
             <span className="text-[10px] uppercase tracking-widest font-semibold text-accent/80 ml-2">Insurance</span>
           </div>
           <p className="text-ink/70 text-sm font-medium leading-relaxed max-w-sm">
-            Honest insurance advice for Louisiana families and businesses. We'd love the chance to earn your trust.
+            Honest insurance advice for Louisiana families and businesses since 2016. We'd love the chance to earn your trust.
           </p>
+          <div className="flex items-center gap-2 text-xs font-bold tracking-widest uppercase text-ink/40">
+            <ShieldCheck className="w-4 h-4 text-accent" />
+            <span>Est. 2016 · Independent Agency</span>
+          </div>
         </div>
 
         {/* Contact Information */}
@@ -41,7 +44,7 @@ export function Footer() {
             </li>
             <li className="flex items-center gap-3 hover:text-ink transition-colors">
               <Clock className="w-5 h-5 text-accent shrink-0" />
-              <span>Mon-Fri: 8:00 AM - 5:00 PM</span>
+              <span>Mon–Fri: 9:00 AM – 4:30 PM</span>
             </li>
           </ul>
         </div>
@@ -56,6 +59,9 @@ export function Footer() {
               { name: 'Locations', href: '/locations' },
               { name: 'Contact', href: '/contact' },
               { name: 'Get a Quote', href: '/contact' },
+              { name: 'Make a Payment', href: '/payments' },
+              { name: 'File a Claim', href: '/file-a-claim' },
+              { name: 'Careers', href: '/careers' },
             ].map((link) => (
               <li key={link.name}>
                 <Link to={link.href} className="hover:text-accent transition-colors relative inline-block group">

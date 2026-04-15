@@ -119,9 +119,9 @@ export function CTA({ onOpenQuote }: { onOpenQuote?: () => void }) {
               Get a Quote <ArrowRight className="w-4 h-4 ml-3 group-hover:translate-x-1 transition-transform" />
             </span>
           </button>
-          <button className="w-full sm:w-auto border-2 border-paper/20 bg-ink/40 backdrop-blur-md text-paper px-10 py-5 rounded-sm font-bold tracking-widest uppercase text-sm hover:bg-paper hover:text-ink hover:border-paper transition-colors flex items-center justify-center group shadow-institutional">
-            <Phone className="w-4 h-4 mr-3 group-hover:rotate-12 transition-transform" /> Call (318) 555-0123
-          </button>
+          <a href="tel:3185618000" className="w-full sm:w-auto border-2 border-paper/20 bg-ink/40 backdrop-blur-md text-paper px-10 py-5 rounded-sm font-bold tracking-widest uppercase text-sm hover:bg-paper hover:text-ink hover:border-paper transition-colors flex items-center justify-center group shadow-institutional">
+            <Phone className="w-4 h-4 mr-3 group-hover:rotate-12 transition-transform" /> Call (318) 561-8000
+          </a>
         </motion.div>
       </div>
     </section>

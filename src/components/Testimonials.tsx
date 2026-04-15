@@ -139,7 +139,7 @@ export function Testimonials() {
           onClick={() => window.dispatchEvent(new CustomEvent('open-quote'))}
           className="bg-ink text-paper px-8 py-4 rounded-sm font-bold tracking-widest uppercase text-sm hover:bg-accent transition-all duration-300 shadow-[0_0_20px_rgba(0,0,0,0.1)]"
         >
-          Compare Your Rates →
+          Get a Quote →
         </button>
       </div>
 

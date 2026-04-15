@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { motion } from 'motion/react';
-import { MapPin, Phone, Mail, Clock, Send, CheckCircle2 } from 'lucide-react';
+import { MapPin, Phone, Mail, Clock, Send, CheckCircle2, Navigation } from 'lucide-react';
 import { SEO } from '../components/SEO';
 
 export function Contact() {
@@ -13,9 +13,33 @@ export function Contact() {
   };
 
   const offices = [
-    { city: 'Alexandria', address: '5215 B Jackson St', zip: 'Alexandria, LA 71303', phone: '(318) 561-8000' },
-    { city: 'Ponchatoula', address: '1133 Hwy 51, Suite 105', zip: 'Ponchatoula, LA 70454', phone: '(985) 242-4300' },
-    { city: 'Slidell', address: '1352 7th St', zip: 'Slidell, LA 70458', phone: '(985) 643-3304' },
+    {
+      city: 'Alexandria',
+      address: '5215 B Jackson St',
+      zip: 'Alexandria, LA 71303',
+      phone: '(318) 561-8000',
+      phoneRaw: '3185618000',
+      mapQuery: '5215+B+Jackson+St+Alexandria+LA+71303',
+      directionsUrl: 'https://www.google.com/maps/dir/?api=1&destination=5215+B+Jackson+St+Alexandria+LA+71303',
+    },
+    {
+      city: 'Ponchatoula',
+      address: '1133 Hwy 51, Suite 105',
+      zip: 'Ponchatoula, LA 70454',
+      phone: '(985) 242-4300',
+      phoneRaw: '9852424300',
+      mapQuery: '1133+Hwy+51+Suite+105+Ponchatoula+LA+70454',
+      directionsUrl: 'https://www.google.com/maps/dir/?api=1&destination=1133+Hwy+51+Suite+105+Ponchatoula+LA+70454',
+    },
+    {
+      city: 'Slidell',
+      address: '1352 7th St',
+      zip: 'Slidell, LA 70458',
+      phone: '(985) 643-3304',
+      phoneRaw: '9856433304',
+      mapQuery: '1352+7th+St+Slidell+LA+70458',
+      directionsUrl: 'https://www.google.com/maps/dir/?api=1&destination=1352+7th+St+Slidell+LA+70458',
+    },
   ];
 
   return (
@@ -48,7 +72,7 @@ export function Contact() {
             </p>
           </motion.div>
 
-          <div className="grid grid-cols-1 lg:grid-cols-5 gap-16">
+          <div className="grid grid-cols-1 lg:grid-cols-5 gap-16 mb-24">
 
             {/* Form */}
             <motion.div
@@ -161,7 +185,7 @@ export function Contact() {
                   <h3 className="font-bold text-ink uppercase tracking-wide text-sm">Office Hours</h3>
                 </div>
                 <p className="text-ink/70 font-medium text-sm leading-relaxed">
-                  Monday – Friday: 8:00 AM – 5:00 PM<br/>
+                  Monday – Friday: 9:00 AM – 4:30 PM<br/>
                   Saturday – Sunday: Closed<br/>
                   <span className="text-accent font-bold">24/7 Claims Support Available</span>
                 </p>
@@ -178,7 +202,7 @@ export function Contact() {
                 </a>
               </div>
 
-              {/* Offices */}
+              {/* Offices quick ref */}
               {offices.map((office) => (
                 <div key={office.city} className="border border-slate/10 rounded-xl p-8">
                   <h3 className="font-bold text-ink mb-3">{office.city}</h3>
@@ -188,12 +212,71 @@ export function Contact() {
                   </div>
                   <div className="flex items-center gap-3 text-ink/70 text-sm">
                     <Phone className="w-4 h-4 text-accent flex-shrink-0" />
-                    <a href={`tel:${office.phone.replace(/\D/g, '')}`} className="font-medium hover:text-accent transition-colors">{office.phone}</a>
+                    <a href={`tel:${office.phoneRaw}`} className="font-medium hover:text-accent transition-colors">{office.phone}</a>
                   </div>
                 </div>
               ))}
             </motion.div>
           </div>
+
+          {/* Office Maps Section */}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.8 }}
+          >
+            <h2 className="text-3xl font-bold text-ink tracking-tight mb-12">Find Us</h2>
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+              {offices.map((office, i) => (
+                <motion.div
+                  key={office.city}
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.6, delay: i * 0.1 }}
+                  className="flex flex-col gap-4"
+                >
+                  <div className="flex items-center justify-between">
+                    <h3 className="font-bold text-xl text-ink">{office.city}</h3>
+                    <a
+                      href={`tel:${office.phoneRaw}`}
+                      className="text-sm font-bold text-accent hover:underline"
+                    >
+                      {office.phone}
+                    </a>
+                  </div>
+                  
+                  {/* Embedded Map */}
+                  <div className="rounded-2xl overflow-hidden border border-slate/10 shadow-sm">
+                    <iframe
+                      title={`Map of Insight Insurance ${office.city} office`}
+                      width="100%"
+                      height="240"
+                      style={{ border: 0 }}
+                      loading="lazy"
+                      referrerPolicy="no-referrer-when-downgrade"
+                      src={`https://maps.google.com/maps?q=${office.mapQuery}&output=embed&z=15`}
+                    />
+                  </div>
+
+                  <div className="flex flex-col gap-2 text-sm text-ink/60 font-medium">
+                    <span>{office.address}, {office.zip}</span>
+                  </div>
+
+                  <a
+                    href={office.directionsUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="flex items-center justify-center gap-2 border border-ink/15 text-ink/70 px-6 py-3 rounded-lg font-bold tracking-widest uppercase text-xs hover:border-accent hover:text-accent transition-colors"
+                  >
+                    <Navigation className="w-3.5 h-3.5" /> Click for Directions
+                  </a>
+                </motion.div>
+              ))}
+            </div>
+          </motion.div>
+
         </div>
       </div>
     </>

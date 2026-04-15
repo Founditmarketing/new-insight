@@ -30,6 +30,10 @@ const FAQ = lazy(() => import('./pages/FAQ').then(m => ({ default: m.FAQ })));
 const Privacy = lazy(() => import('./pages/Privacy').then(m => ({ default: m.Privacy })));
 const Terms = lazy(() => import('./pages/Terms').then(m => ({ default: m.Terms })));
 const NotFound = lazy(() => import('./pages/NotFound').then(m => ({ default: m.NotFound })));
+// New pages
+const MakePayment = lazy(() => import('./pages/MakePayment').then(m => ({ default: m.MakePayment })));
+const FileAClaim = lazy(() => import('./pages/FileAClaim').then(m => ({ default: m.FileAClaim })));
+const Careers = lazy(() => import('./pages/Careers').then(m => ({ default: m.Careers })));
 
 // Minimal loading fallback
 function PageLoader() {
@@ -119,6 +123,10 @@ export default function App() {
                 } />
                 <Route path="/privacy" element={<Privacy />} />
                 <Route path="/terms" element={<Terms />} />
+                {/* New pages */}
+                <Route path="/payments" element={<MakePayment />} />
+                <Route path="/file-a-claim" element={<FileAClaim />} />
+                <Route path="/careers" element={<Careers />} />
                 {/* Legacy city routes */}
                 <Route path="/:city" element={
                   <CityPage onOpenQuote={() => setIsQuoteOpen(true)} />
