@@ -49,8 +49,9 @@ export function Philosophy() {
             transition={{ duration: 0.8, delay: 0.2, ease: [0.16, 1, 0.3, 1] }}
             className="text-2xl md:text-3xl text-ink/80 font-medium leading-relaxed mb-10 tracking-tight"
           >
-            We're Justin Morgan and Cory Chandler, and we run Insight Insurance out of Alexandria and Ponchatoula. 
-            We live here, we raise our families here, and we've been through the same storms you have — literally. When you call, you get us.
+            We're a team of local insurance professionals serving Louisiana families and businesses since 2016. 
+            We live here, we raise our families here, and we've been through the same storms you have — literally. 
+            Our team is dedicated to finding you the right coverage at the right price, and being there when it matters most.
           </motion.p>
           
           <div className="relative grid grid-cols-1 md:grid-cols-2 gap-12 md:gap-16 border-t border-ink/10 pt-16">
