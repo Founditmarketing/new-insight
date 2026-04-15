@@ -1,0 +1,177 @@
+@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap');
+@import "tailwindcss";
+
+@theme {
+  --font-sans: "Plus Jakarta Sans", ui-sans-serif, system-ui, sans-serif;
+  --font-serif: "Plus Jakarta Sans", ui-serif, Georgia, Cambria, "Times New Roman", Times, serif;
+  
+  --color-ink: #050505; /* Absolute Black for extreme contrast */
+  --color-paper: #FFFFFF; /* Pure White */
+  --color-stone: #F3F4F6; /* Sharper Off-White (Gray-100) for structural depth */
+  --color-accent: #E32636; /* Vibrant Rosso Corsa Red for extreme pop */
+  --color-slate: #9CA3AF; /* Neutral gray for borders */
+}
+
+body {
+  font-family: var(--font-sans);
+  background-color: var(--color-paper);
+  color: var(--color-ink);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+@keyframes marquee {
+  0% { transform: translateX(0%); }
+  100% { transform: translateX(-50%); }
+}
+
+@keyframes marquee-reverse {
+  0% { transform: translateX(-50%); }
+  100% { transform: translateX(0%); }
+}
+
+.animate-marquee {
+  animation: marquee 60s linear infinite;
+}
+
+.animate-marquee-reverse {
+  animation: marquee-reverse 60s linear infinite;
+}
+
+h1, h2, h3, h4, h5, h6, .font-serif {
+  /* Using sans for headers to keep it stark, strong, and modern */
+  font-family: var(--font-sans);
+}
+
+/* Fluid typography utilities */
+.text-fluid-h1 {
+  font-size: clamp(2.5rem, 7vw, 6rem);
+  line-height: 1.1;
+  letter-spacing: -0.04em;
+  font-weight: 600;
+}
+
+.text-fluid-h2 {
+  font-size: clamp(2rem, 5vw, 4rem);
+  line-height: 1.15;
+  letter-spacing: -0.03em;
+  font-weight: 600;
+}
+
+.text-fluid-h3 {
+  font-size: clamp(1.5rem, 3vw, 2.5rem);
+  line-height: 1.1;
+  letter-spacing: -0.02em;
+  font-weight: 500;
+}
+
+/* Trustworthy Institutional Borders and Shadows */
+.trust-card {
+  background: var(--color-stone);
+  border: 1px solid rgba(138, 154, 171, 0.2);
+  border-radius: 12px;
+  box-shadow: 0 4px 6px -1px rgba(10, 29, 61, 0.05), 0 2px 4px -1px rgba(10, 29, 61, 0.03);
+  transition: all 0.3s ease;
+}
+
+.trust-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 30px 60px -15px rgba(10, 29, 61, 0.05); /* 5% Soft Shadow */
+  border-color: rgba(191, 161, 95, 0.4); /* Subtle Gold border on hover */
+}
+
+/* Base Editorial Typography */
+p {
+  line-height: 1.8;
+}
+
+/* Bespoke Institutional Shadow */
+.shadow-institutional {
+  box-shadow: 0 30px 60px -15px rgba(0, 0, 0, 0.05); /* Extremely diffused, elegant 5% shadow */
+}
+
+/* Hide scrollbar for Chrome, Safari and Opera */
+.scrollbar-hide::-webkit-scrollbar {
+    display: none;
+}
+
+/* Hide scrollbar for IE, Edge and Firefox */
+.scrollbar-hide {
+    -ms-overflow-style: none;  /* IE and Edge */
+    scrollbar-width: none;  /* Firefox */
+}
+
+/* GPU Accelerated Particles */
+@keyframes floatParticle {
+  0% {
+    transform: translate(0, 0) scale(0);
+    opacity: 0;
+  }
+  50% {
+    transform: translate(calc(var(--offset-x) * 0.5), -35vh) scale(1);
+    opacity: var(--max-opacity);
+  }
+  100% {
+    transform: translate(var(--offset-x), -70vh) scale(0);
+    opacity: 0;
+  }
+}
+
+.gpu-particle {
+  position: absolute;
+  border-radius: 9999px;
+  mix-blend-mode: screen;
+  animation: floatParticle var(--duration) linear var(--delay) infinite;
+  box-shadow: 0 0 calc(var(--size) * 5) var(--shadow-color);
+  width: var(--size);
+  height: var(--size);
+  left: var(--x-origin);
+  top: var(--y-origin);
+  opacity: 0; /* Base opacity; animation overrides it */
+  pointer-events: none;
+}
+
+/* Safe area for notched phones */
+.safe-area-bottom {
+  padding-bottom: env(safe-area-inset-bottom, 0px);
+}
+
+/* Skip to content link */
+.skip-to-content {
+  position: absolute;
+  top: -100px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: var(--color-accent);
+  color: white;
+  padding: 0.75rem 1.5rem;
+  font-weight: 700;
+  font-size: 0.875rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  border-radius: 0 0 0.5rem 0.5rem;
+  z-index: 99999;
+  transition: top 0.2s ease;
+}
+.skip-to-content:focus {
+  top: 0;
+  outline: 2px solid white;
+  outline-offset: 2px;
+}
+
+/* Respect prefers-reduced-motion */
+@media (prefers-reduced-motion: reduce) {
+  .gpu-particle {
+    animation: none !important;
+    opacity: 0 !important;
+  }
+  .animate-marquee,
+  .animate-marquee-reverse {
+    animation: none !important;
+  }
+  * {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
