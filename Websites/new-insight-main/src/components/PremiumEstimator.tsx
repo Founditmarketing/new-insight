@@ -26,7 +26,7 @@ const coverageTypes = [
   { id: 'business', label: 'Business', icon: Building2 },
 ];
 
-const scanCarriers = ['CHUBB', 'PURE', 'Travelers', 'AIG', 'Progressive', 'Cincinnati', 'Safeco', 'Hartford'];
+const scanCarriers = ['Progressive', 'Hartford', 'Liberty', 'Foremost', 'SageSure', 'Openly', 'GEICO', 'Bristol West', 'Citizens', 'AmTrust', 'Tower Hill', 'Travelers'];
 
 function useCountUp(target: number, duration = 1500) {
   const [value, setValue] = useState(0);
@@ -309,7 +309,7 @@ export function PremiumEstimator() {
                     className="group bg-accent text-white px-10 py-4 rounded-sm font-bold tracking-widest uppercase text-sm hover:bg-white hover:text-ink transition-all duration-300 shadow-[0_0_30px_rgba(227,38,54,0.25)] inline-flex items-center gap-3"
                   >
                     <ShieldCheck className="w-4 h-4" />
-                    Lock In My Rate
+                    Request Customized Quote
                     <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
                   </button>
                   <p className="text-paper/20 text-[10px] font-bold tracking-widest uppercase mt-4">
