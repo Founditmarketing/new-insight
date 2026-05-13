@@ -1,0 +1,17 @@
+{
+  "name": "Insight Insurance",
+  "short_name": "Insight",
+  "description": "Independent insurance agency serving Ponchatoula, Slidell, and Alexandria, Louisiana.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#050505",
+  "theme_color": "#050505",
+  "icons": [
+    {
+      "src": "/favicon.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ]
+}
