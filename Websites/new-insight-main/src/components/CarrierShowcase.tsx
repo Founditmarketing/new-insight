@@ -4,19 +4,19 @@ import { CheckCircle2, Umbrella, RotateCcw } from 'lucide-react';
 
 const carriers = [
   { name: 'PROGRESSIVE', style: 'font-sans font-bold italic text-xs md:text-sm tracking-tight', color: '#008CC1' },
-  { name: 'Safeco', style: 'font-sans font-bold text-base md:text-lg', color: '#1B365D' },
+
   { name: 'Hartford', style: 'font-serif font-bold text-base md:text-lg', color: '#8B0000' },
   { name: 'Liberty', style: 'font-sans font-bold text-base md:text-lg', color: '#003366' },
   { name: 'Berkshire', style: 'font-sans font-bold text-xs md:text-sm tracking-wide' },
   { name: 'Foremost', style: 'font-sans font-bold text-sm md:text-base', color: '#006699' },
-  { name: 'Kemper', style: 'font-sans font-black text-sm md:text-base tracking-tight', color: '#CC0000' },
+
   { name: 'SageSure', style: 'font-sans font-bold text-xs md:text-sm tracking-wide', color: '#2D6A4F' },
   { name: 'Openly', style: 'font-sans font-bold text-sm md:text-base', color: '#1A1A2E' },
   { name: 'AmTrust', style: 'font-sans font-bold text-xs md:text-sm tracking-wider', color: '#003B6F' },
   { name: 'Bristol West', style: 'font-serif font-bold text-xs md:text-sm', color: '#2C5F8A' },
   { name: 'Lighthouse', style: 'font-sans font-bold text-xs md:text-sm tracking-wide', color: '#E8830A' },
   { name: 'Citizens', style: 'font-sans font-bold text-sm md:text-base', color: '#00609C' },
-  { name: 'USAA', style: 'font-sans font-black text-sm md:text-base tracking-wide', color: '#003F72' },
+
 ];
 
 export function CarrierShowcase() {
