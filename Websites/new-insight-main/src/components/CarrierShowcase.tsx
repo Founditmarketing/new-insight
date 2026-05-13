@@ -13,6 +13,20 @@ const carriers = [
   { name: 'AmTrust', style: 'font-sans font-bold text-xs md:text-sm tracking-wider', color: '#003B6F' },
   { name: 'Bristol West', style: 'font-serif font-bold text-xs md:text-sm', color: '#2C5F8A' },
   { name: 'Citizens', style: 'font-sans font-bold text-sm md:text-base', color: '#00609C' },
+  { name: 'GEICO', style: 'font-sans font-black text-xs md:text-sm tracking-wide', color: '#00A84F' },
+  { name: 'National General', style: 'font-sans font-bold text-xs md:text-sm', color: '#003087' },
+  { name: 'Safeway', style: 'font-sans font-bold text-sm md:text-base', color: '#CC0000' },
+  { name: 'Clearcover', style: 'font-sans font-bold text-xs md:text-sm tracking-tight', color: '#5B2D8E' },
+  { name: 'Root', style: 'font-sans font-black text-sm md:text-base tracking-tight', color: '#FF5310' },
+  { name: 'Obie', style: 'font-sans font-bold text-sm md:text-base tracking-wide', color: '#1DB954' },
+  { name: 'Swyftt', style: 'font-sans font-bold text-xs md:text-sm tracking-tight', color: '#0077FF' },
+  { name: 'Next', style: 'font-sans font-black text-sm md:text-base tracking-wider', color: '#FF6600' },
+  { name: 'THREE', style: 'font-sans font-black text-sm md:text-base tracking-widest', color: '#1A1A1A' },
+  { name: 'Coterie', style: 'font-sans font-bold text-xs md:text-sm tracking-wide', color: '#2D4A8A' },
+  { name: 'Tower Hill', style: 'font-sans font-bold text-xs md:text-sm', color: '#005C8A' },
+  { name: 'American Modern', style: 'font-sans font-bold text-xs tracking-wide', color: '#003F7D' },
+  { name: 'Hiscox', style: 'font-sans font-bold text-sm md:text-base tracking-tight', color: '#CC0000' },
+  { name: 'Bluefire', style: 'font-sans font-bold text-xs md:text-sm tracking-wide', color: '#1565C0' },
 ];
 
 export function CarrierShowcase() {
