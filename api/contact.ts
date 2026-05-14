@@ -1,8 +1,14 @@
 import { Resend } from 'resend';
 
-const resend = new Resend(process.env.RESEND_API_KEY);
+let resend;
 
 export default async function handler(req, res) {
+  if (!resend) {
+      if (!process.env.RESEND_API_KEY) {
+        return res.status(500).json({ error: 'Critical: RESEND_API_KEY is missing in Vercel environment variables.' });
+      }
+      resend = new Resend(process.env.RESEND_API_KEY);
+    }
   if (req.method !== 'POST') {
     return res.status(405).json({ message: 'Method not allowed' });
   }
@@ -16,7 +22,7 @@ export default async function handler(req, res) {
   }
 
   try {
-    const data = await resend.emails.send({
+    const { data, error } = await resend.emails.send({
       from: 'Contact Form <hello@insighthelps.com>',
       to: toEmail,
       replyTo: email,
@@ -31,6 +37,11 @@ export default async function handler(req, res) {
         <p><strong>Message:</strong><br/>${message}</p>
       `,
     });
+
+    if (error) {
+      console.error('Resend API returned an error:', error);
+      return res.status(500).json({ error: error.message || 'Failed to send email' });
+    }
 
     return res.status(200).json(data);
   } catch (error) {

@@ -7,13 +7,15 @@ const resend = new Resend(process.env.RESEND_API_KEY);
 async function test() {
   try {
     console.log("Sending email...");
-    const data = await resend.emails.send({
+    const { data, error } = await resend.emails.send({
       from: 'Contact Form <hello@insighthelps.com>',
       to: 'robbie@insighthelps.com',
-      subject: 'Test API Email',
+      replyTo: 'test@test.com',
+      subject: 'Test API Email with ReplyTo',
       html: '<p>Testing Resend API...</p>'
     });
-    console.log("Response:", data);
+    console.log("Data:", data);
+    console.log("Error:", error);
   } catch (err) {
     console.error("Caught Exception:", err);
   }
