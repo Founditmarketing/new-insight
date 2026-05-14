@@ -46,7 +46,7 @@ const carriers = [
     initial: 'SS',
   },
   {
-    name: 'Gulf States / Lighthouse',
+    name: 'Gulf States',
     description: 'Coastal Homeowners',
     url: 'https://gulfstatesinsure.com/claims/',
     color: '#E8830A',

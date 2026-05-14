@@ -39,7 +39,7 @@ const carriers = [
     initial: 'F',
   },
   {
-    name: 'Bluefire / Kemper',
+    name: 'Bluefire',
     description: 'Auto Insurance',
     url: 'https://www.bluefireinsurance.com/make-a-payment/',
     color: '#CC0000',
@@ -53,7 +53,7 @@ const carriers = [
     initial: 'SS',
   },
   {
-    name: 'Gulf States / Lighthouse',
+    name: 'Gulf States',
     description: 'Coastal Homeowners',
     url: 'https://my.gulfstatesinsure.com/Account/Quickpay',
     color: '#E8830A',

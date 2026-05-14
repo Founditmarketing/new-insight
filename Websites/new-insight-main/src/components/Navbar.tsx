@@ -23,15 +23,16 @@ export function Navbar({ onOpenQuote, onOpenPortal }: { onOpenQuote?: () => void
     setIsMoreOpen(false);
   }, [location]);
 
-  // Body scroll lock when menu is open
+  // Body scroll lock when menu is open — always clean up on unmount
   useEffect(() => {
-    if (isMobileMenuOpen) {
-      document.body.style.overflow = 'hidden';
-    } else {
-      document.body.style.overflow = '';
-    }
+    document.body.style.overflow = isMobileMenuOpen ? 'hidden' : '';
     return () => { document.body.style.overflow = ''; };
   }, [isMobileMenuOpen]);
+
+  // Safety net: always release scroll lock when navigating away
+  useEffect(() => {
+    return () => { document.body.style.overflow = ''; };
+  }, []);
 
   // Escape key closes menu
   useEffect(() => {
@@ -63,7 +64,7 @@ export function Navbar({ onOpenQuote, onOpenPortal }: { onOpenQuote?: () => void
 
   return (
     <nav 
-      className={`fixed top-0 w-full z-50 transition-all duration-500 ${
+      className={`fixed top-0 w-full z-[55] transition-all duration-500 ${
         showSolid 
           ? 'bg-stone/95 backdrop-blur-md border-b border-slate/10 py-4 shadow-sm' 
           : 'bg-transparent py-6'
@@ -145,11 +146,13 @@ export function Navbar({ onOpenQuote, onOpenPortal }: { onOpenQuote?: () => void
           </button>
         </div>
 
-        {/* Mobile Menu Toggle */}
+        {/* Mobile Menu Toggle — z-[60] ensures it's always tappable above page content */}
         <button 
-          className={`md:hidden p-2 transition-colors hover:text-accent ${showSolid ? 'text-ink' : 'text-paper'}`}
+          className={`md:hidden relative z-[60] p-2 transition-colors hover:text-accent ${showSolid ? 'text-ink' : 'text-paper'}`}
           onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
           aria-label="Toggle menu"
+          aria-expanded={isMobileMenuOpen}
+          aria-controls="mobile-nav-menu"
         >
           {isMobileMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
         </button>
@@ -167,17 +170,18 @@ export function Navbar({ onOpenQuote, onOpenPortal }: { onOpenQuote?: () => void
           
           {/* Layer 2: Menu panel */}
           <div 
+            id="mobile-nav-menu"
             className="fixed inset-0 z-[9999] md:hidden"
-        style={{ 
-          backgroundColor: '#050505',
-          background: '#050505',
-          WebkitBackfaceVisibility: 'hidden',
-          backfaceVisibility: 'hidden',
-        }}
-        role="dialog"
-        aria-modal="true"
-        aria-label="Navigation menu"
-      >
+            style={{ 
+              backgroundColor: '#050505',
+              background: '#050505',
+              WebkitBackfaceVisibility: 'hidden',
+              backfaceVisibility: 'hidden',
+            }}
+            role="dialog"
+            aria-modal="true"
+            aria-label="Navigation menu"
+          >
         <div className="flex flex-col h-full overflow-y-auto" style={{ backgroundColor: '#050505' }}>
           {/* Close button header */}
           <div className="flex items-center justify-between px-8 pt-6 pb-8 flex-shrink-0">
