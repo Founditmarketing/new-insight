@@ -95,14 +95,32 @@ export function QuoteModal({ isOpen, onClose }: QuoteModalProps) {
 
   const handleSubmit = async () => {
     setIsSubmitting(true);
+    
+    const locationMapping: Record<string, string> = {
+      'alexandria': 'Alexandria',
+      'ponchatoula': 'Ponchatoula',
+      'slidell': 'Slidell'
+    };
+
+    let details = '';
+    if (formData.zip) details += `<p><strong>ZIP Code:</strong> ${formData.zip}</p>`;
+    if (formData.vehicleYear || formData.vehicleMake || formData.vehicleModel) {
+      details += `<p><strong>Vehicle:</strong> ${formData.vehicleYear} ${formData.vehicleMake} ${formData.vehicleModel}</p>`;
+    }
+    if (formData.businessStartYear) details += `<p><strong>Business Started:</strong> ${formData.businessStartYear}</p>`;
+    if (formData.serviceType) details += `<p><strong>Service Type:</strong> ${formData.serviceType}</p>`;
+
     try {
-      await fetch('https://api.web3forms.com/submit', {
+      await fetch('/api/contact', {
         method: 'POST',
-        headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
+        headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
-          access_key: 'YOUR_WEB3FORMS_ACCESS_KEY_HERE',
-          subject: `New Quote Request — ${formData.coverage} — ${formData.office}`,
-          ...formData,
+          name: `${formData.firstName} ${formData.lastName}`.trim() || 'No Name Provided',
+          email: formData.email || 'no-email@provided.com',
+          phone: formData.phone,
+          location: locationMapping[formData.office] || 'Alexandria',
+          type: `Quote Request (${formData.coverage})`,
+          message: details || 'No additional details provided.',
         }),
       });
     } catch (error) {
