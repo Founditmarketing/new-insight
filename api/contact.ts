@@ -1,22 +1,24 @@
 import { Resend } from 'resend';
 
-let resend;
+let resend: any;
 
-export default async function handler(req, res) {
+export default async function handler(req: any, res: any) {
+  // Initialize Resend lazily
   if (!resend) {
-      if (!process.env.RESEND_API_KEY) {
-        return res.status(500).json({ error: 'Critical: RESEND_API_KEY is missing in Vercel environment variables.' });
-      }
-      resend = new Resend(process.env.RESEND_API_KEY);
+    if (!process.env.RESEND_API_KEY) {
+      return res.status(500).json({ error: 'RESEND_API_KEY is missing from environment variables.' });
     }
+    resend = new Resend(process.env.RESEND_API_KEY);
+  }
+
   if (req.method !== 'POST') {
     return res.status(405).json({ message: 'Method not allowed' });
   }
 
   const { name, email, phone, location, type, message } = req.body;
 
-  // 1. Logic & Routing
-  let toEmail = 'support@insighthelps.com'; // Default or Alexandria
+  // Routing logic
+  let toEmail = 'support@insighthelps.com'; // Default / Alexandria
   if (location === 'Ponchatoula' || location === 'Slidell') {
     toEmail = 'robbie@insighthelps.com';
   }
@@ -39,13 +41,13 @@ export default async function handler(req, res) {
     });
 
     if (error) {
-      console.error('Resend API returned an error:', error);
-      return res.status(500).json({ error: error.message || 'Failed to send email' });
+      console.error('Resend API error:', JSON.stringify(error));
+      return res.status(500).json({ error: error.message || 'Resend rejected the email.' });
     }
 
-    return res.status(200).json(data);
-  } catch (error) {
-    console.error('Resend error:', error);
-    return res.status(500).json({ error: 'Failed to send email' });
+    return res.status(200).json({ success: true, id: data?.id });
+  } catch (err: any) {
+    console.error('Server error:', err);
+    return res.status(500).json({ error: err.message || 'Failed to send email' });
   }
 }
