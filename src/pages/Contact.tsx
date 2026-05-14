@@ -5,11 +5,32 @@ import { SEO } from '../components/SEO';
 
 export function Contact() {
   const [submitted, setSubmitted] = useState(false);
-  const [formData, setFormData] = useState({ name: '', email: '', phone: '', type: '', message: '' });
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [formData, setFormData] = useState({ name: '', email: '', phone: '', location: '', type: '', message: '' });
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    setSubmitted(true);
+    setIsSubmitting(true);
+    
+    try {
+      const response = await fetch('/api/contact', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(formData),
+      });
+
+      if (response.ok) {
+        setSubmitted(true);
+      } else {
+        console.error('Submission failed');
+        alert('There was a problem submitting your form. Please try again.');
+      }
+    } catch (error) {
+      console.error('Error submitting form:', error);
+      alert('There was a problem submitting your form. Please try again.');
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   const offices = [
@@ -119,7 +140,7 @@ export function Contact() {
                     </div>
                   </div>
 
-                  <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+                  <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-6">
                     <div>
                       <label className="block text-sm font-bold text-ink/60 uppercase tracking-widest mb-2">Phone</label>
                       <input
@@ -129,6 +150,20 @@ export function Contact() {
                         className="w-full bg-white border border-slate/20 rounded-lg py-3 px-4 text-ink font-medium outline-none focus:border-accent focus:ring-1 focus:ring-accent transition-colors"
                         placeholder="(555) 000-0000"
                       />
+                    </div>
+                    <div>
+                      <label className="block text-sm font-bold text-ink/60 uppercase tracking-widest mb-2">Location</label>
+                      <select
+                        required
+                        value={formData.location}
+                        onChange={(e) => setFormData({ ...formData, location: e.target.value })}
+                        className="w-full bg-white border border-slate/20 rounded-lg py-3 px-4 text-ink font-medium outline-none focus:border-accent focus:ring-1 focus:ring-accent transition-colors"
+                      >
+                        <option value="">Select office...</option>
+                        <option value="Alexandria">Alexandria</option>
+                        <option value="Ponchatoula">Ponchatoula</option>
+                        <option value="Slidell">Slidell</option>
+                      </select>
                     </div>
                     <div>
                       <label className="block text-sm font-bold text-ink/60 uppercase tracking-widest mb-2">I need help with</label>
@@ -162,9 +197,10 @@ export function Contact() {
 
                   <button
                     type="submit"
-                    className="bg-accent text-white px-10 py-4 rounded-sm font-bold tracking-widest uppercase text-sm hover:bg-ink transition-colors shadow-[0_0_30px_rgba(227,38,54,0.3)] flex items-center gap-3"
+                    disabled={isSubmitting}
+                    className="bg-accent text-white px-10 py-4 rounded-sm font-bold tracking-widest uppercase text-sm hover:bg-ink transition-colors shadow-[0_0_30px_rgba(227,38,54,0.3)] flex items-center gap-3 disabled:opacity-70 disabled:cursor-not-allowed"
                   >
-                    Send Message
+                    {isSubmitting ? 'Sending...' : 'Send Message'}
                     <Send className="w-4 h-4" />
                   </button>
                 </form>
