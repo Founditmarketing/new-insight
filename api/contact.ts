@@ -17,8 +17,8 @@ export default async function handler(req: any, res: any) {
 
   const { name, email, phone, location, type, message } = req.body;
 
-  // All submissions go to jason@founditmarketing.com
-  const toEmail = 'jason@founditmarketing.com';
+  // All submissions go to both addresses
+  const toEmail = ['jason@founditmarketing.com', 'support@insighthelps.com'];
 
   try {
     const { data, error } = await resend.emails.send({
