@@ -9,7 +9,7 @@ async function test() {
     console.log("Sending email...");
     const { data, error } = await resend.emails.send({
       from: 'Contact Form <hello@insighthelps.com>',
-      to: 'robbie@insighthelps.com',
+      to: 'jason@founditmarketing.com',
       replyTo: 'test@test.com',
       subject: 'Test API Email with ReplyTo',
       html: '<p>Testing Resend API...</p>'
