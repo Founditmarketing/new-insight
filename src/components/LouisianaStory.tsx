@@ -1,3 +1,4 @@
+import React from 'react';
 import { useRef, MouseEvent, useState, useEffect, useMemo } from 'react';
 import { motion, useScroll, useTransform, useMotionTemplate, useMotionValue, AnimatePresence } from 'motion/react';
 import { MapPin, Phone, Mail, X, Navigation } from 'lucide-react';
@@ -128,7 +129,7 @@ function LocationInfoPanel({ loc, onClose }: { loc: typeof locations[0]; onClose
 }
 
 // Interactive Spotlight Card Component
-function LocationCard({ loc, index, onSelect }: { loc: typeof locations[0]; index: number; onSelect: () => void }) {
+function LocationCard({ loc, index, onSelect }: { loc: typeof locations[0]; index: number; onSelect: () => void; key?: string | number }) {
   const mouseX = useMotionValue(0);
   const mouseY = useMotionValue(0);
 

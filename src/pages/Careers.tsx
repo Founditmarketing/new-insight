@@ -1,3 +1,4 @@
+import React from 'react';
 import { useState, useRef } from 'react';
 import { motion } from 'motion/react';
 import { Briefcase, Users, Heart, CheckCircle2, Send, Upload, X, FileText } from 'lucide-react';

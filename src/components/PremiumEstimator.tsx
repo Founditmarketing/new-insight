@@ -1,3 +1,4 @@
+import React from 'react';
 import { useState, useEffect, useCallback, useMemo } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
 import { Home, Car, Building2, ArrowRight, ShieldCheck, TrendingDown, Sparkles } from 'lucide-react';

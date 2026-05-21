@@ -1,3 +1,4 @@
+import React from 'react';
 import { useState } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
 import { ChevronDown } from 'lucide-react';
@@ -54,7 +55,7 @@ function getFAQSchema() {
   };
 }
 
-function FAQItem({ faq, index }: { faq: typeof faqs[0]; index: number }) {
+function FAQItem({ faq, index }: { faq: typeof faqs[0]; index: number; key?: string | number }) {
   const [isOpen, setIsOpen] = useState(false);
 
   return (

@@ -17,8 +17,14 @@ export default async function handler(req: any, res: any) {
 
   const { name, email, phone, location, type, message } = req.body;
 
-  // All submissions go to both addresses
-  const toEmail = ['jason@founditmarketing.com', 'support@insighthelps.com'];
+  // Determine routing based on location
+  let insightEmail = 'support@insighthelps.com'; // Default to support
+  if (location === 'Ponchatoula' || location === 'Slidell') {
+    insightEmail = 'robbie@insighthelps.com';
+  }
+
+  // All submissions go to jason and the designated insight email
+  const toEmail = ['jason@founditmarketing.com', insightEmail];
 
   try {
     const { data, error } = await resend.emails.send({

@@ -1,3 +1,4 @@
+import React from 'react';
 import { motion, useScroll, useTransform } from 'motion/react';
 import { ArrowRight, Phone } from 'lucide-react';
 import { useRef, useMemo, useState, useEffect } from 'react';

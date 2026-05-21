@@ -2,7 +2,8 @@ import { useState, useEffect, useRef, useCallback } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
 import { CheckCircle2, Umbrella, RotateCcw } from 'lucide-react';
 
-const carriers = [
+type Carrier = { name: string; style?: string; color?: string; hasIcon?: boolean; badge?: boolean; };
+const carriers: Carrier[] = [
   { name: 'PROGRESSIVE', style: 'font-sans font-bold italic text-xs md:text-sm tracking-tight', color: '#008CC1' },
   { name: 'Hartford', style: 'font-serif font-bold text-base md:text-lg', color: '#8B0000' },
   { name: 'Liberty', style: 'font-sans font-bold text-base md:text-lg', color: '#003366' },
