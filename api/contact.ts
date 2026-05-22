@@ -23,8 +23,8 @@ export default async function handler(req: any, res: any) {
     insightEmail = 'robbie@insighthelps.com';
   }
 
-  // Submissions go to the designated insight email and kylan
-  const toEmail = [insightEmail, 'kylan@founditmarketing.com'];
+  // Submissions go to the designated insight email
+  const toEmail = [insightEmail];
 
   try {
     const { data, error } = await resend.emails.send({
