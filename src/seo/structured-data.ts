@@ -29,8 +29,8 @@ export function getOrganizationSchema() {
     '@context': 'https://schema.org',
     '@type': 'InsuranceAgency',
     name: 'Insight Insurance',
-    url: 'https://new-insight.vercel.app',
-    logo: 'https://new-insight.vercel.app/images/og-default.png',
+    url: 'https://insighthelps.com',
+    logo: 'https://insighthelps.com/images/og-default.png',
     description: 'Independent insurance agency serving Ponchatoula, Slidell, and Alexandria, Louisiana. We shop 50+ carriers to find the right coverage at a fair price.',
     email: 'support@insighthelps.com',
     foundingDate: '2000',
@@ -86,7 +86,7 @@ export function getLocalBusinessSchema(locationIndex: number) {
     name: loc.name,
     telephone: loc.phone,
     email: 'support@insighthelps.com',
-    url: 'https://new-insight.vercel.app',
+    url: 'https://insighthelps.com',
     address: {
       '@type': 'PostalAddress',
       streetAddress: loc.address.split(',')[0],
@@ -113,7 +113,7 @@ export function getBreadcrumbSchema(items: { name: string; url: string }[]) {
       '@type': 'ListItem',
       position: i + 1,
       name: item.name,
-      item: `https://new-insight.vercel.app${item.url}`,
+      item: `https://insighthelps.com${item.url}`,
     })),
   };
 }

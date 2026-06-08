@@ -1,72 +1,72 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
-    <loc>https://new-insight.vercel.app/</loc>
+    <loc>https://insighthelps.com/</loc>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
   </url>
   <url>
-    <loc>https://new-insight.vercel.app/about</loc>
+    <loc>https://insighthelps.com/about</loc>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://new-insight.vercel.app/services</loc>
+    <loc>https://insighthelps.com/services</loc>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
-    <loc>https://new-insight.vercel.app/locations</loc>
+    <loc>https://insighthelps.com/locations</loc>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://new-insight.vercel.app/locations/alexandria</loc>
+    <loc>https://insighthelps.com/locations/alexandria</loc>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://new-insight.vercel.app/locations/ponchatoula</loc>
+    <loc>https://insighthelps.com/locations/ponchatoula</loc>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://new-insight.vercel.app/locations/slidell</loc>
+    <loc>https://insighthelps.com/locations/slidell</loc>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://new-insight.vercel.app/contact</loc>
+    <loc>https://insighthelps.com/contact</loc>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
-    <loc>https://new-insight.vercel.app/faq</loc>
+    <loc>https://insighthelps.com/faq</loc>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://new-insight.vercel.app/privacy</loc>
+    <loc>https://insighthelps.com/privacy</loc>
     <changefreq>yearly</changefreq>
     <priority>0.3</priority>
   </url>
   <url>
-    <loc>https://new-insight.vercel.app/terms</loc>
+    <loc>https://insighthelps.com/terms</loc>
     <changefreq>yearly</changefreq>
     <priority>0.3</priority>
   </url>
   <url>
-    <loc>https://new-insight.vercel.app/payments</loc>
+    <loc>https://insighthelps.com/payments</loc>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://new-insight.vercel.app/file-a-claim</loc>
+    <loc>https://insighthelps.com/file-a-claim</loc>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://new-insight.vercel.app/careers</loc>
+    <loc>https://insighthelps.com/careers</loc>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
