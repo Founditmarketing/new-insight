@@ -1,5 +1,8 @@
 {
+  "framework": null,
+  "buildCommand": "npm run build",
+  "outputDirectory": "dist",
   "rewrites": [
-    { "source": "/((?!api|images|robots.txt|sitemap.xml|_redirects).*)", "destination": "/index.html" }
+    { "source": "/((?!api|images|assets|favicon.png|manifest.json|robots.txt|sitemap.xml|llms.txt|_redirects).*)", "destination": "/index.html" }
   ]
 }

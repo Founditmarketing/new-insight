@@ -9,7 +9,7 @@ interface SEOProps {
   structuredData?: object;
 }
 
-const BASE_URL = 'https://new-insight.vercel.app';
+const BASE_URL = 'https://insighthelps.com';
 
 export function SEO({ title, description, canonical, ogImage, type = 'website', structuredData }: SEOProps) {
   const fullTitle = title.includes('Insight Insurance') ? title : `${title} | Insight Insurance`;

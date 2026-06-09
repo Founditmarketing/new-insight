@@ -3,6 +3,7 @@ import { useState } from 'react';
 import { motion } from 'motion/react';
 import { MapPin, Phone, Mail, Clock, Send, CheckCircle2, Navigation } from 'lucide-react';
 import { SEO } from '../components/SEO';
+import { getOrganizationSchema } from '../seo/structured-data';
 
 export function Contact() {
   const [submitted, setSubmitted] = useState(false);
@@ -70,6 +71,7 @@ export function Contact() {
         title="Contact Us — Get a Free Quote"
         description="Reach out to Insight Insurance for a free quote. Offices in Alexandria, Ponchatoula, and Slidell, Louisiana. Call or fill out our form — no pressure, just honest help."
         canonical="/contact"
+        structuredData={getOrganizationSchema()}
       />
 
       <div className="bg-paper min-h-screen pt-32 pb-24">
