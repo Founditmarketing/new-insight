@@ -15,10 +15,15 @@ export function Contact() {
     setIsSubmitting(true);
     
     try {
-      const response = await fetch('/api/contact', {
+      const response = await fetch('https://www.founditos.com/api/contact-form/b3abea70-98e0-41c0-82cd-b07245bb915e', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(formData),
+        body: JSON.stringify({
+          name: formData.name,
+          email: formData.email,
+          phone: formData.phone,
+          message: `Type: ${formData.type}\nLocation: ${formData.location}\n\n${formData.message}`,
+        }),
       });
 
       if (response.ok) {

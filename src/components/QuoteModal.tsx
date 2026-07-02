@@ -111,16 +111,14 @@ export function QuoteModal({ isOpen, onClose }: QuoteModalProps) {
     if (formData.serviceType) details += `<p><strong>Service Type:</strong> ${formData.serviceType}</p>`;
 
     try {
-      await fetch('/api/contact', {
+      await fetch('https://www.founditos.com/api/contact-form/b3abea70-98e0-41c0-82cd-b07245bb915e', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
           name: `${formData.firstName} ${formData.lastName}`.trim() || 'No Name Provided',
-          email: formData.email || 'no-email@provided.com',
+          email: formData.email || '',
           phone: formData.phone,
-          location: locationMapping[formData.office] || 'Alexandria',
-          type: `Quote Request (${formData.coverage})`,
-          message: details || 'No additional details provided.',
+          message: `Quote Request (${formData.coverage})\nOffice: ${locationMapping[formData.office] || 'Alexandria'}\n${details || ''}`,
         }),
       });
     } catch (error) {
