@@ -114,6 +114,7 @@ export function QuoteModal({ isOpen, onClose }: QuoteModalProps) {
       await fetch('https://www.founditos.com/api/contact-form/b3abea70-98e0-41c0-82cd-b07245bb915e', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
+        redirect: 'manual',
         body: JSON.stringify({
           name: `${formData.firstName} ${formData.lastName}`.trim() || 'No Name Provided',
           email: formData.email || '',
