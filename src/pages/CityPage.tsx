@@ -4,7 +4,7 @@ import { ArrowLeft, ShieldCheck, MapPin, Phone } from 'lucide-react';
 import { CTA } from '../components/CTA';
 import { Testimonials } from '../components/Testimonials';
 import { SEO } from '../components/SEO';
-import { getLocalBusinessSchema } from '../seo/structured-data';
+import { getLocalBusinessSchema, getBreadcrumbSchema } from '../seo/structured-data';
 
 const cityData: Record<string, any> = {
   alexandria: {
@@ -60,7 +60,14 @@ export function CityPage({ onOpenQuote }: { onOpenQuote: () => void }) {
         title={data.seoTitle}
         description={data.seoDescription}
         canonical={`/locations/${city}`}
-        structuredData={getLocalBusinessSchema(data.locationIndex) || undefined}
+        structuredData={[
+          getLocalBusinessSchema(data.locationIndex),
+          getBreadcrumbSchema([
+            { name: 'Home', url: '/' },
+            { name: 'Locations', url: '/locations' },
+            { name: data.name, url: `/locations/${city}` },
+          ]),
+        ].filter(Boolean) as object[]}
       />
 
       <div className="bg-paper min-h-screen pt-32">

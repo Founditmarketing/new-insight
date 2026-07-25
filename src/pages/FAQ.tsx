@@ -4,6 +4,7 @@ import { motion, AnimatePresence } from 'motion/react';
 import { ChevronDown } from 'lucide-react';
 import { SEO } from '../components/SEO';
 import { CTA } from '../components/CTA';
+import { getBreadcrumbSchema } from '../seo/structured-data';
 
 const faqs = [
   {
@@ -106,7 +107,13 @@ export function FAQ({ onOpenQuote }: { onOpenQuote: () => void }) {
         title="FAQ — Common Insurance Questions"
         description="Answers to common insurance questions about coverage, claims, flood insurance, switching agents, and more. Insight Insurance serves Alexandria, Ponchatoula, and Slidell, LA."
         canonical="/faq"
-        structuredData={getFAQSchema()}
+        structuredData={[
+          getFAQSchema(),
+          getBreadcrumbSchema([
+            { name: 'Home', url: '/' },
+            { name: 'FAQ', url: '/faq' },
+          ]),
+        ]}
       />
 
       <div className="bg-paper min-h-screen pt-32 pb-24">

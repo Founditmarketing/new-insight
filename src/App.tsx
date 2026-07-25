@@ -34,6 +34,7 @@ const NotFound = lazy(() => import('./pages/NotFound').then(m => ({ default: m.N
 const MakePayment = lazy(() => import('./pages/MakePayment').then(m => ({ default: m.MakePayment })));
 const FileAClaim = lazy(() => import('./pages/FileAClaim').then(m => ({ default: m.FileAClaim })));
 const Careers = lazy(() => import('./pages/Careers').then(m => ({ default: m.Careers })));
+const CampaignPage = lazy(() => import('./pages/campaigns/CampaignPage').then(m => ({ default: m.CampaignPage })));
 
 // Minimal loading fallback
 function PageLoader() {
@@ -127,6 +128,9 @@ export default function App() {
                 <Route path="/payments" element={<MakePayment />} />
                 <Route path="/file-a-claim" element={<FileAClaim />} />
                 <Route path="/careers" element={<Careers />} />
+                <Route path="/campaigns/:slug" element={
+                  <CampaignPage onOpenQuote={() => setIsQuoteOpen(true)} />
+                } />
                 {/* Legacy city routes */}
                 <Route path="/:city" element={
                   <CityPage onOpenQuote={() => setIsQuoteOpen(true)} />

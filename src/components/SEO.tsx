@@ -6,21 +6,24 @@ interface SEOProps {
   canonical?: string;
   ogImage?: string;
   type?: string;
-  structuredData?: object;
+  structuredData?: object | object[];
+  noIndex?: boolean;
 }
 
-const BASE_URL = 'https://insighthelps.com';
+const BASE_URL = 'https://www.insighthelps.com';
 
-export function SEO({ title, description, canonical, ogImage, type = 'website', structuredData }: SEOProps) {
+export function SEO({ title, description, canonical, ogImage, type = 'website', structuredData, noIndex = false }: SEOProps) {
   const fullTitle = title.includes('Insight Insurance') ? title : `${title} | Insight Insurance`;
   const canonicalUrl = canonical ? `${BASE_URL}${canonical}` : undefined;
   const image = ogImage || `${BASE_URL}/images/og-default.png`;
+  const schemas = structuredData ? (Array.isArray(structuredData) ? structuredData : [structuredData]) : [];
 
   return (
     <Helmet>
       <title>{fullTitle}</title>
       <meta name="description" content={description} />
-      
+      <meta name="robots" content={noIndex ? 'noindex, nofollow' : 'index, follow'} />
+
       {/* Canonical */}
       {canonicalUrl && <link rel="canonical" href={canonicalUrl} />}
       
@@ -44,11 +47,11 @@ export function SEO({ title, description, canonical, ogImage, type = 'website', 
       <meta name="geo.placename" content="Ponchatoula, Louisiana" />
       
       {/* Structured Data */}
-      {structuredData && (
-        <script type="application/ld+json">
-          {JSON.stringify(structuredData)}
+      {schemas.map((schema, i) => (
+        <script key={i} type="application/ld+json">
+          {JSON.stringify(schema)}
         </script>
-      )}
+      ))}
     </Helmet>
   );
 }

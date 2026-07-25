@@ -28,11 +28,13 @@ export function getOrganizationSchema() {
   return {
     '@context': 'https://schema.org',
     '@type': 'InsuranceAgency',
+    '@id': 'https://www.insighthelps.com/#business',
     name: 'Insight Insurance',
-    url: 'https://insighthelps.com',
-    logo: 'https://insighthelps.com/images/og-default.png',
+    url: 'https://www.insighthelps.com',
+    logo: 'https://www.insighthelps.com/images/og-default.png',
     description: 'Independent insurance agency serving Ponchatoula, Slidell, and Alexandria, Louisiana. We shop 50+ carriers to find the right coverage at a fair price.',
     email: 'support@insighthelps.com',
+    telephone: locations.map((loc) => loc.phone),
     foundingDate: '2000',
     numberOfEmployees: { '@type': 'QuantitativeValue', minValue: 5, maxValue: 15 },
     areaServed: [
@@ -86,7 +88,7 @@ export function getLocalBusinessSchema(locationIndex: number) {
     name: loc.name,
     telephone: loc.phone,
     email: 'support@insighthelps.com',
-    url: 'https://insighthelps.com',
+    url: 'https://www.insighthelps.com',
     address: {
       '@type': 'PostalAddress',
       streetAddress: loc.address.split(',')[0],
@@ -113,7 +115,7 @@ export function getBreadcrumbSchema(items: { name: string; url: string }[]) {
       '@type': 'ListItem',
       position: i + 1,
       name: item.name,
-      item: `https://insighthelps.com${item.url}`,
+      item: `https://www.insighthelps.com${item.url}`,
     })),
   };
 }
