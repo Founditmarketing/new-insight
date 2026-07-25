@@ -7,6 +7,7 @@ import { useEffect, useState, lazy, Suspense } from 'react';
 import Lenis from 'lenis';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import { HelmetProvider } from 'react-helmet-async';
+import { Analytics } from '@vercel/analytics/react';
 import { Navbar } from './components/Navbar';
 import { Footer } from './components/Footer';
 import { Preloader } from './components/Preloader';
@@ -145,6 +146,7 @@ export default function App() {
           <QuoteModal isOpen={isQuoteOpen} onClose={() => setIsQuoteOpen(false)} />
           <ClientPortalModal isOpen={isPortalOpen} onClose={() => setIsPortalOpen(false)} />
           <Concierge />
+          <Analytics />
         </div>
       </BrowserRouter>
     </HelmetProvider>
